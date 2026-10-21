@@ -30,35 +30,35 @@ class Rollback(unittest.TestCase):
 
     def test_restore_modified(self):
         f = self.tmp / "a.txt"
-        f.write_text("old value\n")
+        f.write_text("old value\n", encoding="utf-8")
         res = self.apply_replace(f)
         self.assertEqual(res["steps"][0]["status"], "verified")
         self.assertEqual(res["steps"][0]["effect"]["modified"], 1)
-        self.assertEqual(f.read_text(), "new value\n")
+        self.assertEqual(f.read_text(encoding="utf-8"), "new value\n")
         dry = api.rollback(res["run"])
         self.assertFalse(dry["applied"])
-        self.assertEqual(f.read_text(), "new value\n")
+        self.assertEqual(f.read_text(encoding="utf-8"), "new value\n")
         api.rollback(res["run"], apply=True)
-        self.assertEqual(f.read_text(), "old value\n")
+        self.assertEqual(f.read_text(encoding="utf-8"), "old value\n")
 
     def test_conflict_is_all_or_nothing(self):
         a, b = self.tmp / "a.txt", self.tmp / "b.txt"
-        a.write_text("old a\n")
-        b.write_text("old b\n")
+        a.write_text("old a\n", encoding="utf-8")
+        b.write_text("old b\n", encoding="utf-8")
         if not (shutil.which("sd") or shutil.which("perl")):
             self.skipTest("needs sd or perl")
         res = api.run_op("replace-apply", self.env, {"pattern": "old", "replacement": "new", "files": [str(a), str(b)]}, allow={"writes"})
-        a.write_text("edited later\n")
+        a.write_text("edited later\n", encoding="utf-8")
         rep = api.rollback(res["run"], apply=True)
         self.assertEqual(rep["conflicts"], 1)
         self.assertFalse(rep["applied"])
-        self.assertEqual(b.read_text(), "new b\n")  # untouched: nothing applied
+        self.assertEqual(b.read_text(encoding="utf-8"), "new b\n")  # untouched: nothing applied
         api.rollback(res["run"], apply=True, force=True)
-        self.assertEqual((a.read_text(), b.read_text()), ("old a\n", "old b\n"))
+        self.assertEqual((a.read_text(encoding="utf-8"), b.read_text(encoding="utf-8")), ("old a\n", "old b\n"))
 
     def test_created_paths_are_moved_not_deleted(self):
         src = self.tmp / "s.txt"
-        src.write_text("x")
+        src.write_text("x", encoding="utf-8")
         res = api.run_op("copy", self.env, {"src": str(src), "dest": str(self.tmp / "d.txt")}, allow={"writes"})
         self.assertEqual(res["steps"][0]["status"], "verified")
         rep = api.rollback(res["run"], apply=True)
@@ -87,7 +87,7 @@ class MCP(unittest.TestCase):
 
     def test_read_only_tool_cannot_write(self):
         tmp = Path(tempfile.mkdtemp())
-        (tmp / "a").write_text("x")
+        (tmp / "a").write_text("x", encoding="utf-8")
         r = self.rpc({"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "rth_run", "arguments": {
             "op": "copy", "params": {"src": str(tmp / "a"), "dest": str(tmp / "b")}}}})
         data = json.loads(r[0]["result"]["content"][0]["text"])

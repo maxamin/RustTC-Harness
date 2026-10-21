@@ -47,7 +47,7 @@ def gc(max_age_days=DEFAULT_MAX_AGE_DAYS, keep=DEFAULT_KEEP, dry_run=False, forc
         if g.is_dir() and not force:
             kept.append({"path": str(g), "why": "standalone graveyard; remove manually or gc --force"})
     if not dry_run:
-        (state_dir() / "last-gc").write_text(str(time.time()))
+        (state_dir() / "last-gc").write_text(str(time.time()), encoding="utf-8")
     return {"removed_runs": len(removed), "freed_bytes": freed, "kept": kept, "dry_run": dry_run,
             "remaining_runs": len(runs) - (0 if dry_run else len(removed)), "policy": {"max_age_days": max_age_days, "keep": keep}}
 
@@ -56,7 +56,7 @@ def maybe_auto_gc():
     """Called at run start: cheap, at most daily, never forced."""
     stamp = state_dir() / "last-gc"
     try:
-        last = float(stamp.read_text())
+        last = float(stamp.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         last = 0
     if time.time() - last > AUTO_GC_EVERY:
@@ -76,7 +76,7 @@ def stats(days=30):
         if not res.exists() or r.stat().st_mtime < cutoff:
             continue
         try:
-            d = json.loads(res.read_text())
+            d = json.loads(res.read_text(encoding="utf-8"))
         except ValueError:
             continue
         n += 1

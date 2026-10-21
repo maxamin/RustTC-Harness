@@ -84,7 +84,8 @@ def run_argv(argv, *, timeout, stdin=None, cwd=None, progress=None, heartbeat=10
     try:
         group = {"start_new_session": True} if os.name != "nt" else {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
         proc = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE if stdin is not None else subprocess.DEVNULL,
-                                text=True, cwd=cwd, env={**os.environ, "NO_COLOR": "1", "PAGER": "cat", "GIT_PAGER": "cat"}, **group)
+                                text=True, encoding="utf-8", errors="replace", cwd=cwd,
+                                env={**os.environ, "NO_COLOR": "1", "PAGER": "cat", "GIT_PAGER": "cat"}, **group)
     except FileNotFoundError:
         return {"exit": 127, "stdout": "", "stderr": f"{argv[0]}: not found", "seconds": 0.0, "timed_out": False, "missing": True}
     except PermissionError as e:
@@ -540,7 +541,7 @@ def execute(plan, env, *, allow=(), approve=(), dry_run=False, max_workers=4, op
              **({"resume_note": options["resume_note"]} if options.get("resume_note") else {}), "objective": plan.get("objective"), "workflow": plan.get("workflow"),
              "status": status, "steps": results, "run_dir": str(log.dir), "remaining": _remaining(results, plan),
              **({"warnings": plan["warnings"]} if plan.get("warnings") else {})}
-    (log.dir / "result.json").write_text(json.dumps(final, indent=1, default=str))
+    (log.dir / "result.json").write_text(json.dumps(final, indent=1, default=str), encoding="utf-8")
     log.event("run_end", status=status)
     return final
 

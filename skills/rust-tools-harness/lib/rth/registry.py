@@ -14,13 +14,13 @@ STATUS_PENALTY = {"active": 0, "experimental": -1, "inactive": -1, "archived": -
 
 @lru_cache(maxsize=1)
 def tools():
-    data = json.loads((REGISTRY_DIR / "tools.json").read_text())
+    data = json.loads((REGISTRY_DIR / "tools.json").read_text(encoding="utf-8"))
     return {t["id"]: t for t in data["tools"]}
 
 
 @lru_cache(maxsize=1)
 def capabilities():
-    return json.loads((REGISTRY_DIR / "capabilities.json").read_text())["capabilities"]
+    return json.loads((REGISTRY_DIR / "capabilities.json").read_text(encoding="utf-8"))["capabilities"]
 
 
 def get(tool_id_or_binary):

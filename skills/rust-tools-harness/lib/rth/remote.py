@@ -101,7 +101,7 @@ def detect(target, refresh=False):
         raise RemoteError(f"{kind} is not installed locally")
     cache = state_dir() / f"env-remote-{hashlib.sha1(target.encode()).hexdigest()[:12]}.json"
     if not refresh and cache.exists():
-        d = json.loads(cache.read_text())
+        d = json.loads(cache.read_text(encoding="utf-8"))
         if time.time() - d.get("detected_at", 0) < TTL:
             return RemoteEnv(target, d)
     names = sorted(set(registry.binaries()) | set(NATIVE_BINARIES))
@@ -115,5 +115,5 @@ def detect(target, refresh=False):
             "arch": lines[1] if len(lines) > 1 else None, "uid": lines[2] if len(lines) > 2 else None,
             "binaries": dict(ln.split("\t", 1) for ln in lines[3:] if "\t" in ln), "privileges": {"is_root": len(lines) > 2 and lines[2] == "0"},
             "path_hash": "remote:" + target, "tty": False, "versions": {}, "help": {}, "package_managers": []}
-    cache.write_text(json.dumps(data))
+    cache.write_text(json.dumps(data), encoding="utf-8")
     return RemoteEnv(target, data)

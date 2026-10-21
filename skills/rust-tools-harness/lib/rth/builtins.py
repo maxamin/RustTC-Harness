@@ -269,8 +269,8 @@ def archive_extract(p, env):
 def diff(p, env):
     if p.get("range") is not None:
         raise ValueError("builtin diff compares files only; git range needs git")
-    a = Path(p["a"]).read_text(errors="replace").splitlines(keepends=True)
-    b = Path(p["b"]).read_text(errors="replace").splitlines(keepends=True)
+    a = Path(p["a"]).read_text(errors="replace", encoding="utf-8").splitlines(keepends=True)
+    b = Path(p["b"]).read_text(errors="replace", encoding="utf-8").splitlines(keepends=True)
     return [ln.rstrip("\n") for ln in difflib.unified_diff(a, b, p["a"], p["b"])]
 
 
@@ -285,7 +285,7 @@ def graveyard_delete(p, env):
         dst = yard / f"{i:04d}-{Path(src).name}"
         shutil.move(src, dst)
         moved.append({"from": os.path.abspath(src), "to": str(dst)})
-        (yard / "moves.json").write_text(json.dumps(moved, indent=1))  # after each move: partial runs stay restorable
+        (yard / "moves.json").write_text(json.dumps(moved, indent=1), encoding="utf-8")  # after each move: partial runs stay restorable
     return {"moved": moved}
 
 
@@ -571,7 +571,7 @@ def jq_lite(expr, vals):
 
 def json_query(p, env):
     import json as _json
-    data = _json.loads(Path(p["file"]).read_text() if p.get("file") else p["stdin"])
+    data = _json.loads(Path(p["file"]).read_text(encoding="utf-8") if p.get("file") else p["stdin"])
     try:
         out = jq_lite(p.get("filter", "."), [data])
     except JqUnsupported as e:

@@ -94,12 +94,12 @@ def snapshot(run_dir, step_id, spec):
     for p in spec.get("deleted", []):
         entries.append({"path": os.path.abspath(p), "action": "restore-deleted"})
     manifest = {"step": step_id, "entries": entries, "finalized": False, "run_dir": str(run_dir)}
-    (bdir / "manifest.json").write_text(json.dumps(manifest, indent=1))
+    (bdir / "manifest.json").write_text(json.dumps(manifest, indent=1), encoding="utf-8")
     return str(bdir / "manifest.json")
 
 
 def finalize(manifest_path, tool=None):
-    m = json.loads(Path(manifest_path).read_text())
+    m = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
     m["tool"] = tool
     for e in m["entries"]:
         if e["action"] in ("restore", "remove-created"):
@@ -111,12 +111,12 @@ def finalize(manifest_path, tool=None):
             e["branches_after"] = (_git_q(e["path"], "for-each-ref", "--format=%(refname:short)", "refs/heads") or "").splitlines()
     moves = Path(m.get("run_dir", "")) / "graveyard" / "moves.json"
     if moves.exists():
-        where = {mv["from"]: mv["to"] for mv in json.loads(moves.read_text())}
+        where = {mv["from"]: mv["to"] for mv in json.loads(moves.read_text(encoding="utf-8"))}
         for e in m["entries"]:
             if e["action"] == "restore-deleted" and e["path"] in where:
                 e["graveyard"] = where[e["path"]]
     m["finalized"] = True
-    Path(manifest_path).write_text(json.dumps(m, indent=1))
+    Path(manifest_path).write_text(json.dumps(m, indent=1), encoding="utf-8")
     restore = [e for e in m["entries"] if e["action"] == "restore"]
     created = [e for e in m["entries"] if e["action"] == "remove-created"]
     return {"modified": sum(e["sha_after"] != e["sha_before"] for e in restore), "modify_expected": len(restore),
@@ -188,7 +188,7 @@ def _rollback(run_dir, *, apply, force):
     if not manifests:
         return {"run_dir": str(run_dir), "applied": False, "actions": [], "note": "no write steps with undo data in this run"}
     for mp in manifests:
-        m = json.loads(mp.read_text())
+        m = json.loads(mp.read_text(encoding="utf-8"))
         if not m.get("finalized"):
             report.append({"step": m["step"], "action": "skip", "why": "step did not complete; nothing recorded as written"})
             continue

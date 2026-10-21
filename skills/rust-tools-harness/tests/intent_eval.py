@@ -18,7 +18,7 @@ def route(text, env):
 
 def evaluate(verbose=False):
     env = envmod.detect()
-    cases = json.loads((HERE / "fixtures" / "intents.json").read_text())
+    cases = json.loads((HERE / "fixtures" / "intents.json").read_text(encoding="utf-8"))
     misses = [(t, want, route(t, env)) for t, want in cases]
     misses = [m for m in misses if m[2] not in (m[1] if isinstance(m[1], list) else [m[1]])]
     if verbose:

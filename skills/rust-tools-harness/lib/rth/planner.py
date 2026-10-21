@@ -13,7 +13,7 @@ STEP_DEFAULTS = {"depends_on": [], "on_failure": "fallback", "critical": True}
 def workflows():
     out = {}
     for f in sorted(registry.WORKFLOW_DIR.glob("*.json")):
-        w = json.loads(f.read_text())
+        w = json.loads(f.read_text(encoding="utf-8"))
         out[w["name"]] = w
     return out
 

@@ -288,7 +288,7 @@ class Policy:
     @staticmethod
     def _ask_tty(prompt):
         try:
-            with open("/dev/tty", "r+") as tty:
+            with open("/dev/tty", "r+", encoding="utf-8") as tty:
                 tty.write(prompt + " [y/N] ")
                 tty.flush()
                 return tty.readline().strip().lower() in ("y", "yes")
@@ -328,7 +328,7 @@ class Agent:
         self.tools = [t for t in self.mcp.tools if not tools_filter or t["name"] in tools_filter]
 
     def _log(self, kind, **kw):
-        with open(self.log_path, "a") as fh:
+        with open(self.log_path, "a", encoding="utf-8") as fh:
             fh.write(json.dumps({"ts": time.time(), "event": kind, **kw}, default=str) + "\n")
 
     def call_tool(self, name, args):

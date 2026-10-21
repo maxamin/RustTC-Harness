@@ -27,12 +27,12 @@ class AuditLog:
 
     def event(self, kind, **fields):
         rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "run": self.run_id, "event": kind, **fields}
-        with self._lock, self.path.open("a") as fh:
+        with self._lock, self.path.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(rec, default=str) + "\n")
 
     def artifact(self, name, text):
         p = self.dir / name
-        p.write_text(text or "")
+        p.write_text(text or "", encoding="utf-8")
         return str(p)
 
 
@@ -44,7 +44,7 @@ def list_runs(limit=10):
         summary = {}
         if res.exists():
             try:
-                d = json.loads(res.read_text())
+                d = json.loads(res.read_text(encoding="utf-8"))
                 summary = {"objective": d.get("objective"), "status": d.get("status")}
             except ValueError:
                 pass
@@ -54,4 +54,4 @@ def list_runs(limit=10):
 
 def read(run_id):
     p = runs_dir() / run_id / "audit.jsonl"
-    return [json.loads(ln) for ln in p.read_text().splitlines()] if p.exists() else []
+    return [json.loads(ln) for ln in p.read_text(encoding="utf-8").splitlines()] if p.exists() else []

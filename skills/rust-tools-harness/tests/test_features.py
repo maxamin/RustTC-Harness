@@ -35,7 +35,7 @@ class Features(unittest.TestCase):
     @unittest.skipUnless(locks.fcntl and (shutil.which("sd") or shutil.which("perl")), "needs flock and sd|perl")
     def test_locks_block_concurrent_writer(self):
         f = self.tmp / "a.txt"
-        f.write_text("old\n")
+        f.write_text("old\n", encoding="utf-8")
         ready, done = threading.Event(), threading.Event()
 
         def holder():
@@ -51,7 +51,7 @@ class Features(unittest.TestCase):
         t.join()
         self.assertEqual(s["status"], "blocked")
         self.assertIn("locked by another run", s["error"])
-        self.assertEqual(f.read_text(), "old\n")
+        self.assertEqual(f.read_text(encoding="utf-8"), "old\n")
         self.assertEqual(self.apply(f)["status"], "verified")
 
     @unittest.skipUnless(shutil.which("prlimit"), "needs prlimit")
@@ -85,7 +85,7 @@ class Features(unittest.TestCase):
         self.assertIsNone(history.learned_skip("find-files", "rg", ph))
 
     def test_resume_reuses_verified_steps_only_when_fresh(self):
-        (self.tmp / "f.txt").write_text("needle\n")
+        (self.tmp / "f.txt").write_text("needle\n", encoding="utf-8")
         plan = planner.instantiate(planner.workflows()["repo-intel"], {"path": str(self.tmp)})
         first = api.execute(plan, env())
         again = api.execute(plan, env(), resume=first["run"])
@@ -123,7 +123,7 @@ class Features(unittest.TestCase):
 
     def test_safe_delete_graveyard_roundtrip(self):
         v = self.tmp / "victim.txt"
-        v.write_text("keep me")
+        v.write_text("keep me", encoding="utf-8")
         plan = planner.single_op_plan("d", "safe-delete", {"paths": [str(v)]})
         plan["steps"][0]["tool"] = "builtin"
         r = api.execute(plan, env(), allow={"writes"})
@@ -132,14 +132,14 @@ class Features(unittest.TestCase):
             self.skipTest(f"a system trash tool handled it: {s.get('tool')}")
         self.assertFalse(v.exists())
         rep = api.rollback(r["run"], apply=True)
-        self.assertEqual(v.read_text(), "keep me", rep)
+        self.assertEqual(v.read_text(encoding="utf-8"), "keep me", rep)
 
     def test_created_dir_changed_later_is_conflict(self):
         src = self.tmp / "srcdir"
         src.mkdir()
-        (src / "a").write_text("1")
+        (src / "a").write_text("1", encoding="utf-8")
         r = api.run_op("copy", env(), {"src": str(src), "dest": str(self.tmp / "dst")}, allow={"writes"})
-        (self.tmp / "dst" / "new-file").write_text("user work")
+        (self.tmp / "dst" / "new-file").write_text("user work", encoding="utf-8")
         rep = api.rollback(r["run"], apply=True)
         self.assertEqual(rep["conflicts"], 1)
         self.assertTrue((self.tmp / "dst" / "new-file").exists())

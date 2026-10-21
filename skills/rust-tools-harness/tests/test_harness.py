@@ -19,13 +19,13 @@ from rth import ops as O  # noqa: E402
 
 def fake_bin(d, name, script):
     p = Path(d) / name
-    p.write_text("#!/bin/sh\n" + script)
+    p.write_text("#!/bin/sh\n" + script, encoding="utf-8")
     p.chmod(0o755)
 
 
 class Registry(unittest.TestCase):
     def test_every_catalogue_entry_indexed(self):
-        cat = json.loads((SKILL / "registry" / "catalogue.json").read_text())
+        cat = json.loads((SKILL / "registry" / "catalogue.json").read_text(encoding="utf-8"))
         self.assertEqual({e["id"] for e in cat}, set(registry.tools()))
         self.assertGreaterEqual(len(cat), 170)
 
@@ -158,7 +158,7 @@ class Execution(unittest.TestCase):
     def test_unsupported_flag_falls_back(self):
         fake_bin(self.fake, "fd", '[ "$1" = --version ] && echo "fd 1" && exit 0\necho "error: unexpected argument \'--glob\'" >&2; exit 2\n')
         (self.tmp / "data").mkdir()
-        (self.tmp / "data" / "x.txt").write_text("hi")
+        (self.tmp / "data" / "x.txt").write_text("hi", encoding="utf-8")
         r = self.run_op("find-files", {"path": str(self.tmp / "data"), "ext": "txt"})
         s = r["steps"][0]
         self.assertEqual(s["status"], "verified")
@@ -169,7 +169,7 @@ class Execution(unittest.TestCase):
     def test_malformed_output_falls_back(self):
         fake_bin(self.fake, "rg", '[ "$1" = --version ] && echo "ripgrep 1" && exit 0\necho garbage\n')
         f = self.tmp / "f.txt"
-        f.write_text("needle\n")
+        f.write_text("needle\n", encoding="utf-8")
         r = self.run_op("search-content", {"pattern": "needle", "path": str(self.tmp)})
         s = r["steps"][0]
         self.assertEqual(s["attempts"][0]["failure"], "malformed-output")
@@ -193,7 +193,7 @@ class Execution(unittest.TestCase):
 
     def test_write_ops_need_approval(self):
         src = self.tmp / "a.txt"
-        src.write_text("x")
+        src.write_text("x", encoding="utf-8")
         r = self.run_op("copy", {"src": str(src), "dest": str(self.tmp / "b.txt")})
         self.assertEqual(r["status"], "needs-approval")
         self.assertFalse((self.tmp / "b.txt").exists())
@@ -207,7 +207,7 @@ class Execution(unittest.TestCase):
     def test_extract_refuses_non_empty_dest(self):
         dest = self.tmp / "out"
         dest.mkdir()
-        (dest / "keep").write_text("x")
+        (dest / "keep").write_text("x", encoding="utf-8")
         r = self.run_op("archive-extract", {"archive": str(self.tmp / "a.tar"), "dest": str(dest)}, allow={"writes"})
         self.assertEqual(r["steps"][0]["status"], "blocked")
 
@@ -215,7 +215,7 @@ class Execution(unittest.TestCase):
     def test_search_replace_workflow(self):
         repo = self.tmp / "repo"
         (repo / "src").mkdir(parents=True)
-        (repo / "src" / "m.rs").write_text("fn old_name() {}\nfn main() { old_name(); }\n")
+        (repo / "src" / "m.rs").write_text("fn old_name() {}\nfn main() { old_name(); }\n", encoding="utf-8")
         g = ["git", "-C", str(repo), "-c", "user.email=t@t", "-c", "user.name=t"]
         subprocess.run(["git", "init", "-q", str(repo)], check=True)
         subprocess.run([*g, "add", "-A"], check=True)
@@ -224,10 +224,10 @@ class Execution(unittest.TestCase):
         plan = planner.instantiate(w, {"pattern": "old_name", "replacement": "new_name", "path": str(repo)})
         r = executor.execute(plan, self.env())
         self.assertEqual(r["status"], "needs-approval")
-        self.assertIn("old_name", (repo / "src" / "m.rs").read_text())
+        self.assertIn("old_name", (repo / "src" / "m.rs").read_text(encoding="utf-8"))
         r = executor.execute(plan, self.env(), approve={"apply"})
         self.assertEqual(r["status"], "verified", json.dumps(r["remaining"]))
-        self.assertNotIn("old_name", (repo / "src" / "m.rs").read_text())
+        self.assertNotIn("old_name", (repo / "src" / "m.rs").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

@@ -261,9 +261,9 @@ def tree_bins(repo, want=None):
 def cmd_verify_bins(args):
     """Confirm curated binary names against real build targets (for tools crates.io/root Cargo.toml didn't confirm)."""
     _need_toml()
-    reg = json.loads((REG / "tools.json").read_text())
+    reg = json.loads((REG / "tools.json").read_text(encoding="utf-8"))
     up_path = REG / "upstream.json"
-    up = json.loads(up_path.read_text())
+    up = json.loads(up_path.read_text(encoding="utf-8"))
     todo = [t for t in reg["tools"] if (t["binary"] and t["verification"]["binary_source"] == "curated"
             or args.unknown and not t["binary"] and t["kind"] in ("cli", "tui", "shell", "agent", "service"))
             and (not args.only or t["id"] in args.only)]
@@ -272,10 +272,10 @@ def cmd_verify_bins(args):
         info = tree_bins(repo, want=t["binary"])
         up["tools"][t["id"]]["tree_bins"] = {**info, "checked_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
         found = (t["binary"] or "") in info.get("bins", {})
-        up_path.write_text(json.dumps(up, indent=1, ensure_ascii=False) + "\n")  # save per tool: API quota is precious
+        up_path.write_text(json.dumps(up, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")  # save per tool: API quota is precious
         print(f"{t['id']:<14} {str(t['binary']):<12} {'CONFIRMED' if found else 'scanned' if not t['binary'] else 'not found'}  {sorted(info.get('bins', {}))[:8] or info.get('error')}",
               file=sys.stderr)
-    up_path.write_text(json.dumps(up, indent=1, ensure_ascii=False) + "\n")
+    up_path.write_text(json.dumps(up, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def _need_toml():
@@ -285,11 +285,11 @@ def _need_toml():
 
 def cmd_fetch(args):
     _need_toml()
-    entries = json.loads((REG / "catalogue.json").read_text())
-    curated = json.loads((REG / "curated.json").read_text()) if (REG / "curated.json").exists() else {}
+    entries = json.loads((REG / "catalogue.json").read_text(encoding="utf-8"))
+    curated = json.loads((REG / "curated.json").read_text(encoding="utf-8")) if (REG / "curated.json").exists() else {}
     hints = {k: ([v["crate"]] if v.get("crate") else []) for k, v in curated.get("tools", {}).items()}
     out_path = REG / "upstream.json"
-    prev = json.loads(out_path.read_text()) if out_path.exists() else {}
+    prev = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {}
     results = dict(prev.get("tools", {}))
     if args.crates_only:  # reuse GitHub data, redo crates.io lookup where no crate matched
         todo = [e for e in entries if not (results.get(e["id"], {}).get("crates_io") or {}).get("crate")]
@@ -316,7 +316,7 @@ def _save(path, results):
     path.write_text(json.dumps({
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "tools": dict(sorted(results.items())),
-    }, indent=1, ensure_ascii=False) + "\n")
+    }, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 # --------------------------------------------------------------------------- build
@@ -335,9 +335,9 @@ def status_of(gh, entry):
 
 
 def cmd_build(args):
-    entries = json.loads((REG / "catalogue.json").read_text())
-    up = json.loads((REG / "upstream.json").read_text()).get("tools", {}) if (REG / "upstream.json").exists() else {}
-    cur = json.loads((REG / "curated.json").read_text())
+    entries = json.loads((REG / "catalogue.json").read_text(encoding="utf-8"))
+    up = json.loads((REG / "upstream.json").read_text(encoding="utf-8")).get("tools", {}) if (REG / "upstream.json").exists() else {}
+    cur = json.loads((REG / "curated.json").read_text(encoding="utf-8"))
     ctools, defaults = cur["tools"], cur.get("defaults", {})
     missing = [e["id"] for e in entries if e["id"] not in ctools]
     if missing:
@@ -419,7 +419,7 @@ def cmd_build(args):
         "count": len(tools),
         "tools": tools,
     }
-    (REG / "tools.json").write_text(json.dumps(reg, indent=1, ensure_ascii=False) + "\n")
+    (REG / "tools.json").write_text(json.dumps(reg, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     by = {}
     for t in tools:
         by[t["status"]] = by.get(t["status"], 0) + 1
@@ -429,7 +429,7 @@ def cmd_build(args):
 
 def cmd_docs(args):
     """registry/tools.json -> references/catalogue.md (human-readable, generated)."""
-    reg = json.loads((REG / "tools.json").read_text())
+    reg = json.loads((REG / "tools.json").read_text(encoding="utf-8"))
     out = ["# Catalogue (generated)", "",
            f"Generated from `registry/tools.json` ({reg['count']} tools, built {reg['built_at']}). Do not edit by hand: "
            "run `scripts/build_registry.py build`.", "",
@@ -448,7 +448,7 @@ def cmd_docs(args):
             out.append(f"| [{t['name']}]({t['url']}) | `{b}` | {t['kind']} | {t['status']} | {t['automation']} | "
                        f"{t['interactive']} | {', '.join(t['capabilities'])} |")
         out.append("")
-    (SKILL / "references" / "catalogue.md").write_text("\n".join(out))
+    (SKILL / "references" / "catalogue.md").write_text("\n".join(out), encoding="utf-8")
     print("wrote references/catalogue.md", file=sys.stderr)
 
 
@@ -470,7 +470,7 @@ def main():
     a = ap.parse_args()
     if a.cmd == "parse":
         entries = parse_readme(a.readme)
-        (REG / "catalogue.json").write_text(json.dumps(entries, indent=1, ensure_ascii=False) + "\n")
+        (REG / "catalogue.json").write_text(json.dumps(entries, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"parsed {len(entries)} entries", file=sys.stderr)
     elif a.cmd == "fetch":
         cmd_fetch(a)

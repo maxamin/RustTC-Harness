@@ -42,7 +42,8 @@ def state_dir():
 
 def _run(argv, timeout=3):
     try:
-        p = subprocess.run(argv, capture_output=True, text=True, timeout=timeout, stdin=subprocess.DEVNULL)
+        p = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout,
+                           stdin=subprocess.DEVNULL)
         return p.returncode, (p.stdout or p.stderr).strip()
     except (OSError, subprocess.TimeoutExpired) as e:
         return None, str(e)
@@ -50,7 +51,7 @@ def _run(argv, timeout=3):
 
 def _read(path):
     try:
-        return Path(path).read_text().strip()
+        return Path(path).read_text(encoding="utf-8").strip()
     except OSError:
         return None
 
@@ -82,7 +83,7 @@ def detect(refresh=False):
     cache = state_dir() / "env.json"
     if not refresh and cache.exists():
         try:
-            env = json.loads(cache.read_text())
+            env = json.loads(cache.read_text(encoding="utf-8"))
             if env.get("path_hash") == _path_hash() and time.time() - env.get("detected_at", 0) < ENV_TTL:
                 return Env(env)
         except (ValueError, OSError):
@@ -126,7 +127,7 @@ class Env:
         self.data = data
 
     def save(self):
-        (state_dir() / "env.json").write_text(json.dumps(self.data, indent=1))
+        (state_dir() / "env.json").write_text(json.dumps(self.data, indent=1), encoding="utf-8")
 
     @property
     def os(self):

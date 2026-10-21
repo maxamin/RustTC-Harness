@@ -46,7 +46,7 @@ def _hold_msvcrt(paths, run_id, wait):
     held = []
     try:
         for path in sorted({os.path.abspath(p) for p in paths}):
-            fh = open(_lockfile(path), "a+")
+            fh = open(_lockfile(path), "a+", encoding="utf-8")
             deadline = time.monotonic() + wait
             while True:
                 try:
@@ -93,7 +93,7 @@ def hold(paths, run_id, wait=30):
     held = []
     try:
         for path in sorted(plan):  # global order prevents deadlocks between runs
-            fh = open(_lockfile(path), "a+")
+            fh = open(_lockfile(path), "a+", encoding="utf-8")
             deadline = time.monotonic() + wait
             while True:
                 try:

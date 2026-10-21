@@ -29,7 +29,7 @@ def env():
 def git_repo(root):
     g = ["git", "-C", str(root), "-c", "user.email=t@t", "-c", "user.name=t"]
     subprocess.run(["git", "init", "-q", str(root)], check=True)
-    (root / "a.txt").write_text("one\n")
+    (root / "a.txt").write_text("one\n", encoding="utf-8")
     subprocess.run([*g, "add", "-A"], check=True)
     subprocess.run([*g, "commit", "-qm", "init"], check=True)
     subprocess.run(["git", "-C", str(root), "config", "user.email", "t@t"], check=True)
@@ -41,8 +41,8 @@ class Compose(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="rth-cr-"))
         (self.tmp / "src").mkdir()
-        (self.tmp / "src" / "a.rs").write_text("fn a() {}\n")
-        (self.tmp / "src" / "b.rs").write_text("fn b() {}\n")
+        (self.tmp / "src" / "a.rs").write_text("fn a() {}\n", encoding="utf-8")
+        (self.tmp / "src" / "b.rs").write_text("fn b() {}\n", encoding="utf-8")
         self.cwd = os.getcwd()
         os.chdir(self.tmp)
 
@@ -77,9 +77,9 @@ class Remote(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="rth-remote-"))
         (self.tmp / "bin").mkdir()
-        (self.tmp / "bin" / "ssh").write_text(FAKE_SSH)
+        (self.tmp / "bin" / "ssh").write_text(FAKE_SSH, encoding="utf-8")
         (self.tmp / "bin" / "ssh").chmod(0o755)
-        (self.tmp / "f.txt").write_text("needle\n")
+        (self.tmp / "f.txt").write_text("needle\n", encoding="utf-8")
         self.old = os.environ["PATH"]
         os.environ["PATH"] = f"{self.tmp / 'bin'}:{self.old}"
 
@@ -118,7 +118,7 @@ class GitWrites(unittest.TestCase):
 
     def test_commit_gate_and_soft_undo(self):
         before = self.head()
-        (self.repo / "a.txt").write_text("two\n")
+        (self.repo / "a.txt").write_text("two\n", encoding="utf-8")
         params = {"path": str(self.repo), "message": "change", "files": ["a.txt"]}
         self.assertEqual(api.run_op("git-commit", env(), params)["status"], "needs-approval")
         r = api.run_op("git-commit", env(), params, allow={"writes"})
@@ -148,11 +148,11 @@ class Maintenance(unittest.TestCase):
         for i in range(5):
             d = runs / f"20000101-00000{i}-000000"
             d.mkdir(exist_ok=True)
-            (d / "result.json").write_text(json.dumps({"run": d.name, "status": "verified", "steps": []}))
+            (d / "result.json").write_text(json.dumps({"run": d.name, "status": "verified", "steps": []}), encoding="utf-8")
             os.utime(d, (time.time() - 90 * 86400, time.time() - 90 * 86400))
         g = runs / "20000101-000000-000000" / "graveyard"
         g.mkdir()
-        (g / "0000-x.txt").write_text("deleted user file")
+        (g / "0000-x.txt").write_text("deleted user file", encoding="utf-8")
         rep = maintenance.gc(max_age_days=30, keep=100)
         self.assertEqual(rep["removed_runs"], 4)
         self.assertTrue(g.exists())

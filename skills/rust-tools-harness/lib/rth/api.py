@@ -98,8 +98,8 @@ def execute(plan_obj, env, *, allow=(), approve=(), dry_run=False, options=None,
 def load_result(ref):
     p = Path(ref)
     if p.exists():
-        return json.loads(p.read_text())
-    return json.loads((audit.runs_dir() / ref / "result.json").read_text())
+        return json.loads(p.read_text(encoding="utf-8"))
+    return json.loads((audit.runs_dir() / ref / "result.json").read_text(encoding="utf-8"))
 
 
 def verify(ref):
@@ -145,9 +145,9 @@ def registry_health():
     """Freshness of the upstream data and sync with the catalogue README (when it is next to the skill)."""
     import datetime as dt
     import importlib.util
-    reg = json.loads((registry.REGISTRY_DIR / "tools.json").read_text())
+    reg = json.loads((registry.REGISTRY_DIR / "tools.json").read_text(encoding="utf-8"))
     up_file = registry.REGISTRY_DIR / "upstream.json"
-    gen = json.loads(up_file.read_text()).get("generated_at") if up_file.exists() else None
+    gen = json.loads(up_file.read_text(encoding="utf-8")).get("generated_at") if up_file.exists() else None
     age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(gen)).days if gen else None
     out = {"built_at": reg["built_at"], "upstream_fetched": gen, "upstream_age_days": age,
            "stale": age is None or age > STALE_DAYS, "refresh": "scripts/build_registry.py fetch --refresh && scripts/build_registry.py build"}
@@ -158,7 +158,7 @@ def registry_health():
         spec.loader.exec_module(br)
         listed = {e["id"] for e in br.parse_readme(readme)}
         indexed = set(registry.tools())
-        curated = set(json.loads((registry.REGISTRY_DIR / "curated.json").read_text())["tools"])
+        curated = set(json.loads((registry.REGISTRY_DIR / "curated.json").read_text(encoding="utf-8"))["tools"])
         out["readme"] = {"entries": len(listed), "not_in_registry": sorted(listed - indexed),
                          "removed_from_readme": sorted(indexed - listed), "missing_curated": sorted(listed - curated)}
         out["in_sync"] = not (out["readme"]["not_in_registry"] or out["readme"]["removed_from_readme"] or out["readme"]["missing_curated"])

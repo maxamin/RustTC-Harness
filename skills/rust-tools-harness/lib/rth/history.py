@@ -25,7 +25,7 @@ def _path():
 def record(op, tool, failure, path_hash, seconds=None):
     rec = {"ts": round(time.time()), "op": op, "tool": tool, "failure": failure, "path_hash": path_hash,
            **({"seconds": seconds} if seconds is not None else {})}
-    with _lock, _path().open("a") as fh:
+    with _lock, _path().open("a", encoding="utf-8") as fh:
         fh.write(json.dumps(rec) + "\n")
 
 
@@ -33,10 +33,10 @@ def _load():
     p = _path()
     if not p.exists():
         return []
-    lines = p.read_text().splitlines()
+    lines = p.read_text(encoding="utf-8").splitlines()
     if len(lines) > MAX_LINES:  # keep the file bounded
         lines = lines[-MAX_LINES:]
-        p.write_text("\n".join(lines) + "\n")
+        p.write_text("\n".join(lines) + "\n", encoding="utf-8")
     out = []
     for ln in lines:
         try:

@@ -138,7 +138,7 @@ def _perf_inferno(p, env):
         script = subprocess.run(["perf", "script", "-i", data], capture_output=True, text=True)
         folded = subprocess.run(["inferno-collapse-perf"], input=script.stdout, capture_output=True, text=True)
         svg = subprocess.run(["inferno-flamegraph"], input=folded.stdout, capture_output=True, text=True)
-        out.write_text(svg.stdout)
+        out.write_text(svg.stdout, encoding="utf-8")
     return {"flamegraph": str(out), "bytes": out.stat().st_size, "samples_lines": folded.stdout.count("\n")}
 
 
@@ -192,7 +192,7 @@ def _strace_c(p, env):
         f = os.path.join(td, "s.txt")
         r = subprocess.run(sandbox.argv(["strace", "-f", "-c", "-o", f, *_argv(p["command"])]), capture_output=True, text=True,
                            timeout=int(p.get("timeout", 300)))
-        txt = Path(f).read_text() if os.path.exists(f) else ""
+        txt = Path(f).read_text(encoding="utf-8") if os.path.exists(f) else ""
     rows = []
     for ln in txt.splitlines():
         m = re.match(r"\s*([\d.]+)\s+([\d.]+)\s+(\d+)\s+(\d+)\s+(?:(\d+)\s+)?(\w+)$", ln)
@@ -237,7 +237,7 @@ def _proc_net_dev(p, env):
 
     def read():
         d = {}
-        for ln in f.read_text().splitlines()[2:]:
+        for ln in f.read_text(encoding="utf-8").splitlines()[2:]:
             name, rest = ln.split(":", 1)
             v = rest.split()
             d[name.strip()] = (int(v[0]), int(v[8]))

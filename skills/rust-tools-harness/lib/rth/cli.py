@@ -116,7 +116,7 @@ def cmd_workflows(a, env):
 def cmd_plan(a, env):
     p = api.plan(" ".join(a.objective), env, parse_params(a.param, a.params_json), workflow=a.workflow)
     if a.output:
-        Path(a.output).write_text(json.dumps(p, indent=1, default=str))
+        Path(a.output).write_text(json.dumps(p, indent=1, default=str), encoding="utf-8")
         emit({"plan_written": a.output, "status": p.get("status"), "workflow": p.get("workflow"),
               "steps": [s["id"] for s in p.get("steps", [])], "missing_params": p.get("missing_params")})
     else:
@@ -135,7 +135,7 @@ def _exit(res):
 
 
 def cmd_execute(a, env):
-    plan = json.loads(Path(a.plan).read_text()) if a.plan != "-" else json.load(sys.stdin)
+    plan = json.loads(Path(a.plan).read_text(encoding="utf-8")) if a.plan != "-" else json.load(sys.stdin)
     if plan.get("status") == "needs-input" and not a.force:
         sys.exit(f"plan needs input: {plan.get('missing_params')} (set with rth plan ... --param k=v)")
     res = api.execute(plan, env, allow=_allow(a), approve=a.approve or [], dry_run=a.dry_run, options=_options(a), resume=a.resume)

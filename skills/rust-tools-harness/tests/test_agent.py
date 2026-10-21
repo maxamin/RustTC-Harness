@@ -68,7 +68,7 @@ class OfflineAgent(unittest.TestCase):
     def setUp(self):
         self.mcp = A.MCPClient()
         self.tmp = Path(tempfile.mkdtemp())
-        (self.tmp / "a.txt").write_text("x")
+        (self.tmp / "a.txt").write_text("x", encoding="utf-8")
 
     def tearDown(self):
         self.mcp.close()
