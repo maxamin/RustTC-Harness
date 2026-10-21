@@ -26,11 +26,16 @@ def match_workflow(objective):
     for w in workflows().values():
         score = 0.0
         strong = set(w.get("strong_keywords", []))
+        qs = matcher.stems(q)
         for kw in set(w.get("keywords", [])) | strong:
-            hit = kw in q if " " in kw else kw in qw
+            hit = (kw in q or (len(matcher.stems(kw)) >= 2 and matcher.stems(kw) <= qs and kw.strip() == kw)) if " " in kw else (kw in qw or matcher.stem(kw) in qs)
             if hit:
                 score += (4 if kw in strong else 2) + kw.count(" ")
-        if score:
+        # "find/list/locate ... files" is a file search, not a disk-usage or diagnostics workflow
+        if re.search(r"\b(find|list|locate|show|which)\b.*\bfiles?\b", q) and w["name"] not in ("search-replace", "repo-intel") \
+                and not re.search(r"\b(space|disk|usage)\b", q):
+            score -= 4
+        if score > 0:
             best.append((score, w["name"]))
     best.sort(reverse=True)
     return best
@@ -61,6 +66,10 @@ def _guess_params(objective, spec):
     m = re.search(r"\b(?:to|on|host|target)\s+([a-z0-9.-]+\.[a-z]{2,}|\d+\.\d+\.\d+\.\d+)\b", objective, re.I)
     if m and "target" in spec:
         guessed.setdefault("target", m[1])
+    if "expr" in spec:
+        e = math_expression(objective)
+        if e:
+            guessed.setdefault("expr", e)
     for k, v in extract_constraints(objective).items():
         if k in spec:
             guessed.setdefault(k, v)
@@ -74,6 +83,21 @@ SIZE_UNIT = {"b": "b", "byte": "b", "bytes": "b", "k": "k", "kb": "k", "m": "m",
              "kib": "ki", "mib": "mi", "gib": "gi", "tib": "ti"}
 TIME_UNIT = {"s": "s", "sec": "s", "second": "s", "min": "min", "minute": "min", "h": "h", "hr": "h", "hour": "h",
              "d": "d", "day": "d", "w": "w", "week": "w"}
+
+
+MATH_WORDS = [(r"to the power of", "**"), (r"raised to", "**"), (r"\bsquared\b", "**2"), (r"\bcubed\b", "**3"), (r"\btimes\b", "*"),
+              (r"multiplied by", "*"), (r"divided by", "/"), (r"\bover\b", "/"), (r"\bplus\b", "+"), (r"\bminus\b", "-"),
+              (r"\bmod(?:ulo)?\b", "%")]
+
+
+def math_expression(text):
+    """'what's 2 to the power of 10' -> '2 ** 10'; unit conversions ('5 GiB to MB') are passed through for fend."""
+    t = re.sub(r"^\s*(?:what'?s|what is|how much is|calculate|compute|evaluate|convert)\s+", "", text.strip(), flags=re.I).rstrip("?. ")
+    if re.search(r"\d\s*[a-z]+\s+(?:to|in)\s+[a-z]+", t, re.I):
+        return t  # unit conversion: leave for fend
+    for pat, rep in MATH_WORDS:
+        t = re.sub(pat, rep, t, flags=re.I)
+    return t if re.fullmatch(r"[\d\s.+\-*/%()]+", t) and re.search(r"\d", t) else None
 
 
 def extract_constraints(text):
@@ -191,6 +215,63 @@ def normalize_params(spec, params):
     return out, warnings
 
 
+CLAUSE_SEP = re.compile(r"\s*(?:,?\s*(?:and\s+)?then\b|;|\bafter that\b|\bafterwards\b|\bfollowed by\b|\band finally\b|\bfinally\b)\s*", re.I)
+EACH = re.compile(r"\b(each|every|all of them|them|those|these|it)\b", re.I)
+SINGLE_INPUTS = ("file", "path", "archive", "a")
+LIST_INPUTS = ("files", "paths", "commands")
+
+
+def split_clauses(objective, env):
+    parts = [p.strip(" ,.") for p in CLAUSE_SEP.split(objective) if p and p.strip(" ,.")]
+    if len(parts) == 1 and re.search(r"\band\b", objective):
+        # "X and Y": a composition only if both halves select an op on their own; "... and list ITS files" is one task
+        a, _, b = objective.partition(" and ")
+        if re.search(r"\b(its|it|them|their|those|these)\b", b, re.I):
+            return parts
+        whole = matcher.select(objective, env).get("selection") or {}
+        sa, sb = (matcher.select(x, env).get("selection") or {} for x in (a, b))
+        if sa and sb and sa.get("op") != sb.get("op") and min(sa["score"], sb["score"]) >= 3 and whole.get("score", 0) < sa["score"] + sb["score"]:
+            parts = [a.strip(), b.strip()]
+    return parts
+
+
+def compose(objective, env, params=None):
+    """Compound objective -> chained single-op steps with automatic output->input wiring. None if not compound."""
+    clauses = split_clauses(objective, env)
+    if len(clauses) < 2:
+        return None
+    steps, prev, notes, missing = [], None, [], []
+    for i, c in enumerate(clauses):
+        sel = matcher.select(c, env).get("selection")
+        if not sel:
+            return None
+        o = O.OPS[sel["op"]]
+        p, warn = normalize_params(o.params, {**_guess_params(c, o.params), **{k: v for k, v in (params or {}).items() if k in o.params}})
+        step = {**STEP_DEFAULTS, "id": f"s{i + 1}-{o.name}", "purpose": c, "op": o.name, "tool": None, "inputs": dict(p),
+                "timeout": o.timeout, "preconditions": _preconditions(o), "verification": o.verify, "expected_output": o.summary,
+                "depends_on": [prev["id"]] if prev else []}
+        if prev:
+            prev_paths = f"${{steps.{prev['id']}.paths}}"
+            req = [k for k, v in o.params.items() if str(v).startswith("REQUIRED") and k not in p]
+            list_in = next((k for k in LIST_INPUTS if k in o.params and k not in p and k != "commands"), None)
+            single_in = next((k for k in SINGLE_INPUTS if k in o.params and k not in p and (k in req or EACH.search(c))), None)
+            if list_in and (list_in in req or EACH.search(c)):
+                step["inputs"][list_in] = prev_paths
+                notes.append(f"{step['id']}.{list_in} <- paths from {prev['id']}")
+            elif single_in:
+                step["foreach"], step["foreach_param"] = prev_paths, single_in
+                notes.append(f"{step['id']} runs once per path from {prev['id']} (as {single_in})")
+        unresolved = [k for k, v in o.params.items() if str(v).startswith("REQUIRED") and k not in step["inputs"]
+                      and k != step.get("foreach_param")]
+        missing += [f"{step['id']}.{k}" for k in unresolved]
+        if warn:
+            notes += warn
+        steps.append(step)
+        prev = step
+    return {"schema": "rust-tools-harness/plan@1", "objective": objective, "workflow": "composed", "params": params or {},
+            "status": "needs-input" if missing else "ready", "missing_params": missing or None, "notes": notes, "steps": steps}
+
+
 def plan(objective, env, params=None, workflow=None):
     params = dict(params or {})
     if workflow and workflow not in workflows():
@@ -199,6 +280,9 @@ def plan(objective, env, params=None, workflow=None):
     if workflow:
         w = workflows()[workflow]
         return instantiate(w, {**_guess_params(objective or "", w.get("params", {})), **params}) | ({"objective": objective} if objective else {})
+    composed = compose(objective, env, params)
+    if composed:
+        return composed
     ranked = match_workflow(objective)
     if ranked and ranked[0][0] >= 4:
         w = workflows()[ranked[0][1]]
