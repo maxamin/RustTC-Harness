@@ -59,19 +59,33 @@ Exit codes of `run`/`execute`: 0 = verified or planned, 3 = needs approval or in
 | what the harness learned on this machine | `$H history [<op>]` |
 | rerun a plan, reusing verified steps | `$H execute plan.json --resume <run-id>` (runs < 1 h old) |
 | long steps: show heartbeats | add `--progress` |
+| cross-run summary (failures, slow tools, state size) | `$H stats [--days N]` |
+| clean old runs (keeps runs holding deleted files) | `$H gc [--older-than 30] [--keep 50] [--dry-run]` (auto, daily) |
 
-Ops (40): find-files, search-content, view-file, hex-view, list-dir, tree, disk-usage, dir-size, disk-free,
+Ops (55): find-files, search-content, view-file, hex-view, list-dir, tree, disk-usage, dir-size, disk-free,
 process-list, system-info, json-query, csv-profile, csv-query (SQL over CSV), fs-query, code-stats, repo-summary,
 git-status, git-log, git-diff-stat, diff, benchmark, cpu-profile, python-profile, syscall-trace, replace-preview,
 replace-apply, archive-list, archive-extract, copy, safe-delete, net-connections, net-bandwidth, trace-route,
-port-scan, http-test, resource-history, task-list, parallel, help.
+port-scan, http-test, resource-history, task-list, task-run, parallel, help, regex-generate, calculate, identify,
+color, csv-frequency, csv-select, site-check, cache-stats, jj-log, mail-list, git-commit, git-branch,
+git-absorb-preview, git-absorb.
 
 Every core op ends with a pure-Python fallback, so it still works with no external tools (minimal containers,
 Windows). The fallback states its differences in `semantics`, e.g. it doesn't honor `.gitignore`, and the JSON
-fallback supports only a jq subset.
+fallback supports a jq subset (paths, select with and/or/test/has, map, sort_by, group_by, unique, add,
+min/max, to_entries, join, object construction…). It refuses anything outside the subset rather than guessing.
 
 Workflows: repo-intel, disk-usage-report, search-replace, data-profile, system-diagnostics,
 network-path, benchmark-compare, git-review, archive-inspect. See `references/workflows.md`.
+
+**Composition:** a compound objective ("find rust files **then** show each of them", "list logs then move them
+to the trash", "check disk space and show running processes") becomes a `composed` plan. Each clause gets an op,
+earlier paths are wired into later inputs (`${steps.ID.paths}`), and single-file ops run once per result (`foreach`,
+max 50). Inspect the plan before executing it. Gates still apply to every step.
+
+**Remote targets:** `--target ssh:HOST | docker:NAME | podman:NAME` on `run`/`execute`/`env` runs read-only
+ops with the remote host's own tools. Writes, history rewrites, local-artifact ops and Python fallbacks are
+refused remotely.
 
 ## Approval gates
 
@@ -81,21 +95,25 @@ Steps that change state stop with `needs-approval` until the user authorizes the
 |---|---|---|
 | writes-files | `--allow writes` | replace-apply, copy, archive-extract, safe-delete |
 | network-active | `--allow network` | trace-route, port-scan |
-| runs-user-code | `--allow exec` | benchmark, parallel |
+| runs-user-code | `--allow exec` | benchmark, parallel, cpu-profile, python-profile, syscall-trace |
+| rewrites-history | `--allow history` | git-absorb (git-commit / git-branch are `writes`) |
 | needs-privilege | `--allow privileged` | (never auto-sudo; the harness does not escalate) |
 
-`--approve <step-id>` authorizes a single step. Write steps (replace-apply, copy, archive-extract) snapshot
+`--approve <step-id>` authorizes a single step. Write steps (replace-apply, copy, archive-extract, safe-delete) snapshot
 what they touch first. The step result carries `undo.rollback`, and `effect` (before/after hashes) is the
 evidence that the write happened. `rth rollback <run> --apply` restores modified files and moves created
 paths into the run directory (never deletes). It is all-or-nothing: if a file changed after the run it
-reports a conflict and does nothing unless `--force`. safe-delete is undone with the trash tool itself
-(`trash restore`, `rip -u`). Ask the user before passing any of these unless they
+reports a conflict and does nothing unless `--force`. Deletes into the harness graveyard roll back automatically.
+For the system trash tools, rollback prints the tool's own restore command (`trash restore`, `rip -u`). Ask the user
+before passing any of these unless they
 already asked for that action. Never pass `--allow` just to get past a gate.
 
 User-code steps (benchmark, parallel, profilers, syscall-trace) run under resource limits by default (CPU 900 s,
 memory 4 GB, file size 2 GB, via `prlimit`). Add `--sandbox` to isolate them with bubblewrap: no network,
 read-only filesystem except the working directory and run directory, private TMPDIR. The step's `sandbox` field
-shows what applied. Write steps lock the paths they touch, so concurrent runs can't modify the same files. A
+shows what applied. `--sandbox-readonly` also makes the working directory read-only, leaving nothing to undo. Without
+prlimit, limits use `ulimit`; on macOS isolation uses `sandbox-exec`, which isn't verified in CI yet. Git writes
+are undone with `reset --soft` / `reset --keep` / `branch -d`, never anything that discards work. Write steps lock the paths they touch, so concurrent runs can't modify the same files. A
 conflicting step comes back `blocked` with the holder's run id.
 
 Hard rules:
@@ -111,7 +129,7 @@ Hard rules:
 
 | front end | starts with | what it is |
 |---|---|---|
-| MCP server | `$H mcp` or `bin/rth-mcp` | exposes the harness as 16 MCP tools over stdio. The plain tools are read-only; `rth_run_approved`, `rth_execute_approved` and `rth_rollback_apply` take an `allow` list and are separate so client permission prompts can tell them apart |
+| MCP server | `$H mcp` or `bin/rth-mcp` | exposes the harness as 17 MCP tools over stdio. The plain tools are read-only; `rth_run_approved`, `rth_execute_approved` and `rth_rollback_apply` take an `allow` list and are separate so client permission prompts can tell them apart |
 | standalone agent | `$H agent "<goal>"` | deterministic planner, no model: plan → execute → approval → verify → report |
 | ...with a local LLM | `$H agent "<goal>" --llm ollama` (or `--llm openai --url http://127.0.0.1:8080`) | a local model chooses the tools (default Qwen Coder, `qwen2.5-coder:7b`, or any installed `qwen*coder*`). Non-local endpoints are refused |
 | ...through MCP | add `--mcp` (bundled server) or `--mcp "<cmd>"` | the agent's tool calls go over a real MCP connection instead of in-process calls |
@@ -139,7 +157,8 @@ it prints (checked by the harness), not just the answer.
   affects the answer.
 - Interactive TUIs (bottom, gitui, yazi, television, csvlens, jless) need a human at a TTY. Use their
   non-interactive equivalents in automation; `discover` marks them `interactive-only, no TTY`.
-- For tools without an adapter (e.g. `qsv sqlp`, `cargo flamegraph`, `py-spy record`, `hurl --test`), read
+- For tools without an adapter (e.g. `qsv frequency/join`, `hyperfine --parameter-scan`, `git-absorb`, `zola check`,
+  `himalaya`), read
   `$H info <tool>` (flags, exit behaviour, limitations), check `--help`, run the smallest useful command
   yourself, and verify the artifact it produces.
 
@@ -149,6 +168,12 @@ Report: what was answered, the evidence (counts, paths, measurements and the too
 semantic caveats from `semantics`, anything `remaining` (unverified, blocked or needs-approval), and the run id
 for the audit trail. For benchmarks, claim a difference only if it exceeds the combined stddev under
 identical settings.
+
+## Platforms
+
+Linux is the tested platform (CI also targets macOS). On Windows and minimal systems the pure-Python fallbacks
+keep the core ops working (process-list uses `tasklist`). Locks fall back to no-op on Windows, and `--sandbox` needs
+Linux bubblewrap.
 
 ## References
 

@@ -10,7 +10,7 @@ JSON, verifies the result with evidence, and logs every action.
   crate matched by repository URL, Cargo.toml build targets). 161 binary names are confirmed upstream and none rest on
   hand-written claims. The other 13 are GUIs, libraries or ambiguous, and stay `unknown`. A weekly workflow
   (`registry-refresh.yml`) re-checks everything and opens a PR.
-- **40 executable ops** with ranked Rust and native implementations, plus pure-Python fallbacks so the core ops
+- **55 executable ops** with ranked Rust and native implementations, plus pure-Python fallbacks so the core ops
   work with no external tools (Windows, minimal containers) (e.g. `fd → git ls-files → find`, `rg → git grep → grep`,
   `hyperfine → builtin`). Each one documents its semantic differences.
 - **9 workflow templates**: repo intelligence, disk usage, search & replace, data profiling, system diagnostics,
@@ -18,6 +18,9 @@ JSON, verifies the result with evidence, and logs every action.
 - **Safety**: approval gates for writes, network probes and running code; resource limits (and optional bubblewrap
   isolation) for user code; path locks so concurrent runs can't write the same files; no `rm` fallback; scope
   check for port scans; no privilege escalation.
+- **Composition**: "find X then do Y to each of them" becomes a chained plan, with paths wired between steps and per-item `foreach`.
+- **Remote targets**: read-only ops over `ssh:HOST` / `docker:NAME` with remote tool detection.
+- **Git writes** (commit, branch, absorb) behind gates, with undo that never discards work.
 - **Adaptive**: learns which tools fail persistently on this machine, resumes plans from verified steps, extracts
   constraints from plain language ("python files bigger than 1MB changed in the last 2 days"), and suggests how to
   install a better tool using the package managers you actually have.

@@ -33,6 +33,9 @@ intent ─▶ matcher ─▶ planner ─▶ plan.json ─▶ executor ─▶ res
 | Standalone agent (opt-in) | `agent.py`, `rth agent`, `bin/rth-agent` | default: deterministic planner + in-process tools (no LLM, no MCP). `--llm ollama/openai` adds a local model (default Qwen Coder); `--mcp` routes tool calls through a stdio MCP server. Local-endpoint guard, approval policy, harness-checked verification, JSONL transcript |
 | Portable fallbacks | `builtins.py` | pure-Python impls for core ops (walk/search/tree/du/archives/diff/copy, jq subset, graveyard delete) |
 | Extra ops | `ops_extra.py` | csv-query (qsv sqlp / sqlite3), fs-query, http-test, cpu-profile, python-profile, syscall-trace, net-bandwidth, resource-history |
+| More ops | `ops_more.py`, `ops_git.py` | grex, fend/eva, lemmeknow, pastel, task-run, qsv/xsv, zola, sccache, jj, himalaya; gated git writes |
+| Remote | `remote.py` | ssh/docker/podman transport, remote env detection; read-only ops only |
+| Maintenance | `maintenance.py` | `gc` (auto daily; keeps graveyards) and `stats` |
 | Learning | `history.py` | per (op, tool) outcomes in `history.jsonl`; persistent failures → `learned-skip` |
 | Sandbox | `sandbox.py` | prlimit resource limits (default for user code) + optional bubblewrap isolation |
 | Locks | `locks.py` | flock per path (exclusive) + ancestors (shared) for write steps |
@@ -82,6 +85,8 @@ Refresh: `scripts/build_registry.py parse && scripts/build_registry.py fetch --r
   implementation with the same capability. `not-found` and `network-error` stop, because changing tools won't fix the input.
 - Permission failures fall back only to other unprivileged implementations. The harness never runs `sudo`.
 - Status `verified` requires at least one passing check beyond the exit code.
+- Composition (`planner.compose`): clauses split on then/;/after that (and on "and" when both halves are real tasks
+  and the second half has no pronoun). `${steps.ID.paths}` collects paths from records/`files`; `foreach` runs a step per item.
 - Long steps stream output: heartbeats go to the audit log (and stderr with `--progress`).
 - `--resume RUN` reuses steps whose definition hash matches and whose status was `verified`/`not-applicable`, only
   if that run finished less than an hour ago.
