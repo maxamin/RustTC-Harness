@@ -25,7 +25,25 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Unit tests
         working-directory: skills/rust-tools-harness
-        run: python -m unittest tests/test_harness.py tests/test_parsers.py tests/test_undo_mcp.py tests/test_agent.py tests/test_builtins.py tests/test_features.py tests/test_compose_remote.py -v
+        run: |
+          set -o pipefail
+          python -m unittest tests/test_harness.py tests/test_parsers.py tests/test_undo_mcp.py tests/test_agent.py tests/test_builtins.py tests/test_features.py tests/test_compose_remote.py -v 2>&1 | tee unit.log
+      - name: Annotate failing tests
+        if: failure()
+        working-directory: skills/rust-tools-harness
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re
+          txt = open("unit.log", encoding="utf-8", errors="replace").read()
+          for block in re.split(r"^={10,}$", txt, flags=re.M)[1:]:
+              parts = re.split(r"^-{10,}$", block.strip(), flags=re.M)
+              head = parts[0].strip().splitlines()[0] if parts and parts[0].strip() else ""
+              tb = [l.strip() for l in (parts[1] if len(parts) > 1 else "").strip().splitlines() if l.strip()]
+              tail = " | ".join(tb[-3:])[:900]
+              if head.startswith(("FAIL:", "ERROR:")):
+                  print(f"::error title={head[:120]}::{tail}")
+          PY
 
   windows:
     # pure-Python fallbacks, parsers and registry on Windows (no Unix tools assumed). Not yet run: first CI run validates it.
@@ -37,7 +55,26 @@ jobs:
           python-version: "3.12"
       - name: Portable tests
         working-directory: skills/rust-tools-harness
-        run: python -m unittest tests/test_parsers.py tests/test_builtins.py -v
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m unittest tests/test_parsers.py tests/test_builtins.py -v 2>&1 | tee win.log
+      - name: Annotate failing tests
+        if: failure()
+        working-directory: skills/rust-tools-harness
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re
+          txt = open("win.log", encoding="utf-8", errors="replace").read()
+          for block in re.split(r"^={10,}$", txt, flags=re.M)[1:]:
+              parts = re.split(r"^-{10,}$", block.strip(), flags=re.M)
+              head = parts[0].strip().splitlines()[0] if parts and parts[0].strip() else ""
+              tb = [l.strip() for l in (parts[1] if len(parts) > 1 else "").strip().splitlines() if l.strip()]
+              tail = " | ".join(tb[-3:])[:900]
+              if head.startswith(("FAIL:", "ERROR:")):
+                  print(f"::error title={head[:120]}::{tail}")
+          PY
 
   live:
     # every adapter against real binaries; fails if a pinned tool silently falls back
@@ -71,7 +108,25 @@ jobs:
         run: python skills/rust-tools-harness/bin/rth env --versions
       - name: All tests (including live adapters)
         working-directory: skills/rust-tools-harness
-        run: python -m unittest discover -s tests -v
+        run: |
+          set -o pipefail
+          python -m unittest discover -s tests -v 2>&1 | tee live.log
+      - name: Annotate failing tests
+        if: failure()
+        working-directory: skills/rust-tools-harness
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re
+          txt = open("live.log", encoding="utf-8", errors="replace").read()
+          for block in re.split(r"^={10,}$", txt, flags=re.M)[1:]:
+              parts = re.split(r"^-{10,}$", block.strip(), flags=re.M)
+              head = parts[0].strip().splitlines()[0] if parts and parts[0].strip() else ""
+              tb = [l.strip() for l in (parts[1] if len(parts) > 1 else "").strip().splitlines() if l.strip()]
+              tail = " | ".join(tb[-3:])[:900]
+              if head.startswith(("FAIL:", "ERROR:")):
+                  print(f"::error title={head[:120]}::{tail}")
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
