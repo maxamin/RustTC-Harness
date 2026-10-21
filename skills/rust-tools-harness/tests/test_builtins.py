@@ -16,6 +16,8 @@ from rth import ops as O  # noqa: E402
 import test_live  # noqa: E402  (sandbox + cases)
 
 NEEDS_TOOLS = {"cpu-profile", "syscall-trace", "repo-summary", "net-bandwidth"}  # builtins that orchestrate external tools
+if os.name == "nt":  # these cases use POSIX shell commands
+    NEEDS_TOOLS |= {"parallel", "benchmark", "python-profile", "task-list", "task-run"}
 NETWORK_OK = {"http-test"}
 
 

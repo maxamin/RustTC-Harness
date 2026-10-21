@@ -31,7 +31,8 @@ REPORT = []
 SKIP_OPS = {"help"}  # exercised implicitly by env probes
 # ops whose success depends on host setup (collector daemons, perf permissions, a reachable server):
 # a failure here with an environment-type class is reported, not failed
-ENV_DEPENDENT = {"resource-history", "cpu-profile", "syscall-trace", "http-test", "net-bandwidth"}
+ENV_DEPENDENT = {"resource-history", "cpu-profile", "syscall-trace", "http-test", "net-bandwidth",
+                 "task-run", "site-check", "jj-log", "mail-list", "cache-stats"}  # need a project/config/account
 ENV_FAILURES = {"not-found", "permission-denied", "failed", "network-error"}
 
 
@@ -56,6 +57,7 @@ def make_sandbox():
     with zipfile.ZipFile(root / "a.zip", "w") as z:
         z.write(repo / "data.json", arcname="data.json")
     (root / "p.py").write_text("print(sum(range(1000)))\n")
+    (repo / "Makefile").write_text("hello:\n\t@echo hello\n")
     (root / "t.hurl").write_text("GET http://127.0.0.1:9/\nHTTP 200\n")
     (root / "a.txt").write_text("left\nsame\n")
     (root / "b.txt").write_text("right\nsame\n")
@@ -105,6 +107,22 @@ def cases(root, repo, tool, n):
         "syscall-trace": ({"command": ["true"]}, {"exec"}),
         "net-bandwidth": ({"seconds": 1}, ()),
         "resource-history": ({"begin": "-10m"}, ()),
+        "regex-generate": ({"examples": ["a1", "b22"]}, ()),
+        "calculate": ({"expr": "2 + 2"}, ()),
+        "identify": ({"text": "d41d8cd98f00b204e9800998ecf8427e"}, ()),
+        "color": ({"color": "#ff8800"}, ()),
+        "task-run": ({"task": {"make": "hello", "just": "test", "npm": "test", "cargo": "test", "mise": "test",
+                               "mask": "test"}.get(tool, "test"), "runner": tool, "path": r}, {"exec"}),
+        "csv-frequency": ({"file": f"{r}/data.csv", "column": "name"}, ()),
+        "csv-select": ({"file": f"{r}/data.csv", "columns": "name"}, ()),
+        "site-check": ({"path": r}, ()),
+        "cache-stats": ({}, ()),
+        "jj-log": ({"path": r}, ()),
+        "mail-list": ({}, {"network"}),
+        "git-commit": ({"path": r, "message": f"live {n}", "files": ["notes.md"]}, {"writes"}),
+        "git-branch": ({"path": r, "name": f"live-{n}-{tool}"}, {"writes"}),
+        "git-absorb-preview": ({"path": r}, ()),
+        "git-absorb": ({"path": r}, {"history"}),
     }
 
 

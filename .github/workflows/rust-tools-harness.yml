@@ -25,7 +25,19 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Unit tests
         working-directory: skills/rust-tools-harness
-        run: python -m unittest tests/test_harness.py tests/test_parsers.py tests/test_undo_mcp.py tests/test_agent.py tests/test_builtins.py tests/test_features.py -v
+        run: python -m unittest tests/test_harness.py tests/test_parsers.py tests/test_undo_mcp.py tests/test_agent.py tests/test_builtins.py tests/test_features.py tests/test_compose_remote.py -v
+
+  windows:
+    # pure-Python fallbacks, parsers and registry on Windows (no Unix tools assumed). Not yet run: first CI run validates it.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Portable tests
+        working-directory: skills/rust-tools-harness
+        run: python -m unittest tests/test_parsers.py tests/test_builtins.py -v
 
   live:
     # every adapter against real binaries; fails if a pinned tool silently falls back

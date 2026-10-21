@@ -119,7 +119,7 @@ class Features(unittest.TestCase):
         self.assertEqual(jq_lite("[.items[].id]", [d]), [[1, 2]])
         self.assertEqual(jq_lite(".items | length", [d]), [2])
         with self.assertRaises(JqUnsupported):
-            jq_lite(".items | sort_by(.id)", [d])
+            jq_lite('.items | reduce .[] as $x (0; . + $x.id)', [d])
 
     def test_safe_delete_graveyard_roundtrip(self):
         v = self.tmp / "victim.txt"

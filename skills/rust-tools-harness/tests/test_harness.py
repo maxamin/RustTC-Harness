@@ -126,6 +126,12 @@ class Pieces(unittest.TestCase):
         self.assertIn("pattern", sel["next"]["arguments"]["params"])
         self.assertEqual(matcher.select("where is old_name used", env)["selection"]["op"], "search-content")
 
+    def test_intent_routing_accuracy(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import intent_eval
+        acc, misses = intent_eval.evaluate()
+        self.assertGreaterEqual(acc, 0.95, f"routing regressed: {misses}")
+
     def test_matcher_prefers_passive(self):
         sel = matcher.select("show listening ports", envmod.detect(refresh=True))
         self.assertEqual(sel["selection"]["op"], "net-connections")
