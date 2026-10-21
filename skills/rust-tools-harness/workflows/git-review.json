@@ -2,15 +2,17 @@
  "name": "git-review",
  "description": "Review changes: repo state, diff stat, structural diff, recent history, and the task runner checks to run",
  "keywords": [
-  "review",
-  "code review",
-  "diff",
+  "branch",
   "changes",
-  "pull request",
-  "pr",
-  "what changed",
+  "code review",
   "commits",
-  "branch"
+  "committed",
+  "diff",
+  "pr",
+  "pull request",
+  "recent commits",
+  "review",
+  "what changed"
  ],
  "params": {
   "path": {

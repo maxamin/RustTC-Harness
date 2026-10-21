@@ -2,7 +2,6 @@
  "name": "benchmark-compare",
  "description": "Measure a baseline and a candidate command under identical settings and compare",
  "keywords": [
-  "benchmark",
   "faster",
   "slower",
   "performance",
@@ -10,7 +9,8 @@
   "regression",
   "optimize",
   "timing",
-  "speed up"
+  "speed up",
+  "compare"
  ],
  "params": {
   "baseline": {
@@ -51,11 +51,11 @@
   }
  ],
  "strong_keywords": [
-  "benchmark",
-  "faster",
-  "slower",
-  "speed up",
   "compare speed",
-  "which is faster"
+  "which is faster",
+  "faster than",
+  "slower than",
+  "versus",
+  " vs "
  ]
 }

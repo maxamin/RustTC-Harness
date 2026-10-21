@@ -1,0 +1,389 @@
+[
+ [
+  "where is old_name used",
+  "search-content"
+ ],
+ [
+  "grep the code for TODO comments",
+  "search-content"
+ ],
+ [
+  "show me occurrences of parse_config",
+  "search-content"
+ ],
+ [
+  "which files mention the string deprecated",
+  "search-content"
+ ],
+ [
+  "look for the function handle_request",
+  "search-content"
+ ],
+ [
+  "find all json files",
+  "find-files"
+ ],
+ [
+  "locate files named Cargo.toml",
+  "find-files"
+ ],
+ [
+  "list files modified in the last 2 days",
+  "find-files"
+ ],
+ [
+  "what is eating my disk",
+  [
+   "disk-usage-report",
+   "disk-usage"
+  ]
+ ],
+ [
+  "which folders take the most space",
+  [
+   "disk-usage-report",
+   "disk-usage"
+  ]
+ ],
+ [
+  "biggest directories here",
+  [
+   "disk-usage-report",
+   "disk-usage"
+  ]
+ ],
+ [
+  "is the disk full",
+  [
+   "disk-usage-report",
+   "disk-free"
+  ]
+ ],
+ [
+  "why is my computer sluggish",
+  "system-diagnostics"
+ ],
+ [
+  "what processes hog the cpu",
+  [
+   "process-list",
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "which program uses the most memory",
+  "process-list"
+ ],
+ [
+  "show running processes",
+  [
+   "process-list",
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "what ports are listening",
+  [
+   "net-connections",
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "open network connections",
+  "net-connections"
+ ],
+ [
+  "trace the route to example.com",
+  [
+   "network-path",
+   "trace-route"
+  ]
+ ],
+ [
+  "is there packet loss to 8.8.8.8",
+  [
+   "network-path",
+   "trace-route"
+  ]
+ ],
+ [
+  "rename foo to bar everywhere",
+  "search-replace"
+ ],
+ [
+  "replace http:// with https:// in the docs",
+  "search-replace"
+ ],
+ [
+  "how many lines of code is this project",
+  "code-stats"
+ ],
+ [
+  "what languages is this repo written in",
+  "code-stats"
+ ],
+ [
+  "give me an overview of this codebase",
+  "repo-intel"
+ ],
+ [
+  "help me understand this repository",
+  "repo-intel"
+ ],
+ [
+  "what changed in the last commit",
+  [
+   "git-review",
+   "git-diff-stat",
+   "git-log"
+  ]
+ ],
+ [
+  "review my uncommitted changes",
+  "git-review"
+ ],
+ [
+  "is version A faster than version B",
+  "benchmark-compare"
+ ],
+ [
+  "benchmark this command",
+  "benchmark"
+ ],
+ [
+  "profile my python script",
+  "python-profile"
+ ],
+ [
+  "make a flamegraph of the binary",
+  "cpu-profile"
+ ],
+ [
+  "what system calls does it make",
+  "syscall-trace"
+ ],
+ [
+  "query this csv with sql",
+  "csv-query"
+ ],
+ [
+  "most common values in the status column",
+  "csv-frequency"
+ ],
+ [
+  "unzip the release archive",
+  [
+   "archive-inspect",
+   "archive-extract"
+  ]
+ ],
+ [
+  "what is inside this tarball",
+  [
+   "archive-inspect",
+   "archive-list"
+  ]
+ ],
+ [
+  "move these files to the trash",
+  "safe-delete"
+ ],
+ [
+  "what is this hash d41d8cd98f00b204e9800998ecf8427e",
+  "identify"
+ ],
+ [
+  "convert 5 GiB to MB",
+  "calculate"
+ ],
+ [
+  "search the source for unwrap calls",
+  [
+   "search-content"
+  ]
+ ],
+ [
+  "which directory is the largest",
+  [
+   "disk-usage-report",
+   "disk-usage"
+  ]
+ ],
+ [
+  "my laptop is really slow today",
+  [
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "find png files bigger than 2MB",
+  [
+   "find-files"
+  ]
+ ],
+ [
+  "who is listening on port 8080",
+  [
+   "net-connections"
+  ]
+ ],
+ [
+  "count the code per language",
+  [
+   "code-stats"
+  ]
+ ],
+ [
+  "swap every occurrence of color with colour",
+  [
+   "search-replace"
+  ]
+ ],
+ [
+  "show the last 5 commits",
+  [
+   "git-log",
+   "git-review"
+  ]
+ ],
+ [
+  "time how long cargo build takes",
+  [
+   "benchmark"
+  ]
+ ],
+ [
+  "open the zip and list its files",
+  [
+   "archive-inspect",
+   "archive-list"
+  ]
+ ],
+ [
+  "which process is using all the RAM",
+  [
+   "process-list",
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "sum the values in the amount column with sql",
+  [
+   "csv-query"
+  ]
+ ],
+ [
+  "is google.com reachable, check the hops",
+  [
+   "network-path",
+   "trace-route"
+  ]
+ ],
+ [
+  "trash old.log",
+  [
+   "safe-delete"
+  ]
+ ],
+ [
+  "how much is 17 * 23",
+  [
+   "calculate"
+  ]
+ ],
+ [
+  "grep for password in config files",
+  [
+   "search-content"
+  ]
+ ],
+ [
+  "what takes up room in my home folder",
+  [
+   "disk-usage-report",
+   "disk-usage"
+  ]
+ ],
+ [
+  "everything feels laggy, diagnose it",
+  [
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "list markdown files changed this week",
+  [
+   "find-files"
+  ]
+ ],
+ [
+  "show sockets in LISTEN state",
+  [
+   "net-connections"
+  ]
+ ],
+ [
+  "lines of code by language please",
+  [
+   "code-stats"
+  ]
+ ],
+ [
+  "substitute v1 with v2 across the repo",
+  [
+   "search-replace"
+  ]
+ ],
+ [
+  "what got committed recently",
+  [
+   "git-log",
+   "git-review"
+  ]
+ ],
+ [
+  "measure how fast ripgrep runs",
+  [
+   "benchmark"
+  ]
+ ],
+ [
+  "peek inside backup.tar.gz",
+  [
+   "archive-inspect",
+   "archive-list"
+  ]
+ ],
+ [
+  "top memory consumers",
+  [
+   "process-list",
+   "system-diagnostics"
+  ]
+ ],
+ [
+  "run a select query on sales.csv",
+  [
+   "csv-query"
+  ]
+ ],
+ [
+  "ping path to 1.1.1.1 with loss stats",
+  [
+   "network-path",
+   "trace-route"
+  ]
+ ],
+ [
+  "delete tmp.txt safely",
+  [
+   "safe-delete"
+  ]
+ ],
+ [
+  "what's 2 to the power of 10",
+  [
+   "calculate"
+  ]
+ ]
+]

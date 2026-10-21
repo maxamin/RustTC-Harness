@@ -3,12 +3,14 @@
  "description": "List an archive and optionally extract it into a new directory",
  "keywords": [
   "archive",
-  "zip",
-  "tarball",
-  "extract",
-  "unzip",
   "decompress",
-  "tar"
+  "extract",
+  "inside",
+  "peek inside",
+  "tar",
+  "tarball",
+  "unzip",
+  "zip"
  ],
  "params": {
   "archive": {

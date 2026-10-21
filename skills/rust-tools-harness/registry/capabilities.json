@@ -28,29 +28,34 @@
   "search-content": {
    "description": "Search file contents by regex or literal",
    "keywords": [
-    "grep",
-    "search",
-    "regex",
-    "pattern",
-    "occurrences",
-    "usages",
-    "references",
-    "todo",
+    "callers",
     "code search",
     "contains",
+    "contains the string",
+    "function",
+    "grep",
+    "grep for",
     "identifier",
+    "is used",
+    "line numbers",
+    "look for",
+    "look for the function",
+    "mention",
+    "mentions",
+    "occurrences",
+    "pattern",
+    "references",
+    "references to",
+    "regex",
+    "search",
+    "symbol",
+    "todo",
     "usage",
+    "usages",
     "used",
     "uses of",
-    "where used",
-    "callers",
-    "symbol",
-    "function",
     "variable",
-    "line numbers",
-    "grep for",
-    "is used",
-    "references to"
+    "where used"
    ],
    "native": [
     "git grep",
@@ -104,12 +109,15 @@
   "search-replace": {
    "description": "Find and replace text across files (preview, then apply)",
    "keywords": [
-    "replace",
-    "rename symbol",
-    "substitute",
-    "sed",
+    "find and replace",
     "refactor text",
-    "find and replace"
+    "rename symbol",
+    "replace",
+    "replace every",
+    "sed",
+    "substitute",
+    "swap",
+    "with"
    ],
    "native": [
     "sed",
@@ -136,13 +144,18 @@
   "view-file": {
    "description": "Print a file or line range, optionally highlighted",
    "keywords": [
-    "show file",
-    "view",
     "cat",
-    "read file",
-    "print lines",
+    "contents",
+    "display",
+    "highlight",
     "inspect code",
-    "highlight"
+    "print",
+    "print lines",
+    "read",
+    "read file",
+    "show",
+    "show file",
+    "view"
    ],
    "native": [
     "sed -n",
@@ -195,13 +208,21 @@
   "disk-usage": {
    "description": "Break down disk usage by directory",
    "keywords": [
-    "disk usage",
-    "disk space",
-    "du",
-    "what is using space",
-    "space",
     "biggest directories",
-    "storage"
+    "directories size",
+    "disk full",
+    "disk space",
+    "disk usage",
+    "du",
+    "eating",
+    "folders",
+    "free up space",
+    "full disk",
+    "space",
+    "storage",
+    "take the most space",
+    "taking space",
+    "what is using space"
    ],
    "native": [
     "du"
@@ -224,11 +245,16 @@
   "safe-delete": {
    "description": "Delete recoverably (trash/graveyard)",
    "keywords": [
+    "clean up",
     "delete",
+    "delete files",
+    "move to trash",
     "remove",
-    "trash",
+    "remove files",
     "rm safely",
-    "clean up"
+    "to the trash",
+    "trash",
+    "trash these"
    ],
    "native": [
     "gio trash",
@@ -255,13 +281,16 @@
    "description": "Create, list or extract archives",
    "keywords": [
     "archive",
-    "zip",
-    "tar",
     "compress",
     "decompress",
     "extract",
-    "unzip",
     "gz",
+    "inside the archive",
+    "peek inside",
+    "tar",
+    "unzip",
+    "what is in",
+    "zip",
     "zst"
    ],
    "native": [
@@ -276,9 +305,12 @@
   "identify-strings": {
    "description": "Identify what a string is (IP, hash, email, key...)",
    "keywords": [
+    "classify string",
     "identify",
+    "identify this",
+    "what is this hash",
     "what is this string",
-    "classify string"
+    "what kind of string"
    ],
    "native": [
     "file"
@@ -287,14 +319,21 @@
   "csv-query": {
    "description": "Query/profile CSV data",
    "keywords": [
-    "csv",
-    "tsv",
+    "column",
     "columns",
+    "csv",
+    "frequency",
+    "most common",
+    "profile data",
+    "query csv",
     "rows",
-    "tabular",
+    "select from",
     "spreadsheet",
+    "sql",
     "statistics",
-    "profile data"
+    "tabular",
+    "tsv",
+    "value counts"
    ],
    "native": [
     "python3 csv",
@@ -458,13 +497,24 @@
   "process-list": {
    "description": "List and inspect processes",
    "keywords": [
-    "process",
-    "processes",
-    "ps",
+    "consumers",
     "cpu hog",
+    "hog",
+    "memory",
+    "memory hog",
     "memory usage by process",
     "pid",
-    "running"
+    "process",
+    "processes",
+    "program",
+    "programs",
+    "ps",
+    "resource hogs",
+    "running",
+    "top memory",
+    "using cpu",
+    "using memory",
+    "using ram"
    ],
    "native": [
     "ps",
@@ -487,11 +537,17 @@
   "system-monitor": {
    "description": "Live system resource monitor",
    "keywords": [
-    "monitor",
-    "top",
+    "computer slow",
     "htop",
+    "lagging",
+    "load",
+    "monitor",
     "resources",
-    "load"
+    "slow machine",
+    "sluggish",
+    "system slow",
+    "top",
+    "unresponsive"
    ],
    "native": [
     "top -b -n1",
@@ -768,11 +824,14 @@
    "description": "Run project task recipes",
    "keywords": [
     "task runner",
-    "make",
     "justfile",
     "recipes",
     "build tasks",
-    "run task"
+    "run task",
+    "makefile",
+    "make target",
+    "npm script",
+    "just recipe"
    ],
    "native": [
     "make",
@@ -839,11 +898,16 @@
    "description": "Statistically benchmark commands",
    "keywords": [
     "benchmark",
-    "timing",
-    "how fast",
     "compare speed",
+    "how fast",
+    "how long",
+    "measure time",
     "performance comparison",
-    "regression"
+    "regression",
+    "takes to run",
+    "time how long",
+    "timing",
+    "timing of"
    ],
    "native": [
     "time",
@@ -856,12 +920,17 @@
   "cpu-profile": {
    "description": "Sample CPU usage of a program",
    "keywords": [
-    "profile",
-    "profiling",
-    "hot path",
     "bottleneck",
+    "cpu profile",
     "cpu time",
-    "perf"
+    "flame graph",
+    "flamegraph",
+    "hot path",
+    "hot spots",
+    "perf",
+    "perf record",
+    "profile",
+    "profiling"
    ],
    "native": [
     "perf record",
@@ -882,9 +951,13 @@
   "python-profile": {
    "description": "Sample-profile Python processes",
    "keywords": [
+    "cprofile",
+    "profile python",
+    "py-spy",
     "python profile",
-    "python slow",
-    "py-spy"
+    "python program",
+    "python script",
+    "python slow"
    ],
    "native": [
     "python -m cProfile"
@@ -906,8 +979,10 @@
    "description": "Trace system calls",
    "keywords": [
     "strace",
+    "syscall",
     "syscalls",
-    "system calls"
+    "system calls",
+    "what files does it open"
    ],
    "native": [
     "strace",
@@ -1036,9 +1111,12 @@
   "vcs": {
    "description": "Version control",
    "keywords": [
-    "version control",
+    "branches",
+    "commit history",
     "commits",
-    "branches"
+    "committed",
+    "recent commits",
+    "version control"
    ],
    "native": [
     "git"
@@ -1105,8 +1183,23 @@
    "description": "Evaluate arithmetic",
    "keywords": [
     "calculate",
+    "calculator",
+    "compute",
+    "convert",
+    "divided by",
+    "gb",
+    "gib",
+    "how much is",
+    "kb",
     "math",
-    "calculator"
+    "mb",
+    "minus",
+    "percent of",
+    "plus",
+    "power of",
+    "sqrt",
+    "squared",
+    "times"
    ],
    "native": [
     "bc",
@@ -1117,6 +1210,7 @@
   "unit-convert": {
    "description": "Convert units",
    "keywords": [
+    "convert",
     "convert units",
     "unit conversion"
    ],

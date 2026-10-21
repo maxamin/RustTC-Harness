@@ -3,12 +3,60 @@ from . import ops as O
 from . import registry
 
 STOP = set("a an the and or of to in on for with by from my me i we is are be it this that what which how do does all any "
-           "some show get find me please can you using use".split())
+           "some get find me please can you using use".split())
+
+
+SYNONYMS = {"sluggish": "slow", "laggy": "slow", "lagging": "slow", "huge": "large", "biggest": "large", "bigger": "large",
+            "largest": "large", "occurrence": "usage", "occurrences": "usage", "uses": "usage", "references": "usage",
+            "folder": "directory", "folders": "directory", "dirs": "directory", "dir": "directory", "programs": "process",
+            "program": "process", "apps": "process", "hog": "process", "ram": "memory", "mem": "memory",
+            "zip": "archive", "tarball": "archive", "tar": "archive", "unzip": "extract", "erase": "delete", "rm": "delete",
+            "syscalls": "syscall", "speed": "fast", "swap": "replace", "substitute": "replace", "rewrite": "replace", "quicker": "faster", "loc": "lines"}
+
+
+EXT_HINTS = {"csv": "csv", "tsv": "csv", "json": "json", "jsonl": "json", "zip": "archive", "tar": "archive", "gz": "archive",
+             "tgz": "archive", "zst": "archive", "xz": "archive", "7z": "archive", "py": "python", "rs": "rust", "md": "markdown",
+             "log": "log", "svg": "flamegraph"}
+
+
+def stem(w):
+    w = SYNONYMS.get(w, w)
+    for suf, rep in (("ies", "y"), ("ing", ""), ("ed", ""), ("es", ""), ("s", "")):
+        if len(w) > len(suf) + 2 and w.endswith(suf):
+            base = w[: -len(suf)] + rep
+            if suf in ("ing", "ed") and len(base) > 3 and base[-1] == base[-2] and base[-1] not in "aeiouls":
+                base = base[:-1]  # committed -> commit, mapped -> map
+            return SYNONYMS.get(base, base)
+    return w
+
+
+def stems(text):
+    words = registry.words(text.lower().replace("_", " "))
+    out = {stem(w) for w in words}
+    for w in words:  # file names hint at the capability: backup.tar.gz -> archive, sales.csv -> csv
+        for part in w.split(".")[1:]:
+            if part in EXT_HINTS:
+                out.add(EXT_HINTS[part])
+    return out - {stem(s) for s in STOP}
+
+
+# op-level keywords: break ties between ops that share a capability (csv-profile vs csv-query vs csv-frequency)
+OP_KEYWORDS = {
+    "csv-query": ["sql", "query", "select", "where", "group by"], "csv-frequency": ["most common", "frequency", "value counts", "top values", "common"],
+    "csv-profile": ["profile", "statistics", "stats", "summary", "types"], "csv-select": ["columns only", "project", "pick columns"],
+    "disk-free": ["full", "free space", "capacity", "mounted"], "dir-size": ["total size", "how big is"],
+    "python-profile": ["python"], "cpu-profile": ["flamegraph", "flame", "perf", "binary", "rust"],
+    "git-log": ["history", "log", "commits"], "git-diff-stat": ["changed", "diff stat"], "git-status": ["status", "uncommitted"],
+    "archive-list": ["inside", "contents", "list"], "archive-extract": ["extract", "unzip", "unpack"],
+    "calculate": ["convert", "calculate", "compute"], "trace-route": ["route", "traceroute", "hops", "packet loss"],
+    "process-list": ["process", "memory", "cpu", "running"], "view-file": ["show", "print", "lines of file"],
+}
 
 
 def match_capabilities(intent, limit=5):
     q = intent.lower().replace("_", " ")
     qw = registry.words(q) - STOP
+    qs = stems(q)
     scored = []
     for cid, c in registry.capabilities().items():
         score, why = 0.0, []
@@ -19,6 +67,12 @@ def match_capabilities(intent, limit=5):
             elif kw in qw:
                 score += 2
                 why.append(kw)
+            elif " " in kw and len(stems(kw)) >= 2 and stems(kw) <= qs:
+                score += 2 + 0.5 * kw.count(" ")
+                why.append("~" + kw)
+            elif " " not in kw and stem(kw) in qs:
+                score += 1.5
+                why.append("~" + kw)
         desc_overlap = qw & (registry.words(c["description"]) - STOP)
         if desc_overlap:
             score += 0.75 * len(desc_overlap)
@@ -116,14 +170,26 @@ def select(intent, env):
                 hints = registry.install_hints(t, env, limit=1) if t else []
                 if hints:
                     upgrade = {"tool": preferred.tool, "why": "preferred implementation is not installed", "install": hints[0]}
-            picks.append({"capability": m["capability"], "score": m["score"], "op": o.name, "summary": o.summary, "risk": o.risk,
+            kw_bonus = sum(1.5 if (" " in k and k in intent.lower()) or (" " not in k and stem(k) in stems(intent)) else 0
+                           for k in OP_KEYWORDS.get(o.name, []))
+            picks.append({"capability": m["capability"], "score": round(m["score"] + kw_bonus, 2), "op": o.name, "summary": o.summary, "risk": o.risk,
                           "selected_tool": first["tool"] if first else None, "implementations": usable, "params": o.params,
                           **({"upgrade": upgrade} if upgrade else {})})
     if not picks:
         caps = match_capabilities(intent, 3)
         return {"intent": intent, "selection": None, "note": "no executable op; see `discover` for catalogue tools", "capabilities": caps}
-    # on equal relevance prefer what is runnable here, then the op that changes nothing
-    best = max(picks, key=lambda p: (p["selected_tool"] is not None, p["score"] - (0 if p["risk"] == O.READ_ONLY else 1)))
+    # relevance first (a runnable but irrelevant op answers a different question); among comparably relevant
+    # ops prefer one that can run here, then one that changes nothing
+    def adj(p):
+        return p["score"] - (0 if p["risk"] == O.READ_ONLY else 1)
+    top = max(picks, key=adj)
+    near = [p for p in picks if adj(p) >= 0.7 * adj(top)]
+    best = max(near, key=lambda p: (p["selected_tool"] is not None, adj(p)))
+    if best["selected_tool"] is None:
+        impl = next((i for i in O.OPS[best["op"]].impls if i.registry_id), None)
+        tool = registry.tools().get(impl.registry_id) if impl else None
+        best["not_runnable_here"] = {"install": registry.install_hints(tool, env, limit=2) if tool else [],
+                                     "requires": sorted({i.tool for i in O.OPS[best["op"]].impls} | {r for i in O.OPS[best["op"]].impls for r in i.requires})}
     req = {k: f"<{v.split(' ', 1)[1] if ' ' in v else 'value'}>" for k, v in best["params"].items() if str(v).startswith("REQUIRED")}
     tool = "rth_run" if best["risk"] == O.READ_ONLY else "rth_run_approved"
     nxt = {"tool": tool, "arguments": {"op": best["op"], "params": {**req, "...": "optional params from 'params'"}}}

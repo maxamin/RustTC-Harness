@@ -54,8 +54,9 @@
  ],
  "notes": "The CLI sets is_csv / is_json from the file extension.",
  "strong_keywords": [
-  "csv",
+  "profile data",
   "dataset",
-  "profile data"
+  "data quality",
+  "profile this csv"
  ]
 }
