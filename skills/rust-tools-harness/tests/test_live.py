@@ -32,7 +32,8 @@ SKIP_OPS = {"help"}  # exercised implicitly by env probes
 # ops whose success depends on host setup (collector daemons, perf permissions, a reachable server):
 # a failure here with an environment-type class is reported, not failed
 ENV_DEPENDENT = {"resource-history", "cpu-profile", "syscall-trace", "http-test", "net-bandwidth",
-                 "task-run", "site-check", "jj-log", "mail-list", "cache-stats"}  # need a project/config/account
+                 "task-run", "site-check", "jj-log", "mail-list", "cache-stats",  # need a project/config/account
+                 "trace-route", "port-scan"}  # raw sockets / privileges / network differ per runner
 ENV_FAILURES = {"not-found", "permission-denied", "failed", "network-error"}
 
 
@@ -40,27 +41,27 @@ def make_sandbox():
     root = Path(tempfile.mkdtemp(prefix="rth-live-"))
     repo = root / "repo"
     (repo / "src").mkdir(parents=True)
-    (repo / "src" / "main.rs").write_text("fn old_name() {}\nfn main() { old_name(); }\n")
-    (repo / "src" / "lib.rs").write_text("pub fn helper() -> u32 { 42 }\n")
-    (repo / "notes.md").write_text("# notes\nold_name here\n")
+    (repo / "src" / "main.rs").write_text("fn old_name() {}\nfn main() { old_name(); }\n", encoding="utf-8")
+    (repo / "src" / "lib.rs").write_text("pub fn helper() -> u32 { 42 }\n", encoding="utf-8")
+    (repo / "notes.md").write_text("# notes\nold_name here\n", encoding="utf-8")
     (repo / "big.bin").write_bytes(os.urandom(64 * 1024))
-    (repo / "data.csv").write_text("name,age\nann,31\nbob,45\n")
-    (repo / "data.json").write_text('{"items":[{"id":1},{"id":2}]}')
-    (repo / "justfile").write_text("test:\n\techo ok\n")
+    (repo / "data.csv").write_text("name,age\nann,31\nbob,45\n", encoding="utf-8")
+    (repo / "data.json").write_text('{"items":[{"id":1},{"id":2}]}', encoding="utf-8")
+    (repo / "justfile").write_text("test:\n\techo ok\n", encoding="utf-8")
     g = ["git", "-C", str(repo), "-c", "user.email=t@t", "-c", "user.name=t"]
     subprocess.run(["git", "init", "-q", str(repo)], check=True)
     subprocess.run([*g, "add", "-A"], check=True)
     subprocess.run([*g, "commit", "-qm", "init"], check=True)
-    (repo / "src" / "main.rs").write_text("fn old_name() {}\nfn main() { old_name(); old_name(); }\n")
+    (repo / "src" / "main.rs").write_text("fn old_name() {}\nfn main() { old_name(); old_name(); }\n", encoding="utf-8")
     with tarfile.open(root / "a.tar.gz", "w:gz") as t:
         t.add(repo / "data.csv", arcname="data.csv")
     with zipfile.ZipFile(root / "a.zip", "w") as z:
         z.write(repo / "data.json", arcname="data.json")
-    (root / "p.py").write_text("print(sum(range(1000)))\n")
-    (repo / "Makefile").write_text("hello:\n\t@echo hello\n")
-    (root / "t.hurl").write_text("GET http://127.0.0.1:9/\nHTTP 200\n")
-    (root / "a.txt").write_text("left\nsame\n")
-    (root / "b.txt").write_text("right\nsame\n")
+    (root / "p.py").write_text("print(sum(range(1000)))\n", encoding="utf-8")
+    (repo / "Makefile").write_text("hello:\n\t@echo hello\n", encoding="utf-8")
+    (root / "t.hurl").write_text("GET http://127.0.0.1:9/\nHTTP 200\n", encoding="utf-8")
+    (root / "a.txt").write_text("left\nsame\n", encoding="utf-8")
+    (root / "b.txt").write_text("right\nsame\n", encoding="utf-8")
     return root, repo
 
 
@@ -128,7 +129,7 @@ def cases(root, repo, tool, n):
 
 def _victim(root, n):
     p = root / f"victim{n}.txt"
-    p.write_text("delete me")
+    p.write_text("delete me", encoding="utf-8")
     return p
 
 
@@ -142,7 +143,7 @@ class Live(unittest.TestCase):
     def tearDownClass(cls):
         shutil.rmtree(cls.root, ignore_errors=True)
         if os.environ.get("RTH_LIVE_REPORT"):
-            Path(os.environ["RTH_LIVE_REPORT"]).write_text(json.dumps(REPORT, indent=1))
+            Path(os.environ["RTH_LIVE_REPORT"]).write_text(json.dumps(REPORT, indent=1), encoding="utf-8")
 
     def check(self, op_name):
         o = O.OPS[op_name]
@@ -171,7 +172,8 @@ class Live(unittest.TestCase):
                 REPORT.append(row)
                 if mine and mine[0].get("skipped") == "cannot-express":
                     continue  # documented applicability rule (e.g. tar for .zip)
-                if op_name in ENV_DEPENDENT and any(a.get("failure") in ENV_FAILURES for a in mine):
+                env_fail = ENV_FAILURES | ({"malformed-output"} if op_name == "trace-route" else set())  # mtr without sockets prints no JSON
+                if op_name in ENV_DEPENDENT and any(a.get("failure") in env_fail for a in mine):
                     row["result"] = "env-dependent failure: " + ",".join(a.get("failure") or "" for a in mine)
                     continue
                 if any(a.get("failure") == "permission-denied" for a in mine):
