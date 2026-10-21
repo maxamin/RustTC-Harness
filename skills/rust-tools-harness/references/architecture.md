@@ -5,7 +5,7 @@ It's local files and one Python CLI: no daemon, database or service, and no LLM 
 `lib/rth/` and they exchange plain JSON.
 
 ```
-README.md ──parse──▶ registry/catalogue.json ──┐
+CATALOGUE.md ──parse──▶ registry/catalogue.json ──┐
 upstream (GitHub, Cargo.toml, crates.io) ─fetch─▶ registry/upstream.json ──┼─build─▶ registry/tools.json ─docs─▶ references/catalogue.md
 registry/curated.json (hand-written claims) ────┘
 registry/capabilities.json (taxonomy: keywords, native fallbacks, semantic gaps)

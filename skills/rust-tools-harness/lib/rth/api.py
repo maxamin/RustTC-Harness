@@ -151,7 +151,7 @@ def registry_health():
     age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(gen)).days if gen else None
     out = {"built_at": reg["built_at"], "upstream_fetched": gen, "upstream_age_days": age,
            "stale": age is None or age > STALE_DAYS, "refresh": "scripts/build_registry.py fetch --refresh && scripts/build_registry.py build"}
-    readme = registry.SKILL_DIR.parent.parent / "README.md"
+    readme = registry.SKILL_DIR.parent.parent / "CATALOGUE.md"
     if readme.exists():
         spec = importlib.util.spec_from_file_location("build_registry", registry.SKILL_DIR / "scripts" / "build_registry.py")
         br = importlib.util.module_from_spec(spec)

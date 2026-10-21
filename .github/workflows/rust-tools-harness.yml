@@ -2,10 +2,10 @@ name: rust-tools-harness
 
 on:
   push:
-    paths: ["skills/rust-tools-harness/**", ".github/workflows/rust-tools-harness.yml", "README.md"]
+    paths: ["skills/rust-tools-harness/**", ".github/workflows/rust-tools-harness.yml", "CATALOGUE.md"]
   pull_request:
-    # README.md: a tool added to the awesome list must come with curated metadata (test_readme_in_sync)
-    paths: ["skills/rust-tools-harness/**", ".github/workflows/rust-tools-harness.yml", "README.md"]
+    # CATALOGUE.md: a tool added to the catalogue must come with curated metadata (test_readme_in_sync)
+    paths: ["skills/rust-tools-harness/**", ".github/workflows/rust-tools-harness.yml", "CATALOGUE.md"]
   workflow_dispatch:
 
 permissions:

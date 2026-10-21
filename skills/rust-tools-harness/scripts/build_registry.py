@@ -3,7 +3,7 @@
 
 Pipeline (each stage is re-runnable on its own):
 
-  parse   README.md                      -> registry/catalogue.json
+  parse   CATALOGUE.md (repo root)       -> registry/catalogue.json
   fetch   catalogue + upstream sources   -> registry/upstream.json   (network)
   build   catalogue + upstream + curated -> registry/tools.json
   docs    tools.json                     -> references/catalogue.md (also run by build)
@@ -446,7 +446,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("parse")
-    p.add_argument("readme", nargs="?", default=str(SKILL.parent.parent / "README.md"))
+    p.add_argument("readme", nargs="?", default=str(SKILL.parent.parent / "CATALOGUE.md"))
     f = sub.add_parser("fetch")
     f.add_argument("--refresh", action="store_true", help="re-fetch tools already in upstream.json")
     f.add_argument("--only", nargs="*", help="fetch only these tool ids")

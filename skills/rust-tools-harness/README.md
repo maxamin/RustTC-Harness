@@ -124,7 +124,7 @@ then the live tests on Linux and macOS with tools installed by cargo-binstall.
 ## Refresh the registry
 
 ```sh
-python3 scripts/build_registry.py parse       # re-read ../../README.md
+python3 scripts/build_registry.py parse       # re-read ../../CATALOGUE.md
 python3 scripts/build_registry.py fetch       # only new entries; --refresh for all; --crates-only to redo crates.io matching
 python3 scripts/build_registry.py build       # tools.json + references/catalogue.md
 python3 scripts/build_registry.py verify-bins [--unknown]   # confirm binary names from Cargo.toml build targets (GitHub tree API)
