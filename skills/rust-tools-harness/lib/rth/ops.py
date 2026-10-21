@@ -447,7 +447,7 @@ def _sysinfo(p, env):
             "machine": platform.machine(), "hostname": platform.node(), "cpus": os.cpu_count(), "python": platform.python_version()}
     try:
         info["loadavg"] = os.getloadavg()
-    except OSError:
+    except (OSError, AttributeError):  # AttributeError: no getloadavg on Windows
         pass
     osr = env.data.get("os_release") or {}
     if osr:
