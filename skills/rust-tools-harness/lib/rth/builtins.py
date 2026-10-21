@@ -407,8 +407,144 @@ def _literal(s):
         raise JqUnsupported(s)
 
 
+def _cond(expr, v):
+    """select() condition: A and B / A or B / not / path OP literal / path OP path / test("re") / has("k")."""
+    expr = expr.strip()
+    for op_, fn in ((" or ", any), (" and ", all)):
+        parts = _split_words(expr, op_)
+        if len(parts) > 1:
+            return fn(_cond(p, v) for p in parts)
+    if expr.endswith("| not"):
+        return not _cond(expr[: -len("| not")], v)
+    m = re.fullmatch(r'(\.[^|]*?)\s*\|\s*test\("((?:[^"\\]|\\.)*)"\)', expr) or re.fullmatch(r'(\.\S*?)\s*\|\s*test\("(.*)"\)', expr)
+    if m:
+        x = _path(m[1], [v])[0]
+        return isinstance(x, str) and re.search(m[2], x) is not None
+    m = re.fullmatch(r'has\("([^"]*)"\)', expr)
+    if m:
+        return isinstance(v, dict) and m[1] in v
+    cm = re.fullmatch(r"\s*(\.[^=!<>]*?)\s*(==|!=|>=|<=|>|<)\s*(.+?)\s*", expr)
+    if cm:
+        left = _path(cm[1], [v])[0]
+        right = _path(cm[3], [v])[0] if cm[3].startswith(".") else _literal(cm[3])
+        try:
+            return _CMP[cm[2]](left, right)
+        except TypeError:
+            return False
+    if expr.startswith("."):
+        x = _path(expr, [v])[0]
+        return x not in (None, False)
+    raise JqUnsupported(expr)
+
+
+def _split_words(expr, sep):
+    out, depth, cur, i, q = [], 0, "", 0, False
+    while i < len(expr):
+        ch = expr[i]
+        if ch == '"':
+            q = not q
+        if not q and ch in "([":
+            depth += 1
+        elif not q and ch in ")]":
+            depth -= 1
+        if not q and depth == 0 and expr.startswith(sep, i):
+            out.append(cur)
+            cur, i = "", i + len(sep)
+            continue
+        cur += ch
+        i += 1
+    return out + [cur]
+
+
+def _key(path):
+    def k(v):
+        x = _path(path, [v])[0]
+        return (x is None, str(type(x)), x if not isinstance(x, (dict, list)) else str(x))
+    return k
+
+
+SIMPLE = {
+    "sort": lambda v: sorted(v, key=lambda x: (str(type(x)), x if not isinstance(x, (dict, list)) else str(x))),
+    "unique": lambda v: sorted({json_key(x): x for x in v}.values(), key=lambda x: json_key(x)),
+    "reverse": lambda v: list(reversed(v)) if isinstance(v, list) else v[::-1],
+    "add": lambda v: (sum(v) if all(isinstance(x, (int, float)) for x in v) else "".join(v) if all(isinstance(x, str) for x in v)
+                      else [y for x in v for y in x] if all(isinstance(x, list) for x in v) else {k: w for x in v for k, w in x.items()}) if v else None,
+    "min": lambda v: min(v) if v else None,
+    "max": lambda v: max(v) if v else None,
+    "first": lambda v: v[0] if v else None,
+    "last": lambda v: v[-1] if v else None,
+    "to_entries": lambda v: [{"key": k, "value": w} for k, w in v.items()],
+    "from_entries": lambda v: {e.get("key", e.get("name")): e.get("value") for e in v},
+    "keys_unsorted": lambda v: list(v.keys()),
+    "values": lambda v: list(v.values()) if isinstance(v, dict) else v,
+    "tostring": lambda v: v if isinstance(v, str) else __import__("json").dumps(v),
+    "tonumber": lambda v: float(v) if "." in str(v) else int(v),
+    "ascii_downcase": lambda v: v.lower(),
+    "ascii_upcase": lambda v: v.upper(),
+    "type": lambda v: {dict: "object", list: "array", str: "string", bool: "boolean", type(None): "null"}.get(type(v), "number"),
+    "not": lambda v: v in (None, False),
+}
+
+
+def json_key(x):
+    import json as _json
+    return _json.dumps(x, sort_keys=True)
+
+
 def _term(t, vals):
     t = t.strip()
+    if t in SIMPLE:
+        return [SIMPLE[t](v) for v in vals]
+    m = re.fullmatch(r"(sort_by|group_by|unique_by|min_by|max_by)\((\..*)\)", t, re.S)
+    if m:
+        fn, k = m[1], _key(m[2])
+        out = []
+        for v in vals:
+            if fn == "sort_by":
+                out.append(sorted(v, key=k))
+            elif fn == "group_by":
+                groups = {}
+                for x in sorted(v, key=k):
+                    groups.setdefault(json_key(_path(m[2], [x])[0]), []).append(x)
+                out.append(list(groups.values()))
+            elif fn == "unique_by":
+                seen = {}
+                for x in sorted(v, key=k):
+                    seen.setdefault(json_key(_path(m[2], [x])[0]), x)
+                out.append(list(seen.values()))
+            else:
+                out.append((min if fn == "min_by" else max)(v, key=k) if v else None)
+        return out
+    m = re.fullmatch(r'join\("((?:[^"\\]|\\.)*)"\)', t)
+    if m:
+        return [m[1].join("" if x is None else str(x) for x in v) for v in vals]
+    m = re.fullmatch(r'split\("((?:[^"\\]|\\.)*)"\)', t)
+    if m:
+        return [v.split(m[1]) for v in vals]
+    m = re.fullmatch(r'has\("([^"]*)"\)', t)
+    if m:
+        return [isinstance(v, dict) and m[1] in v for v in vals]
+    m = re.fullmatch(r'test\("((?:[^"\\]|\\.)*)"\)', t)
+    if m:
+        return [isinstance(v, str) and re.search(m[1], v) is not None for v in vals]
+    m = re.fullmatch(r"\{(.*)\}", t, re.S)
+    if m:  # object construction: {a, b: .x, "c": .y}
+        out = []
+        for v in vals:
+            obj = {}
+            for part in _split_top(m[1], ","):
+                part = part.strip()
+                if not part:
+                    continue
+                if ":" in part:
+                    k, e = part.split(":", 1)
+                    obj[k.strip().strip('"')] = jq_lite(e.strip(), [v])[0] if jq_lite(e.strip(), [v]) else None
+                else:
+                    obj[part.strip('"')] = v.get(part.strip('"')) if isinstance(v, dict) else None
+            out.append(obj)
+        return out
+    if re.fullmatch(r'-?\d+(\.\d+)?|"[^"]*"|true|false|null', t):
+        return [_literal(t) for _ in vals]
     if t == "length":
         return [len(v) if v is not None else 0 for v in vals]
     if t == "keys":
@@ -418,19 +554,7 @@ def _term(t, vals):
         return [[x for item in (v or []) for x in jq_lite(m[1], [item])] for v in vals]
     m = re.fullmatch(r"select\((.*)\)", t, re.S)
     if m:
-        cm = re.fullmatch(r"\s*(\.[^=!<>]*?)\s*(==|!=|>=|<=|>|<)\s*(.+?)\s*", m[1])
-        if not cm:
-            raise JqUnsupported(t)
-        lit = _literal(cm[3])
-        out = []
-        for v in vals:
-            left = _path(cm[1], [v])[0]
-            try:
-                if _CMP[cm[2]](left, lit):
-                    out.append(v)
-            except TypeError:
-                pass
-        return out
+        return [v for v in vals if _cond(m[1], v)]
     m = re.fullmatch(r"\[(.*)\]", t, re.S)
     if m and not t.startswith(".["):
         return [jq_lite(m[1], [v]) for v in vals]
@@ -468,4 +592,6 @@ def _jq_supported(p, env):
 _jq = O.OPS["json-query"]
 _jq.impls = [i for i in _jq.impls if i.tool != "builtin"] + [
     O.Impl("builtin", run=json_query, when=_jq_supported,
-           semantics="Builtin jq subset: paths, .[], |, length, keys, map(), select(path OP literal), [...]. Anything else is refused.")]
+           semantics="Builtin jq subset: paths, .[], |, [...], {...}, length, keys, map, select (and/or/not/test/has), "
+                     "sort(_by), group_by, unique(_by), min/max(_by), add, first, last, reverse, join, split, to/from_entries, "
+                     "type, tostring/tonumber, literals. Anything else is refused.")]

@@ -21,7 +21,7 @@ ENV_TTL = 3600
 
 # Non-catalogue commands the fallbacks and adapters rely on.
 NATIVE_BINARIES = [
-    "find", "grep", "git", "sed", "awk", "cat", "head", "tail", "ls", "tree", "du", "df", "ps", "pgrep",
+    "sh", "bash", "nproc", "wc", "sort", "cut", "find", "grep", "git", "sed", "awk", "cat", "head", "tail", "ls", "tree", "du", "df", "ps", "pgrep",
     "top", "free", "vmstat", "uptime", "uname", "lscpu", "hostnamectl", "sw_vers", "sysctl",
     "jq", "python3", "perl", "xxd", "od", "file", "diff", "cmp", "tar", "unzip", "zip", "7z", "gzip", "zstd",
     "cp", "rsync", "gio", "trash-put", "kill", "ss", "netstat", "lsof", "ip", "mtr", "traceroute", "tracepath",

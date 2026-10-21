@@ -156,6 +156,8 @@ def _git_when(p, env):
     path = p.get("path", ".")
     if p.get("no_ignore"):
         return "no_ignore requested; git only sees non-ignored files"
+    if getattr(env, "remote", False):
+        return None  # can't check remote paths locally; git reports not-a-repo itself
     if not os.path.isdir(path):
         return "path is not a directory"
     return None if _git_repo(path, env) else "not inside a git work tree"
@@ -419,6 +421,23 @@ op(Op("process-list", "process-list", "Top processes by CPU or memory",
       verify={"exit_in": [0], "min_records": 1}))
 
 
+def _sh_sysinfo(out, p):
+    info = {}
+    for ln in lines(out):
+        k, _, v = ln.partition("=")
+        if not v:
+            continue
+        if k in ("MemTotal", "MemAvailable"):
+            info["mem_total_bytes" if k == "MemTotal" else "mem_available_bytes"] = int(v.split()[0]) * 1024
+        elif k == "cpus" and v.strip().isdigit():
+            info["cpus"] = int(v)
+        else:
+            info[k] = v.strip()
+    if "os" not in info:
+        raise ValueError("no uname output")
+    return info
+
+
 def _sysinfo(p, env):
     import platform
     info = {"os": platform.system(), "release": platform.release(), "version": platform.version(),
@@ -448,6 +467,12 @@ def _sysinfo(p, env):
 op(Op("system-info", "system-info", "OS, kernel, CPU count, memory, load, uptime (structured)",
       {"pretty": "bool: also run macchina for a human summary"},
       [Impl("builtin", run=_sysinfo, semantics="Read from platform, /proc and sysctl."),
+       Impl("sh", lambda p, env: ["sh", "-c", 'echo "os=$(uname -s)"; echo "release=$(uname -r)"; echo "machine=$(uname -m)"; '
+                                              'echo "hostname=$(uname -n)"; echo "cpus=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null)"; '
+                                              'grep -E "^(MemTotal|MemAvailable):" /proc/meminfo 2>/dev/null | tr -s " " | sed "s/: /=/"; '
+                                              '. /etc/os-release 2>/dev/null && echo "distro=$PRETTY_NAME"; '
+                                              'echo "loadavg=$(cut -d" " -f1-3 /proc/loadavg 2>/dev/null)"'], _sh_sysinfo,
+            semantics="POSIX sh + uname//proc: works on remote targets; memory/load only where /proc exists."),
        Impl("macchina", lambda p, env: ["macchina"], lines, registry_id="macchina")],
       verify={"not_empty": True}))
 
@@ -934,6 +959,8 @@ op(Op("help", "tldr", "Read a tool's usage: --help, then tldr page, then man",
 
 from . import builtins as _builtins  # noqa: E402,F401  (registers portable fallbacks)
 from . import ops_extra as _extra  # noqa: E402,F401  (profiling, csv-query, http-test, ...)
+from . import ops_git as _git_ops  # noqa: E402,F401  (gated git writes with safe undo)
+from . import ops_more as _more  # noqa: E402,F401  (grex, fend, lemmeknow, pastel, task-run, qsv, zola, ...)
 
 
 def describe(o):
