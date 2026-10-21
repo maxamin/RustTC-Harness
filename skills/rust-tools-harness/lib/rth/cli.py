@@ -73,6 +73,12 @@ def cmd_info(a, env):
 
 
 def cmd_env(a, env):
+    if a.target:
+        from . import remote
+        try:
+            return emit(remote.detect(a.target, refresh=a.refresh_env).summary())
+        except (remote.RemoteError, ValueError) as e:
+            sys.exit(str(e))
     if a.versions:
         for b in sorted(env.data["binaries"]):
             env.version(b)
@@ -118,7 +124,10 @@ def cmd_plan(a, env):
 
 
 def _options(a):
-    return {k: True for k in ("sandbox", "no_limits", "no_learn", "progress") if getattr(a, k, False)}
+    o = {k: True for k in ("sandbox", "sandbox_readonly", "no_limits", "no_learn", "progress") if getattr(a, k, False)}
+    if getattr(a, "target", None):
+        o["target"] = a.target
+    return o
 
 
 def _exit(res):
@@ -183,6 +192,16 @@ def cmd_history(a, env):
               f"{r['failures'] or ''}{'  SKIPPED: ' + skip if skip else ''}")
 
 
+def cmd_gc(a, env):
+    from . import maintenance
+    emit(maintenance.gc(max_age_days=a.older_than, keep=a.keep, dry_run=a.dry_run, force=a.force))
+
+
+def cmd_stats(a, env):
+    from . import maintenance
+    emit(maintenance.stats(days=a.days))
+
+
 def cmd_doctor(a, env):
     emit(api.doctor(env))
 
@@ -209,6 +228,7 @@ def main(argv=None):
     s.add_argument("--category"); s.add_argument("--kind"); s.add_argument("--installed", action="store_true"); s.add_argument("--limit", type=int, default=15)
     s = sub.add_parser("info", help="full registry record + local availability"); s.add_argument("tool")
     s = sub.add_parser("env", help="environment facts"); s.add_argument("--versions", action="store_true")
+    s.add_argument("--target", help="detect a remote environment: ssh:HOST, docker:CONTAINER, podman:CONTAINER")
     s = sub.add_parser("discover", help="intent -> capabilities -> ranked tools"); s.add_argument("intent", nargs="+"); s.add_argument("--limit", type=int, default=3)
     s = sub.add_parser("select", help="intent -> best executable op/tool here"); s.add_argument("intent", nargs="+")
     s = sub.add_parser("ops", help="list executable ops (or describe one)"); s.add_argument("name", nargs="?")
@@ -224,6 +244,8 @@ def main(argv=None):
             s.add_argument("--dry-run", action="store_true"); s.add_argument("--brief", action="store_true")
             s.add_argument("--max-records", type=int, help="cap inline records per step")
             s.add_argument("--sandbox", action="store_true", help="isolate user-code steps with bubblewrap (no network, read-only root)")
+            s.add_argument("--sandbox-readonly", action="store_true", help="--sandbox, and the working directory is read-only too (nothing to undo)")
+            s.add_argument("--target", help="run read-only ops on ssh:HOST, docker:CONTAINER or podman:CONTAINER")
             s.add_argument("--no-limits", action="store_true", help="disable default CPU/memory/file-size limits on user-code steps")
             s.add_argument("--no-learn", action="store_true", help="ignore learned tool failures from past runs")
             s.add_argument("--progress", action="store_true", help="print heartbeats for long-running steps to stderr")
@@ -235,6 +257,8 @@ def main(argv=None):
     s.add_argument("--max-records", type=int, help="cap inline records per step")
     s.add_argument("--resume", metavar="RUN", help="reuse verified, unchanged steps from a previous run")
     s.add_argument("--sandbox", action="store_true", help="isolate user-code steps with bubblewrap (no network, read-only root)")
+    s.add_argument("--sandbox-readonly", action="store_true", help="--sandbox, and the working directory is read-only too (nothing to undo)")
+    s.add_argument("--target", help="run read-only ops on ssh:HOST, docker:CONTAINER or podman:CONTAINER")
     s.add_argument("--no-limits", action="store_true", help="disable default CPU/memory/file-size limits on user-code steps")
     s.add_argument("--no-learn", action="store_true", help="ignore learned tool failures from past runs")
     s.add_argument("--progress", action="store_true", help="print heartbeats for long-running steps to stderr")
@@ -243,6 +267,11 @@ def main(argv=None):
     s.add_argument("--stderr"); s.add_argument("--exit", type=int); s.add_argument("--timeout", action="store_true"); s.add_argument("--capability")
     s = sub.add_parser("audit", help="list runs or show one run's audit log"); s.add_argument("run", nargs="?"); s.add_argument("--limit", type=int, default=10)
     s = sub.add_parser("history", help="per op/tool outcomes on this machine (what the harness has learned)"); s.add_argument("op", nargs="?")
+    s = sub.add_parser("gc", help="remove old run directories (keeps runs holding deleted files)")
+    s.add_argument("--older-than", type=int, default=30, metavar="DAYS"); s.add_argument("--keep", type=int, default=50)
+    s.add_argument("--dry-run", action="store_true"); s.add_argument("--force", action="store_true")
+    s = sub.add_parser("stats", help="cross-run summary: statuses, failing ops/tools, slowest attempts, state size")
+    s.add_argument("--days", type=int, default=30)
     s = sub.add_parser("rollback", help="undo a run's write steps (dry run unless --apply)"); s.add_argument("run")
     s.add_argument("--apply", action="store_true"); s.add_argument("--force", action="store_true", help="overwrite files changed after the run")
     sub.add_parser("doctor", help="registry/environment sanity report")
@@ -251,7 +280,7 @@ def main(argv=None):
     env = envmod.detect(refresh=a.refresh_env)
     {"capabilities": cmd_capabilities, "search": cmd_search, "info": cmd_info, "env": cmd_env, "discover": cmd_discover,
      "select": cmd_select, "ops": cmd_ops, "workflows": cmd_workflows, "plan": cmd_plan, "run": cmd_run, "execute": cmd_execute,
-     "verify": cmd_verify, "recover": cmd_recover, "rollback": cmd_rollback, "history": cmd_history, "audit": cmd_audit, "doctor": cmd_doctor}[a.cmd](a, env)
+     "verify": cmd_verify, "recover": cmd_recover, "rollback": cmd_rollback, "history": cmd_history, "gc": cmd_gc, "stats": cmd_stats, "audit": cmd_audit, "doctor": cmd_doctor}[a.cmd](a, env)
 
 
 if __name__ == "__main__":

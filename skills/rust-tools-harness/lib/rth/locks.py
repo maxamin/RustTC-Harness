@@ -14,8 +14,12 @@ from .env import state_dir
 
 try:
     import fcntl
-except ImportError:  # Windows: no flock; locks degrade to a no-op and say so
+except ImportError:  # Windows: msvcrt byte-range locks (exclusive only, targets only)
     fcntl = None
+try:
+    import msvcrt
+except ImportError:
+    msvcrt = None
 
 
 class Locked(RuntimeError):
@@ -37,10 +41,46 @@ def _ancestors(path):
 
 
 @contextlib.contextmanager
+def _hold_msvcrt(paths, run_id, wait):
+    """Windows (untested here): exclusive 1-byte locks on each target's lock file; no ancestor/shared locking."""
+    held = []
+    try:
+        for path in sorted({os.path.abspath(p) for p in paths}):
+            fh = open(_lockfile(path), "a+")
+            deadline = time.monotonic() + wait
+            while True:
+                try:
+                    fh.seek(0)
+                    msvcrt.locking(fh.fileno(), msvcrt.LK_NBLCK, 1)
+                    break
+                except OSError:
+                    if time.monotonic() > deadline:
+                        fh.close()
+                        raise Locked(f"{path} is locked by another run")
+                    time.sleep(0.2)
+            held.append(fh)
+        yield {"locked": sorted(paths), "note": "windows: exclusive locks on targets only"}
+    finally:
+        for fh in reversed(held):
+            try:
+                fh.seek(0)
+                msvcrt.locking(fh.fileno(), msvcrt.LK_UNLCK, 1)
+            finally:
+                fh.close()
+
+
+@contextlib.contextmanager
 def hold(paths, run_id, wait=30):
     """Exclusive locks on `paths`, shared locks on their ancestors. Raises Locked after `wait` seconds."""
-    if fcntl is None or not paths:
-        yield {"locked": [], "note": None if paths else "nothing to lock"} if fcntl else {"locked": [], "note": "file locking unavailable on this platform"}
+    if not paths:
+        yield {"locked": [], "note": "nothing to lock"}
+        return
+    if fcntl is None:
+        if msvcrt is None:
+            yield {"locked": [], "note": "file locking unavailable on this platform"}
+            return
+        with _hold_msvcrt(paths, run_id, wait) as info:
+            yield info
         return
     targets = sorted({os.path.abspath(p) for p in paths})
     plan = {}

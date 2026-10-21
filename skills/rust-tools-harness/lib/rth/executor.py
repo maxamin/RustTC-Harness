@@ -21,16 +21,32 @@ from . import ops as O
 from . import history, locks, recover, registry, sandbox, undo, validate
 from .audit import AuditLog, new_run_id
 
-GATES = {O.WRITES: "writes", O.NETWORK: "network", O.RUNS_CODE: "exec", O.PRIVILEGED: "privileged"}
+GATES = {O.WRITES: "writes", O.NETWORK: "network", O.RUNS_CODE: "exec", O.PRIVILEGED: "privileged",
+         "rewrites-history": "history"}
 MAX_INLINE_RECORDS = 50
 REF = re.compile(r"\$\{([^}]+)\}")
 
 
 # ----------------------------------------------------------------------------- references
 
+def step_paths(res):
+    """Paths produced by a step: `path` fields of its records, or its `files` list."""
+    data = (res or {}).get("data")
+    if isinstance(data, dict) and isinstance(data.get("files"), list):
+        return [str(x) for x in data["files"]]
+    recs = validate.records(data)
+    if recs:
+        return [str(r["path"]) for r in recs if isinstance(r, dict) and r.get("path")]
+    return []
+
+
 def _lookup(path, ctx):
+    parts = path.split(".")
+    if len(parts) >= 3 and parts[0] == "steps" and parts[2] == "paths":
+        cur = step_paths(ctx.get("steps", {}).get(parts[1]))
+        return cur[int(parts[3])] if len(parts) > 3 and parts[3].isdigit() and int(parts[3]) < len(cur) else (None if len(parts) > 3 else cur)
     cur = ctx
-    for part in path.split("."):
+    for part in parts:
         if isinstance(cur, dict):
             cur = cur.get(part)
         elif isinstance(cur, list) and part.isdigit():
@@ -188,12 +204,50 @@ def _impl_usable(impl, env):
 
 # ----------------------------------------------------------------------------- step execution
 
+FOREACH_MAX = 50
+
+
 def run_step(step, ctx, env, log, *, allow, approve, dry_run=False, options=None):
     options = options or {}
+    if step.get("foreach"):
+        return _run_foreach(step, ctx, env, log, allow=allow, approve=approve, dry_run=dry_run, options=options)
+    return _run_single(step, ctx, env, log, allow=allow, approve=approve, dry_run=dry_run, options=options)
+
+
+def _run_foreach(step, ctx, env, log, *, allow, approve, dry_run, options):
+    """Run the step once per item of `foreach` (a list or ${...} ref), binding each to `foreach_param`."""
+    items = resolve(step["foreach"], ctx) or []
+    items = items if isinstance(items, list) else [items]
+    cap = int(step.get("foreach_max", FOREACH_MAX))
+    param = step.get("foreach_param", "path")
+    subs = []
+    for i, item in enumerate(items[:cap]):
+        sub = {k: v for k, v in step.items() if k not in ("foreach", "foreach_param", "foreach_max")}
+        sub["id"] = f"{step['id']}[{i}]"
+        sub["inputs"] = {**step.get("inputs", {}), param: item}
+        r = _run_single(sub, ctx, env, log, allow=allow, approve=approve or {step["id"]} & set(approve), dry_run=dry_run, options=options)
+        subs.append({"item": item, "status": r["status"], "tool": r.get("tool"), "data": r.get("data"), "error": r.get("error")})
+    sts = {s["status"] for s in subs}
+    status = ("not-applicable" if not items else "verified" if sts <= {"verified"} else
+              "needs-approval" if "needs-approval" in sts else "partial" if sts & {"verified"} else "failed")
+    return {"id": step["id"], "op": step["op"], "purpose": step.get("purpose"), "status": status, "foreach": {
+        "param": param, "items": len(items), "ran": len(subs), "capped": len(items) > cap},
+        "data": subs, "attempts": [], "step_hash": _step_hash(step),
+        **({"error": f"no items to iterate (from {step['foreach']})"} if not items else {})}
+
+
+def _run_single(step, ctx, env, log, *, allow, approve, dry_run=False, options=None):
+    options = options or {}
     o = O.OPS.get(step["op"])
-    if o and o.risk == O.RUNS_CODE and not dry_run:
-        sandbox.configure(None if options.get("no_limits") else sandbox.DEFAULT_LIMITS, isolate=options.get("sandbox", False),
-                          writable=[str(log.dir)])
+    if getattr(env, "remote", False):
+        from . import remote
+        if o and (o.risk in (O.WRITES, "rewrites-history") or o.name in remote.REMOTE_UNSUPPORTED_OPS):
+            return {"id": step["id"], "op": step["op"], "status": "blocked", "attempts": [], "step_hash": _step_hash(step),
+                    "error": f"{o.name} is not supported on remote targets (writes/local artifacts: no undo, lock or verification remotely)"}
+    if o and o.risk == O.RUNS_CODE and not dry_run and not getattr(env, "remote", False):
+        sandbox.configure(None if options.get("no_limits") else sandbox.DEFAULT_LIMITS,
+                          isolate=options.get("sandbox", False) or options.get("sandbox_readonly", False),
+                          writable=[str(log.dir)], readonly_cwd=options.get("sandbox_readonly", False))
     else:
         sandbox.clear()
     lock_paths = []
@@ -201,6 +255,8 @@ def run_step(step, ctx, env, log, *, allow, approve, dry_run=False, options=None
         try:
             spec = o.undo({k: v for k, v in resolve(step.get("inputs", {}), ctx).items() if v is not None})
             lock_paths = [p for key in ("modify", "create", "deleted") for p in spec.get(key, [])]
+            if spec.get("git"):
+                lock_paths.append(spec["git"]["repo"])  # one writer per repository
         except (KeyError, TypeError):
             lock_paths = []  # missing inputs: _run_step reports needs-input
     try:
@@ -258,6 +314,8 @@ def _run_step(step, ctx, env, log, *, allow, approve, dry_run=False, options=Non
             log.event("gate", step=step["id"], risk=risk)
             return res
         kind, why = _impl_usable(impl, env)
+        if not kind and impl.tool == "builtin" and getattr(env, "remote", False):
+            kind, why = "cannot-express", "pure-Python implementation runs locally only; skipped for a remote target"
         if not kind and not options.get("no_learn"):
             why = history.learned_skip(o.name, impl.registry_id or impl.tool, env.data.get("path_hash"))
             kind = "learned-skip" if why else None
@@ -305,7 +363,13 @@ def _run_step(step, ctx, env, log, *, allow, approve, dry_run=False, options=Non
                     if options.get("progress"):
                         print(f"[rth] {step['id']}: {_tool} running {elapsed}s, stdout {ob}B, stderr {eb}B", file=sys.stderr, flush=True)
 
-                r = run_argv(argv, timeout=timeout, stdin=impl.stdin(p) if impl.stdin else None, progress=beat)
+                if getattr(env, "remote", False):
+                    from . import remote
+                    att_argv = remote.wrap(env.target, argv)
+                    att["target"] = env.target
+                else:
+                    att_argv = argv
+                r = run_argv(att_argv, timeout=timeout, stdin=impl.stdin(p) if impl.stdin else None, progress=beat)
                 data, parse_error = None, None
                 if r["exit"] in impl.ok_exit and not r["timed_out"]:
                     try:
@@ -410,6 +474,12 @@ def execute(plan, env, *, allow=(), approve=(), dry_run=False, max_workers=4, op
     if resume and time.time() - resume.get("finished_at", 0) > max_age:
         prior = {}  # too old: the world may have changed; rerun everything
         options = {**options, "resume_note": f"run {resume.get('run')} is older than {max_age}s; nothing reused"}
+    if not dry_run:
+        from . import maintenance
+        maintenance.maybe_auto_gc()
+    if options.get("target"):
+        from . import remote
+        env = remote.detect(options["target"], refresh=options.get("refresh_env", False))
     run_id = new_run_id()
     log = AuditLog(run_id)
     allow, approve = set(allow), set(approve)
@@ -454,7 +524,7 @@ def execute(plan, env, *, allow=(), approve=(), dry_run=False, max_workers=4, op
                 r["critical"] = False
             ctx["steps"][s["id"]] = r
             results.append(r)
-        if any(out[s["id"]]["status"] == "failed" and s.get("on_failure") == "stop" for s in wave):
+        if any(out[s["id"]]["status"] in ("failed", "partial") and s.get("on_failure") == "stop" for s in wave):
             break
     # a state-changing step is proven by a later read-only check (e.g. apply <- after)
     by_id = {r["id"]: r for r in results}
@@ -486,7 +556,7 @@ def _overall(results, plan):
         return "needs-approval"
     if "needs-input" in st:
         return "needs-input"
-    if st & {"failed", "blocked", "verification-failed", "skipped"}:
+    if st & {"failed", "blocked", "verification-failed", "skipped", "partial"}:
         return "partial" if st & {"verified", "completed-unverified"} else "failed"
     if st <= {"verified"}:
         return "verified"

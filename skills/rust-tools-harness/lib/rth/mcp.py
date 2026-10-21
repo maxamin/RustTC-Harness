@@ -10,7 +10,7 @@ import traceback
 from . import api
 
 PROTOCOL_VERSION = "2025-06-18"
-SERVER_INFO = {"name": "rust-tools-harness", "version": "1.2.0"}
+SERVER_INFO = {"name": "rust-tools-harness", "version": "1.3.0"}
 ALLOW_VALUES = ["writes", "network", "exec", "privileged"]
 
 RO = {"readOnlyHint": True, "destructiveHint": False, "openWorldHint": False}
