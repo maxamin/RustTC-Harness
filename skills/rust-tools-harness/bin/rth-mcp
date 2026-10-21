@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+"""MCP server entry point (stdio): claude mcp add rth -- python3 /path/to/bin/rth-mcp"""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
+from rth.mcp import main  # noqa: E402
+
+main()

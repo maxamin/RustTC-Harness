@@ -1,0 +1,83 @@
+{
+ "name": "git-review",
+ "description": "Review changes: repo state, diff stat, structural diff, recent history, and the task runner checks to run",
+ "keywords": [
+  "review",
+  "code review",
+  "diff",
+  "changes",
+  "pull request",
+  "pr",
+  "what changed",
+  "commits",
+  "branch"
+ ],
+ "params": {
+  "path": {
+   "default": "."
+  },
+  "range": {
+   "default": "HEAD"
+  },
+  "n": {
+   "default": 10
+  }
+ },
+ "notes": "Read-only. Never reset/rebase/absorb without explicit authorization.",
+ "steps": [
+  {
+   "id": "status",
+   "op": "git-status",
+   "purpose": "Branch and uncommitted work",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "status"
+  },
+  {
+   "id": "stat",
+   "op": "git-diff-stat",
+   "purpose": "Size of the change",
+   "inputs": {
+    "path": "${params.path}",
+    "range": "${params.range}"
+   },
+   "expected_output": "files changed"
+  },
+  {
+   "id": "diff",
+   "op": "diff",
+   "purpose": "Content of the change (structural if difftastic exists)",
+   "inputs": {
+    "path": "${params.path}",
+    "range": "${params.range}"
+   },
+   "expected_output": "diff text"
+  },
+  {
+   "id": "log",
+   "op": "git-log",
+   "purpose": "Recent history for context",
+   "inputs": {
+    "path": "${params.path}",
+    "n": "${params.n}"
+   },
+   "expected_output": "commits"
+  },
+  {
+   "id": "checks",
+   "op": "task-list",
+   "purpose": "Which test/lint tasks to run next",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "task runners",
+   "critical": false
+  }
+ ],
+ "strong_keywords": [
+  "review",
+  "what changed",
+  "pull request"
+ ]
+}

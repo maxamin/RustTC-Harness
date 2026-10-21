@@ -1,0 +1,84 @@
+{
+ "name": "disk-usage-report",
+ "description": "Find what is using disk space and explain it with evidence",
+ "keywords": [
+  "disk usage",
+  "disk space",
+  "large files",
+  "big files",
+  "what is using space",
+  "free space",
+  "storage",
+  "du",
+  "space"
+ ],
+ "params": {
+  "path": {
+   "default": "."
+  },
+  "min_size": {
+   "default": "100M"
+  },
+  "depth": {
+   "default": 1
+  },
+  "top": {
+   "default": 15
+  }
+ },
+ "notes": "Read-only. Deleting anything found is a separate, approved step (op safe-delete).",
+ "steps": [
+  {
+   "id": "filesystems",
+   "op": "disk-free",
+   "purpose": "Is the filesystem actually full?",
+   "inputs": {},
+   "expected_output": "per-mount use%"
+  },
+  {
+   "id": "total",
+   "op": "dir-size",
+   "purpose": "Total size of the target",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "bytes"
+  },
+  {
+   "id": "breakdown",
+   "op": "disk-usage",
+   "purpose": "Biggest directories",
+   "inputs": {
+    "path": "${params.path}",
+    "depth": "${params.depth}",
+    "top": "${params.top}"
+   },
+   "expected_output": ">=1 directory with bytes"
+  },
+  {
+   "id": "large-files",
+   "op": "find-files",
+   "purpose": "Individual large files (including gitignored)",
+   "inputs": {
+    "path": "${params.path}",
+    "type": "f",
+    "min_size": "${params.min_size}",
+    "no_ignore": true,
+    "hidden": true,
+    "limit": 50
+   },
+   "expected_output": "paths of files >= min_size",
+   "verification": {
+    "exit_in": [
+     0
+    ]
+   }
+  }
+ ],
+ "strong_keywords": [
+  "disk usage",
+  "disk space",
+  "large files",
+  "what is using space"
+ ]
+}

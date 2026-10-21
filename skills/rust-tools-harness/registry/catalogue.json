@@ -1,0 +1,1568 @@
+[
+ {
+  "id": "fd",
+  "name": "fd",
+  "url": "https://github.com/sharkdp/fd",
+  "repo": "sharkdp/fd",
+  "category": "Search",
+  "description": "A simple, fast and user-friendly alternative to 'find'.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "igrep",
+  "name": "igrep",
+  "url": "https://github.com/konradsz/igrep",
+  "repo": "konradsz/igrep",
+  "category": "Search",
+  "description": "Interactive Grep. Runs grep (ripgrep's library) in the background, allows interactively pick its results and open selected match in text editor of choice (vim by default).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "meilisearch",
+  "name": "MeiliSearch",
+  "url": "https://github.com/meilisearch/MeiliSearch",
+  "repo": "meilisearch/MeiliSearch",
+  "category": "Search",
+  "description": "Lightning Fast, Ultra Relevant, and Typo-Tolerant Search Engine.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "qdrant-es-gateway",
+  "name": "qdrant-es-gateway",
+  "url": "https://github.com/dstockton/qdrant-es-gateway",
+  "repo": "dstockton/qdrant-es-gateway",
+  "category": "Search",
+  "description": "Elasticsearch-compatible application search gateway backed by the Qdrant engine.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "repgrep",
+  "name": "repgrep",
+  "url": "https://github.com/acheronfail/repgrep",
+  "repo": "acheronfail/repgrep",
+  "category": "Search",
+  "description": "An interactive replacer for ripgrep that makes it easy to find and replace across files on the command line.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ripgrep",
+  "name": "ripgrep",
+  "url": "https://github.com/BurntSushi/ripgrep",
+  "repo": "BurntSushi/ripgrep",
+  "category": "Search",
+  "description": "A line-oriented search tool that recursively searches your current directory for a regex pattern.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "television",
+  "name": "television",
+  "url": "https://github.com/alexpasmantier/television",
+  "repo": "alexpasmantier/television",
+  "category": "Search",
+  "description": "General purpose fuzzy finder TUI.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "skim",
+  "name": "skim",
+  "url": "https://github.com/lotabout/skim",
+  "repo": "lotabout/skim",
+  "category": "Search",
+  "description": "Fuzzy Finder in rust!",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "scout",
+  "name": "scout",
+  "url": "https://github.com/jhbabon/scout",
+  "repo": "jhbabon/scout",
+  "category": "Search",
+  "description": "Your friendly fuzzy finder.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "reflex",
+  "name": "Reflex",
+  "url": "https://github.com/reflex-search/reflex",
+  "repo": "reflex-search/reflex",
+  "category": "Search",
+  "description": "Local-first, trigram-indexed full-text code search engine for large codebases. Sub-100ms queries, JSON output, and MCP server for AI agent workflows.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sweep-rs",
+  "name": "sweep-rs",
+  "url": "https://github.com/aslpavel/sweep-rs",
+  "repo": "aslpavel/sweep-rs",
+  "category": "Search",
+  "description": "Sweep is a tool for interactive search through a list of entries. It is inspired by fzf.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "diskus",
+  "name": "diskus",
+  "url": "https://github.com/sharkdp/diskus",
+  "repo": "sharkdp/diskus",
+  "category": "FileSystem",
+  "description": "A minimal, fast alternative to 'du -sh'.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "broot",
+  "name": "broot",
+  "url": "https://github.com/Canop/broot",
+  "repo": "Canop/broot",
+  "category": "FileSystem",
+  "description": "A new way to see and navigate directory trees.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "dua-cli",
+  "name": "dua-cli",
+  "url": "https://github.com/Byron/dua-cli",
+  "repo": "Byron/dua-cli",
+  "category": "FileSystem",
+  "description": "A tool to conveniently learn about the disk usage of directories, fast!",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "dust",
+  "name": "dust",
+  "url": "https://github.com/bootandy/dust",
+  "repo": "bootandy/dust",
+  "category": "FileSystem",
+  "description": "A more intuitive version of `du` in rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "dutree",
+  "name": "dutree",
+  "url": "https://github.com/nachoparker/dutree",
+  "repo": "nachoparker/dutree",
+  "category": "FileSystem",
+  "description": "A tool to analyze file system usage written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "eza",
+  "name": "eza",
+  "url": "https://github.com/eza-community/eza",
+  "repo": "eza-community/eza",
+  "category": "FileSystem",
+  "description": "A modern alternative to ls.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "felix",
+  "name": "felix",
+  "url": "https://github.com/kyoheiu/felix",
+  "repo": "kyoheiu/felix",
+  "category": "FileSystem",
+  "description": "tui file manager with vim-like key mapping.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "fselect",
+  "name": "fselect",
+  "url": "https://github.com/jhspetersson/fselect",
+  "repo": "jhspetersson/fselect",
+  "category": "FileSystem",
+  "description": "Find files with SQL-like queries.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "httm",
+  "name": "httm",
+  "url": "https://github.com/kimono-koans/httm",
+  "repo": "kimono-koans/httm",
+  "category": "FileSystem",
+  "description": "Interactive, file-level Time Machine-like tool for ZFS/btrfs/nilfs2 (and even Time Machine and Restic backups!).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "lscolors",
+  "name": "lscolors",
+  "url": "https://github.com/sharkdp/lscolors",
+  "repo": "sharkdp/lscolors",
+  "category": "FileSystem",
+  "description": "A Rust library and tool to colorize paths using LS_COLORS.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "lsd",
+  "name": "lsd",
+  "url": "https://github.com/Peltoche/lsd",
+  "repo": "Peltoche/lsd",
+  "category": "FileSystem",
+  "description": "The next gen ls command.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rip",
+  "name": "rip",
+  "url": "https://github.com/nivekuil/rip",
+  "repo": "nivekuil/rip",
+  "category": "FileSystem",
+  "description": "A safe and ergonomic alternative to rm.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "spacedrive",
+  "name": "spacedrive",
+  "url": "https://github.com/spacedriveapp/spacedrive",
+  "repo": "spacedriveapp/spacedrive",
+  "category": "FileSystem",
+  "description": "Spacedrive is an open source cross-platform file explorer, powered by a virtual distributed filesystem written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "trashy",
+  "name": "trashy",
+  "url": "https://github.com/oberblastmeister/trashy",
+  "repo": "oberblastmeister/trashy",
+  "category": "FileSystem",
+  "description": "a cli system trash manager, alternative to rm and trash-cli.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "yazi",
+  "name": "yazi",
+  "url": "https://github.com/sxyazi/yazi",
+  "repo": "sxyazi/yazi",
+  "category": "FileSystem",
+  "description": "💥 Blazing fast terminal file manager written in Rust, based on async I/O.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "zoxide",
+  "name": "zoxide",
+  "url": "https://github.com/ajeetdsouza/zoxide",
+  "repo": "ajeetdsouza/zoxide",
+  "category": "FileSystem",
+  "description": "A smarter cd command. Supports all major shells.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "bat",
+  "name": "bat",
+  "url": "https://github.com/sharkdp/bat",
+  "repo": "sharkdp/bat",
+  "category": "File",
+  "description": "A `cat(1)` clone with wings.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "csvlens",
+  "name": "csvlens",
+  "url": "https://github.com/YS-L/csvlens",
+  "repo": "YS-L/csvlens",
+  "category": "File",
+  "description": "Command line csv viewer.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "hck",
+  "name": "hck",
+  "url": "https://github.com/sstadick/hck",
+  "repo": "sstadick/hck",
+  "category": "File",
+  "description": "A sharp cut(1) clone.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "hex",
+  "name": "hex",
+  "url": "https://github.com/sitkevij/hex",
+  "repo": "sitkevij/hex",
+  "category": "File",
+  "description": "🔮 Futuristic take on hexdump, made in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "hexyl",
+  "name": "hexyl",
+  "url": "https://github.com/sharkdp/hexyl",
+  "repo": "sharkdp/hexyl",
+  "category": "File",
+  "description": "A command-line hex viewer.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "intermodal",
+  "name": "intermodal",
+  "url": "https://github.com/casey/intermodal",
+  "repo": "casey/intermodal",
+  "category": "File",
+  "description": "Intermodal is a user-friendly and featureful command-line BitTorrent metainfo utility. The binary is called imdl and runs on Linux, Windows, and macOS.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "lemmeknow",
+  "name": "lemmeknow",
+  "url": "https://github.com/swanandx/lemmeknow",
+  "repo": "swanandx/lemmeknow",
+  "category": "File",
+  "description": "The fastest way to identify anything!",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "oculante",
+  "name": "Oculante",
+  "url": "https://github.com/woelper/oculante",
+  "repo": "woelper/oculante",
+  "category": "File",
+  "description": "A fast and simple image viewer / editor for many operating systems.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ouch",
+  "name": "ouch",
+  "url": "https://github.com/ouch-org/ouch",
+  "repo": "ouch-org/ouch",
+  "category": "File",
+  "description": "Painless compression and decompression in the terminal.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "runiq",
+  "name": "runiq",
+  "url": "https://github.com/whitfin/runiq",
+  "repo": "whitfin/runiq",
+  "category": "File",
+  "description": "An efficient way to filter duplicate lines from input, à la uniq.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ruplacer",
+  "name": "ruplacer",
+  "url": "https://github.com/your-tools/ruplacer",
+  "repo": "your-tools/ruplacer",
+  "category": "File",
+  "description": "Find and replace text in source files.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "termscp",
+  "name": "termscp",
+  "url": "https://github.com/veeso/termscp",
+  "repo": "veeso/termscp",
+  "category": "File",
+  "description": "🖥 A feature rich terminal UI file transfer and explorer with support for SCP/SFTP/FTP/S3/SMB.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "xcp",
+  "name": "xcp",
+  "url": "https://github.com/tarka/xcp",
+  "repo": "tarka/xcp",
+  "category": "File",
+  "description": "An extended `cp`.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "xplr",
+  "name": "xplr",
+  "url": "https://github.com/sayanarijit/xplr",
+  "repo": "sayanarijit/xplr",
+  "category": "File",
+  "description": "A hackable, minimal, fast TUI file explorer.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "bandwhich",
+  "name": "bandwhich",
+  "url": "https://github.com/imsnif/bandwhich",
+  "repo": "imsnif/bandwhich",
+  "category": "System Monitor",
+  "description": "Terminal bandwidth utilization tool.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "below",
+  "name": "below",
+  "url": "https://github.com/facebookincubator/below",
+  "repo": "facebookincubator/below",
+  "category": "System Monitor",
+  "description": "A time traveling resource monitor for modern Linux systems.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "bottom",
+  "name": "bottom",
+  "url": "https://github.com/ClementTsang/bottom",
+  "repo": "ClementTsang/bottom",
+  "category": "System Monitor",
+  "description": "A customizable cross-platform graphical process/system monitor for the terminal.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "bpftop",
+  "name": "bpftop",
+  "url": "https://github.com/Netflix/bpftop",
+  "repo": "Netflix/bpftop",
+  "category": "System Monitor",
+  "description": "bpftop provides a dynamic real-time view of running eBPF programs.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "diskonaut",
+  "name": "diskonaut",
+  "url": "https://github.com/imsnif/diskonaut",
+  "repo": "imsnif/diskonaut",
+  "category": "System Monitor",
+  "description": "Terminal disk space navigator 🔭 .",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "featherbar",
+  "name": "featherbar",
+  "url": "https://github.com/nim444/featherbar",
+  "repo": "nim444/featherbar",
+  "category": "System Monitor",
+  "description": "A featherweight macOS menu-bar system monitor showing CPU, RAM, power, and temperature.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "lazyslurm",
+  "name": "lazyslurm",
+  "url": "https://github.com/hill/lazyslurm",
+  "repo": "hill/lazyslurm",
+  "category": "System Monitor",
+  "description": "A lazygit-style terminal UI for Slurm. Monitor jobs, tail logs, and inspect nodes and partitions.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "netscanner",
+  "name": "netscanner",
+  "url": "https://github.com/Chleba/netscanner",
+  "repo": "Chleba/netscanner",
+  "category": "System Monitor",
+  "description": "All-in-one Network scanner.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "macchina",
+  "name": "macchina",
+  "url": "https://github.com/Macchina-CLI/macchina",
+  "repo": "Macchina-CLI/macchina",
+  "category": "System Monitor",
+  "description": "A system information frontend with an emphasis on performance.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "macmon",
+  "name": "macmon",
+  "url": "https://github.com/vladkens/macmon",
+  "repo": "vladkens/macmon",
+  "category": "System Monitor",
+  "description": "Sudoless performance / power monitoring for Apple Silicon processors.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "pik",
+  "name": "pik",
+  "url": "https://github.com/jacek-kurlit/pik",
+  "repo": "jacek-kurlit/pik",
+  "category": "System Monitor",
+  "description": "Process Interactive Kill.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "procs",
+  "name": "procs",
+  "url": "https://github.com/dalance/procs",
+  "repo": "dalance/procs",
+  "category": "System Monitor",
+  "description": "**procs** is a replacement for `ps` written in [Rust](https://www.rust-lang.org/).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rsftch",
+  "name": "rsftch",
+  "url": "https://github.com/charklie/rsftch",
+  "repo": "charklie/rsftch",
+  "category": "System Monitor",
+  "description": "Lightning fast hardware fetch written in rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rustnet",
+  "name": "rustnet",
+  "url": "https://github.com/domcyrus/rustnet",
+  "repo": "domcyrus/rustnet",
+  "category": "System Monitor",
+  "description": "A cross-platform Terminal UI for real-time network monitoring with process identification and deep packet inspection.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rustscan",
+  "name": "RustScan",
+  "url": "https://github.com/RustScan/RustScan",
+  "repo": "RustScan/RustScan",
+  "category": "System Monitor",
+  "description": "🤖 The Modern Port Scanner 🤖 .",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sniffnet",
+  "name": "sniffnet",
+  "url": "https://github.com/GyulyVGC/sniffnet",
+  "repo": "GyulyVGC/sniffnet",
+  "category": "System Monitor",
+  "description": "Cross-platform application to monitor your network traffic with ease.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "trippy",
+  "name": "trippy",
+  "url": "https://github.com/fujiapple852/trippy",
+  "repo": "fujiapple852/trippy",
+  "category": "System Monitor",
+  "description": "A network diagnostic tool.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ytop",
+  "name": "ytop",
+  "url": "https://github.com/cjbassi/ytop",
+  "repo": "cjbassi/ytop",
+  "category": "System Monitor",
+  "description": "A TUI system monitor written in Rust.",
+  "readme_marks_archived": true
+ },
+ {
+  "id": "zenith",
+  "name": "Zenith",
+  "url": "https://github.com/bvaisvil/zenith",
+  "repo": "bvaisvil/zenith",
+  "category": "System Monitor",
+  "description": "Sort of like top or htop but with zoom-able charts, network, and disk usage.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "macdisp",
+  "name": "macdisp",
+  "url": "https://github.com/noworrieseh/macdisp",
+  "repo": "noworrieseh/macdisp",
+  "category": "System Monitor",
+  "description": "macOS command-line tool for changing the display.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "alacritty",
+  "name": "alacritty",
+  "url": "https://github.com/alacritty/alacritty",
+  "repo": "alacritty/alacritty",
+  "category": "Shell/Terminal",
+  "description": "A cross-platform, GPU-accelerated terminal emulator.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "atuin",
+  "name": "atuin",
+  "url": "https://github.com/atuinsh/atuin",
+  "repo": "atuinsh/atuin",
+  "category": "Shell/Terminal",
+  "description": "✨ Magical shell history.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "createnv",
+  "name": "createnv",
+  "url": "https://github.com/cuducos/createnv",
+  "repo": "cuducos/createnv",
+  "category": "Shell/Terminal",
+  "description": "🧞‍♀️Automagically creates .env files.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "handlr-regex",
+  "name": "handlr-regex",
+  "url": "https://github.com/Anomalocaridid/handlr-regex",
+  "repo": "Anomalocaridid/handlr-regex",
+  "category": "Shell/Terminal",
+  "description": "A fork of `handlr` an `xdg-utils` alternative.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "just",
+  "name": "just",
+  "url": "https://github.com/casey/just",
+  "repo": "casey/just",
+  "category": "Shell/Terminal",
+  "description": "🤖 Just a command runner.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "mprocs",
+  "name": "mprocs",
+  "url": "https://github.com/pvolok/mprocs",
+  "repo": "pvolok/mprocs",
+  "category": "Shell/Terminal",
+  "description": "Run multiple commands in parallel.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "navi",
+  "name": "navi",
+  "url": "https://github.com/denisidoro/navi",
+  "repo": "denisidoro/navi",
+  "category": "Shell/Terminal",
+  "description": "An interactive cheatsheet tool for the command-line and application launchers.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "nushell",
+  "name": "nushell",
+  "url": "https://github.com/nushell/nushell",
+  "repo": "nushell/nushell",
+  "category": "Shell/Terminal",
+  "description": "A modern shell written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rargs",
+  "name": "rargs",
+  "url": "https://github.com/lotabout/rargs",
+  "repo": "lotabout/rargs",
+  "category": "Shell/Terminal",
+  "description": "Rargs is kind of xargs + awk with pattern-matching support.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rio",
+  "name": "rio",
+  "url": "https://github.com/raphamorim/rio",
+  "repo": "raphamorim/rio",
+  "category": "Shell/Terminal",
+  "description": "A hardware-accelerated GPU terminal emulator focusing to run in desktops and browsers.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rust-parallel",
+  "name": "rust-parallel",
+  "url": "https://github.com/aaronriekenberg/rust-parallel",
+  "repo": "aaronriekenberg/rust-parallel",
+  "category": "Shell/Terminal",
+  "description": "Fast command line app in rust/tokio to execute commands in parallel. Similar interface to GNU parallel or xargs.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sd",
+  "name": "sd",
+  "url": "https://github.com/chmln/sd",
+  "repo": "chmln/sd",
+  "category": "Shell/Terminal",
+  "description": "Intuitive find & replace CLI (sed alternative).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "shrs",
+  "name": "shrs",
+  "url": "https://github.com/MrPicklePinosaur/shrs",
+  "repo": "MrPicklePinosaur/shrs",
+  "category": "Shell/Terminal",
+  "description": "The rusty shell toolkit for hackers.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sparklebios",
+  "name": "sparklebios",
+  "url": "https://github.com/reactivepixels/sparklebios",
+  "repo": "reactivepixels/sparklebios",
+  "category": "Shell/Terminal",
+  "description": "Draws a retro 1995 PC BIOS boot screen with real system facts and cached health checks on every new terminal tab.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "splashboard",
+  "name": "splashboard",
+  "url": "https://github.com/unhappychoice/splashboard",
+  "repo": "unhappychoice/splashboard",
+  "category": "Shell/Terminal",
+  "description": "A customizable terminal splash rendered on shell startup and on directory change, with per-directory dashboards.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "starship",
+  "name": "starship",
+  "url": "https://github.com/starship/starship",
+  "repo": "starship/starship",
+  "category": "Shell/Terminal",
+  "description": "☄🌌️ The minimal, blazing-fast, and infinitely customizable prompt for any shell! [https://starship.rs](https://starship.rs/)",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tty7",
+  "name": "tty7",
+  "url": "https://github.com/l0ng-ai/tty7",
+  "repo": "l0ng-ai/tty7",
+  "category": "Shell/Terminal",
+  "description": "A GPU-rendered, daemon-backed terminal in pure Rust; sessions survive quitting the app without tmux.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "wezterm",
+  "name": "wezterm",
+  "url": "https://github.com/wez/wezterm",
+  "repo": "wez/wezterm",
+  "category": "Shell/Terminal",
+  "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "zellij",
+  "name": "zellij",
+  "url": "https://github.com/zellij-org/zellij",
+  "repo": "zellij-org/zellij",
+  "category": "Shell/Terminal",
+  "description": "A terminal workspace with batteries included.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "cargo-flamegraph",
+  "name": "cargo-flamegraph",
+  "url": "https://github.com/ferrous-systems/cargo-flamegraph",
+  "repo": "ferrous-systems/cargo-flamegraph",
+  "category": "Performance",
+  "description": "Easy flamegraphs for Rust projects and everything else, without Perl or pipes <3.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "hyperfine",
+  "name": "hyperfine",
+  "url": "https://github.com/sharkdp/hyperfine",
+  "repo": "sharkdp/hyperfine",
+  "category": "Performance",
+  "description": "A command-line benchmarking tool.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "inferno",
+  "name": "inferno",
+  "url": "https://github.com/jonhoo/inferno",
+  "repo": "jonhoo/inferno",
+  "category": "Performance",
+  "description": "A Rust port of FlameGraph. 18x~20x faster than [flamegraph.pl](https://github.com/brendangregg/FlameGraph/blob/master/flamegraph.pl).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "py-spy",
+  "name": "py-spy",
+  "url": "https://github.com/benfred/py-spy",
+  "repo": "benfred/py-spy",
+  "category": "Performance",
+  "description": "Sampling profiler for Python programs.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "bytehound",
+  "name": "bytehound",
+  "url": "https://github.com/koute/memory-profiler",
+  "repo": "koute/memory-profiler",
+  "category": "Dev-Utilities",
+  "description": "A memory profiler for Linux.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "delta",
+  "name": "delta",
+  "url": "https://github.com/dandavison/delta",
+  "repo": "dandavison/delta",
+  "category": "Dev-Utilities",
+  "description": "A syntax-highlighting pager for git, diff, and grep output.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "difftastic",
+  "name": "difftastic",
+  "url": "https://github.com/Wilfred/difftastic",
+  "repo": "Wilfred/difftastic",
+  "category": "Dev-Utilities",
+  "description": "A structural diff that understands syntax 🟥🟩.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "dnspeep",
+  "name": "dnspeep",
+  "url": "https://github.com/jvns/dnspeep",
+  "repo": "jvns/dnspeep",
+  "category": "Dev-Utilities",
+  "description": "spy on the DNS queries your computer is making.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "dotter",
+  "name": "dotter",
+  "url": "https://github.com/SuperCuber/dotter",
+  "repo": "SuperCuber/dotter",
+  "category": "Dev-Utilities",
+  "description": "A dotfile manager and templater written in rust 🦀.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "dtool",
+  "name": "dtool",
+  "url": "https://github.com/guoxbin/dtool",
+  "repo": "guoxbin/dtool",
+  "category": "Dev-Utilities",
+  "description": "A command-line tool collection to assist development.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "edky",
+  "name": "edky",
+  "url": "https://github.com/artob/edky",
+  "repo": "artob/edky",
+  "category": "Dev-Utilities",
+  "description": "A command-line utility to convert Ed25519 public keys between various encoding formats (Base58, Base64, IPFS, iroh, libp2p, OpenSSH, etc).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "eva",
+  "name": "eva",
+  "url": "https://github.com/nerdypepper/eva",
+  "repo": "nerdypepper/eva",
+  "category": "Dev-Utilities",
+  "description": "A calculator REPL, similar to bc(1).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "fnm",
+  "name": "fnm",
+  "url": "https://github.com/Schniz/fnm",
+  "repo": "Schniz/fnm",
+  "category": "Dev-Utilities",
+  "description": "🚀 Fast and simple Node.js version manager, built in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "forge",
+  "name": "forge",
+  "url": "https://github.com/antinomyhq/forge",
+  "repo": "antinomyhq/forge",
+  "category": "Dev-Utilities",
+  "description": "A terminal-based AI pair programmer for software development, providing intelligent code assistance and collaboration features.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "forge-norvialabs",
+  "name": "Forge",
+  "url": "https://github.com/NorviaLabs/forge",
+  "repo": "NorviaLabs/forge",
+  "category": "Dev-Utilities",
+  "description": "Go from idea to verified code without leaving the terminal: an open-source AI coding agent unifying a code editor, shell, and durable session journal in one keyboard-driven TUI.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "octomind",
+  "name": "octomind",
+  "url": "https://github.com/muvon/octomind",
+  "repo": "muvon/octomind",
+  "category": "Dev-Utilities",
+  "description": "Session-based AI development assistant with MCP support, 7 LLM providers, and extensible architecture.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "fw",
+  "name": "fw",
+  "url": "https://github.com/brocode/fw",
+  "repo": "brocode/fw",
+  "category": "Dev-Utilities",
+  "description": "Workspace productivity booster.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "git-absorb",
+  "name": "git-absorb",
+  "url": "https://github.com/tummychow/git-absorb",
+  "repo": "tummychow/git-absorb",
+  "category": "Dev-Utilities",
+  "description": "git commit --fixup, but automatic.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gitlogue",
+  "name": "gitlogue",
+  "url": "https://github.com/unhappychoice/gitlogue",
+  "repo": "unhappychoice/gitlogue",
+  "category": "Dev-Utilities",
+  "description": "A cinematic Git commit history replay for the terminal.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gitoxide",
+  "name": "gitoxide",
+  "url": "https://github.com/Byron/gitoxide",
+  "repo": "Byron/gitoxide",
+  "category": "Dev-Utilities",
+  "description": "An idiomatic, lean, fast & safe pure Rust implementation of Git.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gitui",
+  "name": "gitui",
+  "url": "https://github.com/extrawurst/gitui",
+  "repo": "extrawurst/gitui",
+  "category": "Dev-Utilities",
+  "description": "Blazing fast terminal-ui for git written in rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gitside",
+  "name": "Gitside",
+  "url": "https://github.com/dev-bhaskar8/gitside",
+  "repo": "dev-bhaskar8/gitside",
+  "category": "Dev-Utilities",
+  "description": "Responsive, mouse-friendly Git source-control TUI for full terminals and narrow tmux panes.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gity",
+  "name": "gity",
+  "url": "https://github.com/neul-labs/gity",
+  "repo": "neul-labs/gity",
+  "category": "Dev-Utilities",
+  "description": "A cross-platform Rust daemon that accelerates Git on large repos via the fsmonitor protocol.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gpg-tui",
+  "name": "gpg-tui",
+  "url": "https://github.com/orhun/gpg-tui",
+  "repo": "orhun/gpg-tui",
+  "category": "Dev-Utilities",
+  "description": "Manage your GnuPG keys with ease! 🔐.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "grex",
+  "name": "grex",
+  "url": "https://github.com/pemistahl/grex",
+  "repo": "pemistahl/grex",
+  "category": "Dev-Utilities",
+  "description": "A command-line tool and library for generating regular expressions from user-provided test cases.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "hurl",
+  "name": "hurl",
+  "url": "https://github.com/Orange-OpenSource/hurl",
+  "repo": "Orange-OpenSource/hurl",
+  "category": "Dev-Utilities",
+  "description": "Hurl, run and test HTTP requests with plain text.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "hyperconsciousness",
+  "name": "Hyperconsciousness",
+  "url": "https://github.com/louis030195/hyperconsciousness",
+  "repo": "louis030195/hyperconsciousness",
+  "category": "Dev-Utilities",
+  "description": "Developer-alpha CLI for encrypted, append-only knowledge with search and scoped, expiring MCP grants.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "intentdiff",
+  "name": "intentdiff",
+  "url": "https://github.com/harivilasp/intentdiff",
+  "repo": "harivilasp/intentdiff",
+  "category": "Dev-Utilities",
+  "description": "Structure-aware Git diff for code review; collapses formatting noise and highlights moved code, probable renames, import reorders, and meaningful edits.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "jaq",
+  "name": "jaq",
+  "url": "https://github.com/01mf02/jaq",
+  "repo": "01mf02/jaq",
+  "category": "Dev-Utilities",
+  "description": "A jq clone focussed on correctness, speed, and simplicity.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "jj",
+  "name": "jj",
+  "url": "https://github.com/martinvonz/jj",
+  "repo": "martinvonz/jj",
+  "category": "Dev-Utilities",
+  "description": "A Git-compatible VCS that is both simple and powerful.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "jless",
+  "name": "jless",
+  "url": "https://github.com/PaulJuliusMartinez/jless",
+  "repo": "PaulJuliusMartinez/jless",
+  "category": "Dev-Utilities",
+  "description": "jless is a command-line JSON viewer designed for reading, exploring, and searching through JSON data.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "lurk",
+  "name": "lurk",
+  "url": "https://github.com/JakWai01/lurk",
+  "repo": "JakWai01/lurk",
+  "category": "Dev-Utilities",
+  "description": "A pretty (simple) alternative to strace.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "mask",
+  "name": "mask",
+  "url": "https://github.com/jacobdeichert/mask",
+  "repo": "jacobdeichert/mask",
+  "category": "Dev-Utilities",
+  "description": "🎭 A CLI task runner defined by a simple markdown file.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "mise",
+  "name": "mise",
+  "url": "https://github.com/jdx/mise",
+  "repo": "jdx/mise",
+  "category": "Dev-Utilities",
+  "description": "dev tools, env vars, task runner.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "nika",
+  "name": "nika",
+  "url": "https://github.com/supernovae-st/nika",
+  "repo": "supernovae-st/nika",
+  "category": "Dev-Utilities",
+  "description": "Workflow engine for AI: .nika.yaml DAGs statically checked before execution (schema, permits, cost), tamper-evident traces after; local-first, MCP client and server.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "onefetch",
+  "name": "onefetch",
+  "url": "https://github.com/o2sh/onefetch",
+  "repo": "o2sh/onefetch",
+  "category": "Dev-Utilities",
+  "description": "Command-line Git information tool.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "omnigraph",
+  "name": "omnigraph",
+  "url": "https://github.com/ModernRelay/omnigraph",
+  "repo": "ModernRelay/omnigraph",
+  "category": "Dev-Utilities",
+  "description": "\"Typed graph database where agents branch and merge like Git. S3-native, traversal + vector + BM25 in one runtime.\"",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "pastel",
+  "name": "pastel",
+  "url": "https://github.com/sharkdp/pastel",
+  "repo": "sharkdp/pastel",
+  "category": "Dev-Utilities",
+  "description": "A command-line tool to generate, analyze, convert and manipulate colors.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "qsv",
+  "name": "qsv",
+  "url": "https://github.com/dathere/qsv",
+  "repo": "dathere/qsv",
+  "category": "Dev-Utilities",
+  "description": "Blazing-fast Data-Wrangling toolkit.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "riff",
+  "name": "riff",
+  "url": "https://github.com/walles/riff",
+  "repo": "walles/riff",
+  "category": "Dev-Utilities",
+  "description": "A diff filter highlighting which line parts have changed.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rust-sqlite",
+  "name": "rust_sqlite",
+  "url": "https://github.com/joaoh82/rust_sqlite",
+  "repo": "joaoh82/rust_sqlite",
+  "category": "Dev-Utilities",
+  "description": "Simple embedded database modeled off SQLite in Rust",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rust-kanban",
+  "name": "rust_kanban",
+  "url": "https://github.com/yashs662/rust_kanban",
+  "repo": "yashs662/rust_kanban",
+  "category": "Dev-Utilities",
+  "description": "A kanban board for the terminal built with ❤️ in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sccache",
+  "name": "sccache",
+  "url": "https://github.com/mozilla/sccache",
+  "repo": "mozilla/sccache",
+  "category": "Dev-Utilities",
+  "description": "sccache is a [ccache](https://ccache.dev/)-like compiler caching tool.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sem",
+  "name": "sem",
+  "url": "https://github.com/Ataraxy-Labs/sem",
+  "repo": "Ataraxy-Labs/sem",
+  "category": "Dev-Utilities",
+  "description": "Semantic version control on top of Git: entity-level diffs, blame, and cross-file impact analysis (28 languages via tree-sitter), built for coding agents.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "silicon",
+  "name": "silicon",
+  "url": "https://github.com/Aloxaf/silicon",
+  "repo": "Aloxaf/silicon",
+  "category": "Dev-Utilities",
+  "description": "Silicon is an alternative to [Carbon](https://github.com/dawnlabs/carbon) implemented in Rust. It can render your source code into a beautiful image.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "slumber",
+  "name": "slumber",
+  "url": "https://github.com/LucasPickering/slumber",
+  "repo": "LucasPickering/slumber",
+  "category": "Dev-Utilities",
+  "description": "Terminal-based HTTP/REST client.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sqleibniz",
+  "name": "sqleibniz",
+  "url": "https://github.com/xNaCly/sqleibniz",
+  "repo": "xNaCly/sqleibniz",
+  "category": "Dev-Utilities",
+  "description": "LSP and analysis cli for sql. Check for valid syntax, semantics and perform dynamic analysis.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "steel",
+  "name": "steel",
+  "url": "https://github.com/mattwparas/steel",
+  "repo": "mattwparas/steel",
+  "category": "Dev-Utilities",
+  "description": "An embedded scheme interpreter in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "stylua",
+  "name": "StyLua",
+  "url": "https://github.com/JohnnyMorganz/StyLua",
+  "repo": "JohnnyMorganz/StyLua",
+  "category": "Dev-Utilities",
+  "description": "An opinionated Lua code formatter.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "supercov",
+  "name": "supercov",
+  "url": "https://github.com/supercorp-ai/supercov",
+  "repo": "supercorp-ai/supercov",
+  "category": "Dev-Utilities",
+  "description": "Line, branch and MC/DC coverage per test on stable Rust, by wrapping `cargo test` or `cargo nextest run`.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tealdeer",
+  "name": "tealdeer",
+  "url": "https://github.com/dbrgn/tealdeer",
+  "repo": "dbrgn/tealdeer",
+  "category": "Dev-Utilities",
+  "description": "A very fast implementation of tldr in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tlrc",
+  "name": "tlrc",
+  "url": "https://github.com/tldr-pages/tlrc",
+  "repo": "tldr-pages/tlrc",
+  "category": "Dev-Utilities",
+  "description": "A tldr client written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tinty",
+  "name": "tinty",
+  "url": "https://github.com/tinted-theming/tinty",
+  "repo": "tinted-theming/tinty",
+  "category": "Dev-Utilities",
+  "description": "A base16 and base24 color scheme manager.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tokei",
+  "name": "tokei",
+  "url": "https://github.com/XAMPPRocky/tokei",
+  "repo": "XAMPPRocky/tokei",
+  "category": "Dev-Utilities",
+  "description": "Count your code, quickly.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tura",
+  "name": "Tura",
+  "url": "https://github.com/Tura-AI/tura",
+  "repo": "Tura-AI/tura",
+  "category": "Dev-Utilities",
+  "description": "Tura is a local, open-source coding agent for developers who are tired of vague skill claims, token-saving extensions with no evidence, and agents that change a repository before understanding it.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ugdb",
+  "name": "ugdb",
+  "url": "https://github.com/ftilde/ugdb",
+  "repo": "ftilde/ugdb",
+  "category": "Dev-Utilities",
+  "description": "An alternative TUI for gdb wrote in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "xsv",
+  "name": "xsv",
+  "url": "https://github.com/BurntSushi/xsv",
+  "repo": "BurntSushi/xsv",
+  "category": "Dev-Utilities",
+  "description": "A fast CSV command line toolkit written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "amp",
+  "name": "amp",
+  "url": "https://github.com/jmacdonald/amp",
+  "repo": "jmacdonald/amp",
+  "category": "Editor",
+  "description": "A text editor for your terminal.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gnvim",
+  "name": "gnvim",
+  "url": "https://github.com/vhakulinen/gnvim",
+  "repo": "vhakulinen/gnvim",
+  "category": "Editor",
+  "description": "GNvim, Neovim GUI aiming for rich code editing experience without any unnecessary web bloat.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "helix",
+  "name": "helix",
+  "url": "https://github.com/helix-editor/helix",
+  "repo": "helix-editor/helix",
+  "category": "Editor",
+  "description": "A post-modern modal text editor.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "iota",
+  "name": "iota",
+  "url": "https://github.com/gchp/iota",
+  "repo": "gchp/iota",
+  "category": "Editor",
+  "description": "A terminal-based text editor written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "lapce",
+  "name": "lapce",
+  "url": "https://github.com/lapce/lapce",
+  "repo": "lapce/lapce",
+  "category": "Editor",
+  "description": "Lightning-fast and Powerful Code Editor written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "neovide",
+  "name": "neovide",
+  "url": "https://github.com/Kethku/neovide",
+  "repo": "Kethku/neovide",
+  "category": "Editor",
+  "description": "No Nonsense Neovim Client in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "pinkdown",
+  "name": "PinkDown",
+  "url": "https://github.com/3xian/PinkDown",
+  "repo": "3xian/PinkDown",
+  "category": "Editor",
+  "description": "Fast native split-pane Markdown editor and reader for Windows and macOS, built with Rust and egui.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "qnote",
+  "name": "qnote",
+  "url": "https://github.com/Omibranch/qnote",
+  "repo": "Omibranch/qnote",
+  "category": "Editor",
+  "description": "Minimal frameless notepad for Linux with Markdown preview, PDF export via Typst, OCR via Tesseract, and version history. Built with Tauri 2.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rnote",
+  "name": "rnote",
+  "url": "https://github.com/flxzt/rnote",
+  "repo": "flxzt/rnote",
+  "category": "Editor",
+  "description": "Sketch and take handwritten notes.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "tui-journal",
+  "name": "TUI-Journal",
+  "url": "https://github.com/AmmarAbouZor/tui-journal",
+  "repo": "AmmarAbouZor/tui-journal",
+  "category": "Editor",
+  "description": "Your journal app if you live in a terminal.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "xi-editor",
+  "name": "xi-editor",
+  "url": "https://github.com/xi-editor/xi-editor",
+  "repo": "xi-editor/xi-editor",
+  "category": "Editor",
+  "description": "A modern editor with a backend written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "zed",
+  "name": "zed",
+  "url": "https://github.com/zed-industries/zed",
+  "repo": "zed-industries/zed",
+  "category": "Editor",
+  "description": "Code at the speed of thought.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "bartib",
+  "name": "bartib",
+  "url": "https://github.com/nikolassv/bartib",
+  "repo": "nikolassv/bartib",
+  "category": "Others",
+  "description": "A simple timetracker for the command line.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "coreutils",
+  "name": "coreutils",
+  "url": "https://github.com/uutils/coreutils",
+  "repo": "uutils/coreutils",
+  "category": "Others",
+  "description": "Cross-platform Rust rewrite of the GNU coreutils.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "fend",
+  "name": "fend",
+  "url": "https://github.com/printfn/fend",
+  "repo": "printfn/fend",
+  "category": "Others",
+  "description": "Arbitrary-precision unit-aware calculator.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "gittype",
+  "name": "gittype",
+  "url": "https://github.com/unhappychoice/gittype",
+  "repo": "unhappychoice/gittype",
+  "category": "Others",
+  "description": "A code-typing game that turns your source code into typing challenges.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "himalaya",
+  "name": "himalaya",
+  "url": "https://github.com/soywod/himalaya",
+  "repo": "soywod/himalaya",
+  "category": "Others",
+  "description": "📫 CLI email client written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "inlyne",
+  "name": "inlyne",
+  "url": "https://github.com/Inlyne-Project/inlyne",
+  "repo": "Inlyne-Project/inlyne",
+  "category": "Others",
+  "description": "A GPU powered yet browserless tool to help you quickly view markdown files in the blink of an eye.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "kanata",
+  "name": "kanata",
+  "url": "https://github.com/jtroo/kanata",
+  "repo": "jtroo/kanata",
+  "category": "Others",
+  "description": "Improve keyboard comfort and usability with advanced customization.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "md-tui",
+  "name": "md-tui",
+  "url": "https://github.com/henriklovhaug/md-tui",
+  "repo": "henriklovhaug/md-tui",
+  "category": "Others",
+  "description": "A TUI application for viewing markdown files.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "opentypeless",
+  "name": "OpenTypeless",
+  "url": "https://github.com/tover0314-w/opentypeless",
+  "repo": "tover0314-w/opentypeless",
+  "category": "Others",
+  "description": "Cross-platform AI voice typing desktop app built with Tauri.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "see",
+  "name": "see",
+  "url": "https://github.com/guilhermeprokisch/see",
+  "repo": "guilhermeprokisch/see",
+  "category": "Others",
+  "description": "A file visualization tool for terminal, offering advanced code viewing capabilities, Markdown rendering, and more. It provides syntax highlighting, emoji support, and image rendering capabilities, offering a visually appealing way to view various file types directly in your console.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "poketex",
+  "name": "poketex",
+  "url": "https://github.com/ckaznable/poketex",
+  "repo": "ckaznable/poketex",
+  "category": "Others",
+  "description": "Simple Pokedex based on TUI(Terminal User Interface).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ratatui",
+  "name": "ratatui",
+  "url": "https://github.com/ratatui/ratatui",
+  "repo": "ratatui/ratatui",
+  "category": "Others",
+  "description": "A Rust crate for cooking up terminal user interfaces (TUIs).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "rustdesk",
+  "name": "rustdesk",
+  "url": "https://github.com/rustdesk/rustdesk",
+  "repo": "rustdesk/rustdesk",
+  "category": "Others",
+  "description": "The best open source remote desktop client software.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "subnetdesk",
+  "name": "SubnetDesk",
+  "url": "https://github.com/zibo-chen/SubnetDesk",
+  "repo": "zibo-chen/SubnetDesk",
+  "category": "Others",
+  "description": "LAN/VPN-only remote desktop that connects directly by IP or hostname without public rendezvous or relay services.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "screenpipe",
+  "name": "screenpipe",
+  "url": "https://github.com/screenpipe/screenpipe",
+  "repo": "screenpipe/screenpipe",
+  "category": "Others",
+  "description": "Local 24/7 screen & mic recorder that indexes OCR, accessibility, and audio transcripts for AI search and agents (works with Ollama).",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "shadowsocks-rust",
+  "name": "shadowsocks-rust",
+  "url": "https://github.com/shadowsocks/shadowsocks-rust",
+  "repo": "shadowsocks/shadowsocks-rust",
+  "category": "Others",
+  "description": "A Rust port of shadowsocks",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "sudo-rs",
+  "name": "sudo.rs",
+  "url": "https://github.com/memorysafety/sudo-rs",
+  "repo": "memorysafety/sudo-rs",
+  "category": "Others",
+  "description": "A safety oriented and memory safe implementation of sudo and su written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "vaultwarden",
+  "name": "vaultwarden",
+  "url": "https://github.com/dani-garcia/vaultwarden",
+  "repo": "dani-garcia/vaultwarden",
+  "category": "Others",
+  "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "youtube-tui",
+  "name": "youtube-tui",
+  "url": "https://github.com/Siriusmart/youtube-tui",
+  "repo": "Siriusmart/youtube-tui",
+  "category": "Others",
+  "description": "An aesthetically pleasing YouTube TUI written in Rust.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "ytermusic",
+  "name": "ytermusic",
+  "url": "https://github.com/ccgauche/ytermusic",
+  "repo": "ccgauche/ytermusic",
+  "category": "Others",
+  "description": "An in terminal youtube music client with focus on privacy, simplicity and performance.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "zola",
+  "name": "zola",
+  "url": "https://github.com/getzola/zola",
+  "repo": "getzola/zola",
+  "category": "Others",
+  "description": "A fast static site generator in a single binary with everything built-in. https://www.getzola.org",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "zerobrew",
+  "name": "zerobrew",
+  "url": "https://github.com/lucasgelfond/zerobrew",
+  "repo": "lucasgelfond/zerobrew",
+  "category": "Others",
+  "description": "A drop-in, 5-20x faster, experimental Homebrew alternative.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "fnprint",
+  "name": "fnprint",
+  "url": "https://github.com/1rhino2/fnprint",
+  "repo": "1rhino2/fnprint",
+  "category": "Security",
+  "description": "Behavioral function fingerprinting; names functions in stripped ELF binaries and patch-diffs vuln vs patched builds by microexecution.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "n01d-forge",
+  "name": "n01d-forge",
+  "url": "https://github.com/bad-antics/n01d-forge",
+  "repo": "bad-antics/n01d-forge",
+  "category": "Security",
+  "description": "Native GUI image burner with LUKS/VeraCrypt encryption support for creating secure bootable drives.",
+  "readme_marks_archived": false
+ },
+ {
+  "id": "n01d-machine",
+  "name": "n01d-machine",
+  "url": "https://github.com/bad-antics/n01d-machine",
+  "repo": "bad-antics/n01d-machine",
+  "category": "Security",
+  "description": "Secure VM manager with Tor/VPN integration, sandbox isolation, and network compartmentalization.",
+  "readme_marks_archived": false
+ }
+]

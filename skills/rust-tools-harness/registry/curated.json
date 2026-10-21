@@ -1,0 +1,3785 @@
+{
+ "_comment": "Hand-curated metadata merged with upstream.json by scripts/build_registry.py. Values here are curated claims, NOT upstream-verified: the build records binary_source=curated unless crates.io/Cargo.toml confirm the binary. 'unknown' means not established. Flags marked (vd) are version-dependent: the harness checks `--help` before relying on them.",
+ "defaults": {
+  "kind": "cli",
+  "interactive": "none",
+  "automation": "unknown",
+  "risk": "read-only",
+  "platforms": "unknown"
+ },
+ "tools": {
+  "fd": {
+   "kind": "cli",
+   "binary": "fd",
+   "aliases": [
+    "fdfind"
+   ],
+   "crate": "fd-find",
+   "capabilities": [
+    "find-files"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install fd-find (binary: fdfind)",
+    "brew install fd",
+    "dnf install fd-find",
+    "pacman -S fd"
+   ],
+   "input": "pattern (regex by default, --glob for globs) + optional paths",
+   "output": "one path per line; -0 for NUL-separated",
+   "flags": {
+    "-t f|d|l|x": "filter by type",
+    "-e EXT": "extension",
+    "-H": "include hidden",
+    "-I": "do not respect .gitignore",
+    "-u": "unrestricted (hidden + ignored)",
+    "-d N": "max depth",
+    "-S +10M": "size filter",
+    "--changed-within 2d": "mtime filter",
+    "-x/-X CMD": "execute per result / batch",
+    "-0": "NUL separators",
+    "-a": "absolute paths",
+    "--glob": "glob pattern"
+   },
+   "exit": "0 on success even with zero matches; with -q exit 1 means no match; 1 on error",
+   "automation": "high",
+   "alternatives": [
+    "find",
+    "fselect"
+   ],
+   "related": [
+    "ripgrep",
+    "skim",
+    "television",
+    "bat"
+   ],
+   "workflows": [
+    "repo-intel",
+    "file-ops"
+   ],
+   "limitations": [
+    "Respects .gitignore and skips hidden files by default — use -u to match find semantics",
+    "Regex by default, not glob"
+   ]
+  },
+  "igrep": {
+   "kind": "tui",
+   "binary": "ig",
+   "crate": "igrep",
+   "capabilities": [
+    "search-content",
+    "interactive-search"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "ripgrep",
+    "repgrep"
+   ],
+   "related": [
+    "ripgrep"
+   ],
+   "workflows": [
+    "repo-intel"
+   ],
+   "limitations": [
+    "Interactive only; use ripgrep for automation"
+   ]
+  },
+  "meilisearch": {
+   "kind": "service",
+   "binary": "meilisearch",
+   "capabilities": [
+    "search-engine"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "curl -L https://install.meilisearch.com | sh",
+    "docker run getmeili/meilisearch",
+    "brew install meilisearch"
+   ],
+   "input": "documents via HTTP API (JSON/NDJSON/CSV)",
+   "output": "JSON over HTTP (default port 7700)",
+   "structured_output": [
+    "json"
+   ],
+   "automation": "high",
+   "risk": "starts-service",
+   "alternatives": [
+    "qdrant-es-gateway"
+   ],
+   "limitations": [
+    "Long-running server, not a one-shot CLI; set a master key outside development"
+   ]
+  },
+  "qdrant-es-gateway": {
+   "kind": "service",
+   "capabilities": [
+    "search-engine"
+   ],
+   "input": "Elasticsearch-compatible HTTP requests",
+   "output": "JSON over HTTP",
+   "structured_output": [
+    "json"
+   ],
+   "risk": "starts-service",
+   "dependencies": [
+    "qdrant"
+   ],
+   "experimental": true,
+   "alternatives": [
+    "meilisearch"
+   ],
+   "notes": "Recently added gateway; binary name and install method not established."
+  },
+  "repgrep": {
+   "kind": "tui",
+   "binary": "rgr",
+   "crate": "repgrep",
+   "capabilities": [
+    "search-replace",
+    "interactive-search"
+   ],
+   "dependencies": [
+    "ripgrep (rg on PATH)"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "modifies-files",
+   "alternatives": [
+    "ruplacer",
+    "sd"
+   ],
+   "related": [
+    "ripgrep"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "Interactive; writes files after confirmation in the UI"
+   ]
+  },
+  "ripgrep": {
+   "kind": "cli",
+   "binary": "rg",
+   "crate": "ripgrep",
+   "capabilities": [
+    "search-content",
+    "find-files"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install ripgrep",
+    "brew install ripgrep",
+    "dnf install ripgrep",
+    "pacman -S ripgrep",
+    "winget install BurntSushi.ripgrep.MSVC"
+   ],
+   "input": "regex pattern + paths or stdin",
+   "output": "path:line:match text; --json for JSON Lines",
+   "structured_output": [
+    "jsonl"
+   ],
+   "flags": {
+    "--json": "JSON Lines events (begin/match/end/summary)",
+    "-n": "line numbers",
+    "-i / -S": "ignore case / smart case",
+    "-F": "fixed string",
+    "-w": "whole word",
+    "-g GLOB": "include/exclude glob",
+    "-t TYPE": "file type (rg --type-list)",
+    "-l": "files with matches",
+    "-c": "count per file",
+    "-C N": "context lines",
+    "--hidden": "search hidden",
+    "-uuu": "no ignore, hidden, binary",
+    "--files": "list files that would be searched",
+    "-0": "NUL after paths",
+    "--max-count N": "limit per file"
+   },
+   "exit": "0 = match found, 1 = no match, 2 = error (2 can coexist with matches)",
+   "automation": "high",
+   "alternatives": [
+    "grep",
+    "git grep",
+    "reflex"
+   ],
+   "related": [
+    "fd",
+    "repgrep",
+    "igrep",
+    "delta",
+    "bat"
+   ],
+   "workflows": [
+    "repo-intel",
+    "git-review"
+   ],
+   "limitations": [
+    "Respects .gitignore and skips hidden/binary files by default",
+    "Rust regex: no backreferences/lookaround unless -P (PCRE2 build)"
+   ]
+  },
+  "television": {
+   "kind": "tui",
+   "binary": "tv",
+   "crate": "television",
+   "capabilities": [
+    "fuzzy-select",
+    "interactive-search"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "output": "selected entry printed to stdout",
+   "alternatives": [
+    "skim",
+    "fzf",
+    "sweep-rs",
+    "scout"
+   ],
+   "workflows": [
+    "repo-intel"
+   ],
+   "limitations": [
+    "Needs a TTY; pipe selection into the next step only when a human is present"
+   ]
+  },
+  "skim": {
+   "kind": "tui",
+   "binary": "sk",
+   "crate": "skim",
+   "capabilities": [
+    "fuzzy-select",
+    "fuzzy-filter"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "install": [
+    "brew install sk",
+    "pacman -S skim"
+   ],
+   "input": "lines on stdin",
+   "output": "selected lines on stdout",
+   "flags": {
+    "--filter QUERY / -f": "non-interactive fuzzy filter (no TTY needed)",
+    "-m": "multi-select",
+    "--ansi": "parse colors",
+    "-q": "initial query"
+   },
+   "exit": "0 = selection made, 1 = no match, 130 = aborted",
+   "interactive": "optional",
+   "automation": "medium",
+   "alternatives": [
+    "fzf",
+    "television"
+   ],
+   "workflows": [
+    "repo-intel"
+   ],
+   "limitations": [
+    "Windows support limited"
+   ]
+  },
+  "scout": {
+   "kind": "tui",
+   "binary": "scout",
+   "crate": "scout",
+   "capabilities": [
+    "fuzzy-select"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "alternatives": [
+    "skim",
+    "fzf",
+    "television"
+   ]
+  },
+  "reflex": {
+   "kind": "cli",
+   "capabilities": [
+    "search-content",
+    "code-search-index"
+   ],
+   "output": "text or JSON",
+   "structured_output": [
+    "json"
+   ],
+   "automation": "high",
+   "experimental": true,
+   "alternatives": [
+    "ripgrep"
+   ],
+   "notes": "Trigram index + MCP server per README; binary name not established — check upstream before use.",
+   "workflows": [
+    "repo-intel"
+   ],
+   "limitations": [
+    "Requires building an index before queries"
+   ]
+  },
+  "sweep-rs": {
+   "kind": "tui",
+   "binary": "sweep",
+   "capabilities": [
+    "fuzzy-select"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "alternatives": [
+    "skim",
+    "fzf"
+   ]
+  },
+  "diskus": {
+   "kind": "cli",
+   "binary": "diskus",
+   "crate": "diskus",
+   "capabilities": [
+    "dir-size"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "input": "paths",
+   "output": "single human-readable total, e.g. '1.25 GB (1,251,234,567 bytes)'",
+   "flags": {
+    "-b / --apparent-size": "apparent size instead of disk usage",
+    "-j N": "threads"
+   },
+   "automation": "high",
+   "alternatives": [
+    "du -sh",
+    "dust"
+   ],
+   "workflows": [
+    "sysdiag"
+   ],
+   "limitations": [
+    "Only a total — no breakdown"
+   ]
+  },
+  "broot": {
+   "kind": "tui",
+   "binary": "broot",
+   "crate": "broot",
+   "capabilities": [
+    "tree-view",
+    "file-manager",
+    "disk-usage"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "flags": {
+    "--sizes": "show sizes",
+    "--cmd": "run verbs on start"
+   },
+   "risk": "modifies-files",
+   "notes": "The 'br' shell function wrapper is installed via `broot --install`.",
+   "alternatives": [
+    "eza --tree",
+    "tree",
+    "yazi"
+   ]
+  },
+  "dua-cli": {
+   "kind": "cli",
+   "binary": "dua",
+   "crate": "dua-cli",
+   "capabilities": [
+    "disk-usage",
+    "dir-size"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "brew install dua-cli",
+    "pacman -S dua-cli"
+   ],
+   "input": "paths",
+   "output": "per-path sizes and total",
+   "flags": {
+    "(no subcommand) PATH...": "non-interactive aggregate",
+    "i / interactive": "TUI with deletion",
+    "-A": "apparent size",
+    "-f bytes": "byte output format",
+    "-t N": "threads"
+   },
+   "interactive": "optional",
+   "automation": "high",
+   "risk": "read-only (interactive mode can delete)",
+   "alternatives": [
+    "du",
+    "dust",
+    "diskus"
+   ],
+   "workflows": [
+    "sysdiag"
+   ]
+  },
+  "dust": {
+   "kind": "cli",
+   "binary": "dust",
+   "crate": "du-dust",
+   "capabilities": [
+    "disk-usage"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "brew install dust",
+    "pacman -S dust"
+   ],
+   "input": "paths",
+   "output": "tree with bars; -j JSON (vd)",
+   "structured_output": [
+    "json (vd)"
+   ],
+   "flags": {
+    "-d N": "depth",
+    "-n N": "number of entries",
+    "-r": "reverse order",
+    "-s": "apparent size",
+    "-b": "no percent bars",
+    "-c": "no colors",
+    "-j": "JSON output (vd)",
+    "-X PAT": "ignore",
+    "-x": "stay on one filesystem"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "du",
+    "dua-cli",
+    "dutree",
+    "diskonaut"
+   ],
+   "workflows": [
+    "sysdiag"
+   ],
+   "limitations": [
+    "Human-oriented output; terminal width affects layout"
+   ]
+  },
+  "dutree": {
+   "kind": "cli",
+   "binary": "dutree",
+   "crate": "dutree",
+   "capabilities": [
+    "disk-usage"
+   ],
+   "automation": "medium",
+   "alternatives": [
+    "dust",
+    "du"
+   ]
+  },
+  "eza": {
+   "kind": "cli",
+   "binary": "eza",
+   "crate": "eza",
+   "capabilities": [
+    "list-dir",
+    "tree-view"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install eza",
+    "brew install eza",
+    "pacman -S eza"
+   ],
+   "output": "listing (no JSON)",
+   "flags": {
+    "-l": "long",
+    "-a": "all",
+    "-T / --tree": "tree",
+    "-L N": "tree depth",
+    "--git": "git status column",
+    "--no-icons": "no icons",
+    "--color=never": "plain",
+    "-s size": "sort",
+    "--time-style=long-iso": "stable timestamps",
+    "--git-ignore": "respect gitignore"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "ls",
+    "lsd",
+    "tree"
+   ],
+   "workflows": [
+    "repo-intel",
+    "file-ops"
+   ]
+  },
+  "felix": {
+   "kind": "tui",
+   "binary": "fx",
+   "crate": "felix",
+   "capabilities": [
+    "file-manager"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "modifies-files",
+   "alternatives": [
+    "yazi",
+    "xplr"
+   ]
+  },
+  "fselect": {
+   "kind": "cli",
+   "binary": "fselect",
+   "crate": "fselect",
+   "capabilities": [
+    "filesystem-sql",
+    "find-files"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "input": "SQL-like query: select path, size from DIR where size gt 1M order by size desc limit 20",
+   "output": "tabular text; `into json|csv|lines|list`",
+   "structured_output": [
+    "json",
+    "csv"
+   ],
+   "flags": {
+    "into json": "JSON output",
+    "into csv": "CSV output",
+    "gitignore": "respect .gitignore in from clause"
+   },
+   "automation": "high",
+   "alternatives": [
+    "fd",
+    "find"
+   ],
+   "workflows": [
+    "file-ops",
+    "data"
+   ]
+  },
+  "httm": {
+   "kind": "cli",
+   "binary": "httm",
+   "crate": "httm",
+   "capabilities": [
+    "snapshot-browse"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "dependencies": [
+    "ZFS/btrfs/nilfs2 snapshots, Time Machine or Restic"
+   ],
+   "interactive": "optional",
+   "flags": {
+    "--json": "JSON output (vd)",
+    "-i": "interactive browse",
+    "-r": "restore"
+   },
+   "automation": "medium",
+   "risk": "read-only (restore modes write files)",
+   "workflows": [
+    "file-ops"
+   ]
+  },
+  "lscolors": {
+   "kind": "cli",
+   "binary": "lscolors",
+   "crate": "lscolors",
+   "capabilities": [
+    "color-paths"
+   ],
+   "automation": "high",
+   "notes": "Primarily a library; CLI colorizes paths read from args/stdin."
+  },
+  "lsd": {
+   "kind": "cli",
+   "binary": "lsd",
+   "crate": "lsd",
+   "capabilities": [
+    "list-dir",
+    "tree-view"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "-l": "long",
+    "--tree": "tree",
+    "--depth N": "depth",
+    "--icon never": "no icons"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "eza",
+    "ls"
+   ]
+  },
+  "rip": {
+   "kind": "cli",
+   "binary": "rip",
+   "crate": "rm-improved",
+   "capabilities": [
+    "safe-delete"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "flags": {
+    "-u": "unbury (restore last deletion)",
+    "-s": "seance: list buried files in cwd",
+    "--graveyard DIR": "graveyard location"
+   },
+   "risk": "destructive-recoverable",
+   "automation": "medium",
+   "alternatives": [
+    "trashy",
+    "trash-put",
+    "rm"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "Graveyard defaults to /tmp on some setups — may not survive reboot",
+    "Upstream is little maintained; the rip2 fork continues it"
+   ]
+  },
+  "spacedrive": {
+   "kind": "gui",
+   "capabilities": [
+    "file-manager"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "trashy": {
+   "kind": "cli",
+   "binary": "trash",
+   "crate": "trashy",
+   "capabilities": [
+    "safe-delete"
+   ],
+   "platforms": [
+    "linux",
+    "windows"
+   ],
+   "flags": {
+    "put PATH": "move to system trash",
+    "list": "list trash",
+    "restore": "restore",
+    "empty": "permanently delete trash contents"
+   },
+   "risk": "destructive-recoverable",
+   "automation": "medium",
+   "alternatives": [
+    "rip",
+    "trash-put",
+    "gio trash"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "macOS not supported for list/restore",
+    "`trash empty` is irreversible"
+   ]
+  },
+  "yazi": {
+   "kind": "tui",
+   "binary": "yazi",
+   "crate": "yazi-fm",
+   "capabilities": [
+    "file-manager"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "modifies-files",
+   "alternatives": [
+    "xplr",
+    "felix",
+    "broot"
+   ],
+   "notes": "Companion CLI `ya` is crate yazi-cli."
+  },
+  "zoxide": {
+   "kind": "cli",
+   "binary": "zoxide",
+   "crate": "zoxide",
+   "capabilities": [
+    "cd-jump"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "query TERM": "print best match (non-interactive)",
+    "query -l": "list ranked dirs",
+    "init SHELL": "shell integration"
+   },
+   "interactive": "optional",
+   "automation": "medium",
+   "limitations": [
+    "Ranks from the user's history — results are not reproducible across machines"
+   ]
+  },
+  "bat": {
+   "kind": "cli",
+   "binary": "bat",
+   "aliases": [
+    "batcat"
+   ],
+   "crate": "bat",
+   "capabilities": [
+    "view-file"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install bat (binary: batcat)",
+    "brew install bat",
+    "pacman -S bat"
+   ],
+   "output": "highlighted text; acts like cat when piped",
+   "flags": {
+    "-p / --plain": "no decorations",
+    "-n": "line numbers only",
+    "-r A:B": "line range",
+    "-l LANG": "force language",
+    "--paging=never": "never page",
+    "--color=never": "no ANSI",
+    "-A": "show non-printable",
+    "--diff": "only changed lines vs git"
+   },
+   "automation": "high",
+   "alternatives": [
+    "cat",
+    "sed -n",
+    "see"
+   ],
+   "related": [
+    "ripgrep",
+    "fd",
+    "delta"
+   ],
+   "workflows": [
+    "repo-intel"
+   ]
+  },
+  "csvlens": {
+   "kind": "tui",
+   "binary": "csvlens",
+   "crate": "csvlens",
+   "capabilities": [
+    "csv-view"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "qsv table",
+    "xsv table",
+    "column -t"
+   ],
+   "workflows": [
+    "data"
+   ]
+  },
+  "hck": {
+   "kind": "cli",
+   "binary": "hck",
+   "crate": "hck",
+   "capabilities": [
+    "cut-fields"
+   ],
+   "flags": {
+    "-f LIST": "fields (supports ranges, reordering)",
+    "-d DELIM": "input delimiter (regex by default)",
+    "-F NAME": "select by header name",
+    "-L": "literal delimiter"
+   },
+   "automation": "high",
+   "alternatives": [
+    "cut",
+    "awk",
+    "qsv select"
+   ],
+   "workflows": [
+    "data"
+   ]
+  },
+  "hex": {
+   "kind": "cli",
+   "binary": "hx",
+   "crate": "hx",
+   "capabilities": [
+    "hex-view"
+   ],
+   "automation": "medium",
+   "alternatives": [
+    "hexyl",
+    "xxd",
+    "od"
+   ],
+   "limitations": [
+    "Binary name hx collides with helix's hx"
+   ]
+  },
+  "hexyl": {
+   "kind": "cli",
+   "binary": "hexyl",
+   "crate": "hexyl",
+   "capabilities": [
+    "hex-view"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "-n N": "length",
+    "-s N": "skip",
+    "-p / --plain": "no borders/offsets (vd)",
+    "--color never": "no ANSI"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "xxd",
+    "od",
+    "hex"
+   ]
+  },
+  "intermodal": {
+   "kind": "cli",
+   "binary": "imdl",
+   "crate": "imdl",
+   "capabilities": [
+    "torrent-metainfo"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "torrent create": "create .torrent",
+    "torrent show": "inspect",
+    "torrent verify": "verify files",
+    "--json": "JSON for show (vd)"
+   },
+   "automation": "high"
+  },
+  "lemmeknow": {
+   "kind": "cli",
+   "binary": "lemmeknow",
+   "crate": "lemmeknow",
+   "capabilities": [
+    "identify-strings"
+   ],
+   "flags": {
+    "-j / --json": "JSON output"
+   },
+   "structured_output": [
+    "json"
+   ],
+   "automation": "high",
+   "alternatives": [
+    "pywhat"
+   ],
+   "workflows": [
+    "security"
+   ]
+  },
+  "oculante": {
+   "kind": "gui",
+   "binary": "oculante",
+   "crate": "oculante",
+   "capabilities": [
+    "image-view"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "ouch": {
+   "kind": "cli",
+   "binary": "ouch",
+   "crate": "ouch",
+   "capabilities": [
+    "archive"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "compress FILES OUT.tar.gz": "format from extension",
+    "decompress ARCHIVE": "extract",
+    "list ARCHIVE": "list contents",
+    "-d DIR": "output dir (decompress)",
+    "-y / -n": "assume yes / no to overwrite prompts",
+    "-q": "quiet"
+   },
+   "risk": "writes-files",
+   "automation": "high",
+   "alternatives": [
+    "tar",
+    "unzip",
+    "7z"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "Prompts on overwrite unless -y/-n given — always pass one in automation",
+    "Some formats (rar) decompress-only"
+   ]
+  },
+  "runiq": {
+   "kind": "cli",
+   "binary": "runiq",
+   "crate": "runiq",
+   "capabilities": [
+    "dedupe-lines"
+   ],
+   "flags": {
+    "-f FILTER": "digest|naive|bloom|sorted",
+    "-i": "invert (print duplicates)",
+    "-s": "stats"
+   },
+   "automation": "high",
+   "alternatives": [
+    "sort -u",
+    "awk '!seen[$0]++'"
+   ],
+   "workflows": [
+    "data"
+   ]
+  },
+  "ruplacer": {
+   "kind": "cli",
+   "binary": "ruplacer",
+   "crate": "ruplacer",
+   "capabilities": [
+    "search-replace"
+   ],
+   "input": "PATTERN REPLACEMENT [PATH]",
+   "output": "diff-like preview",
+   "flags": {
+    "(default)": "dry run — shows changes, writes nothing",
+    "--go": "apply changes",
+    "-F / --no-regex": "literal pattern",
+    "-w": "word boundaries",
+    "-i": "ignore case",
+    "-t TYPE / -g GLOB": "file filters",
+    "--subvert": "case-variant replacement"
+   },
+   "risk": "modifies-files (only with --go)",
+   "automation": "high",
+   "alternatives": [
+    "sd",
+    "repgrep",
+    "sed -i"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "Respects .gitignore like ripgrep"
+   ]
+  },
+  "termscp": {
+   "kind": "tui",
+   "binary": "termscp",
+   "crate": "termscp",
+   "capabilities": [
+    "file-transfer"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "risk": "network-active",
+   "alternatives": [
+    "scp",
+    "rsync",
+    "sftp"
+   ]
+  },
+  "xcp": {
+   "kind": "cli",
+   "binary": "xcp",
+   "crate": "xcp",
+   "capabilities": [
+    "copy-files"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "flags": {
+    "-r": "recursive",
+    "-n / --no-clobber": "do not overwrite",
+    "-w N": "workers",
+    "--gitignore": "respect .gitignore",
+    "--no-progress": "no progress bar"
+   },
+   "risk": "writes-files",
+   "automation": "high",
+   "alternatives": [
+    "cp",
+    "rsync"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "Not a drop-in for every cp flag"
+   ]
+  },
+  "xplr": {
+   "kind": "tui",
+   "binary": "xplr",
+   "crate": "xplr",
+   "capabilities": [
+    "file-manager",
+    "fuzzy-select"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "risk": "modifies-files",
+   "output": "selection printed on exit",
+   "alternatives": [
+    "yazi",
+    "broot"
+   ]
+  },
+  "bandwhich": {
+   "kind": "tui",
+   "binary": "bandwhich",
+   "crate": "bandwhich",
+   "capabilities": [
+    "network-bandwidth"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "dependencies": [
+    "root or CAP_NET_RAW/CAP_NET_ADMIN (Linux)",
+    "npcap (Windows)"
+   ],
+   "flags": {
+    "-r / --raw": "machine-friendly line output (no TUI)",
+    "-i IFACE": "interface",
+    "-n": "no DNS resolve",
+    "-p": "processes only"
+   },
+   "interactive": "optional",
+   "automation": "medium",
+   "risk": "needs-privilege",
+   "alternatives": [
+    "nethogs",
+    "iftop",
+    "rustnet",
+    "ss -tp"
+   ],
+   "workflows": [
+    "sysdiag",
+    "netdiag"
+   ],
+   "limitations": [
+    "Passive observation only; runs until killed — wrap with timeout"
+   ]
+  },
+  "below": {
+   "kind": "cli",
+   "binary": "below",
+   "crate": "below",
+   "capabilities": [
+    "system-monitor",
+    "resource-history"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "dependencies": [
+    "root",
+    "cgroup v2"
+   ],
+   "flags": {
+    "live": "TUI",
+    "record": "daemon recorder",
+    "replay -t TIME": "TUI replay",
+    "dump system|process|cgroup --begin T -O json|csv": "non-interactive structured export"
+   },
+   "structured_output": [
+    "json",
+    "csv"
+   ],
+   "interactive": "optional",
+   "automation": "medium",
+   "risk": "needs-privilege",
+   "alternatives": [
+    "atop",
+    "sar"
+   ],
+   "workflows": [
+    "sysdiag"
+   ]
+  },
+  "bottom": {
+   "kind": "tui",
+   "binary": "btm",
+   "crate": "bottom",
+   "capabilities": [
+    "system-monitor",
+    "process-list"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "top",
+    "htop",
+    "zenith",
+    "procs"
+   ],
+   "workflows": [
+    "sysdiag"
+   ],
+   "limitations": [
+    "No non-interactive snapshot mode; use procs/ps/free/vmstat for evidence"
+   ]
+  },
+  "bpftop": {
+   "kind": "tui",
+   "binary": "bpftop",
+   "capabilities": [
+    "ebpf-inspect"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "dependencies": [
+    "root",
+    "kernel BPF stats support"
+   ],
+   "install": [
+    "prebuilt binary from GitHub releases"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "needs-privilege",
+   "alternatives": [
+    "bpftool prog show"
+   ],
+   "workflows": [
+    "sysdiag"
+   ]
+  },
+  "diskonaut": {
+   "kind": "tui",
+   "binary": "diskonaut",
+   "crate": "diskonaut",
+   "capabilities": [
+    "disk-usage"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "read-only (UI can delete)",
+   "alternatives": [
+    "dua-cli",
+    "dust",
+    "ncdu"
+   ]
+  },
+  "featherbar": {
+   "kind": "gui",
+   "capabilities": [
+    "system-monitor"
+   ],
+   "platforms": [
+    "macos"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "macmon"
+   ]
+  },
+  "lazyslurm": {
+   "kind": "tui",
+   "binary": "lazyslurm",
+   "capabilities": [
+    "hpc-jobs"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "dependencies": [
+    "Slurm CLI (squeue, sacct, scontrol)"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "squeue",
+    "sacct"
+   ]
+  },
+  "netscanner": {
+   "kind": "tui",
+   "binary": "netscanner",
+   "crate": "netscanner",
+   "capabilities": [
+    "network-scan",
+    "port-scan"
+   ],
+   "platforms": [
+    "linux",
+    "windows"
+   ],
+   "dependencies": [
+    "root / raw socket capability"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "network-active",
+   "alternatives": [
+    "rustscan",
+    "nmap",
+    "ip neigh"
+   ],
+   "workflows": [
+    "netdiag"
+   ],
+   "limitations": [
+    "Active scanning — authorized networks only"
+   ]
+  },
+  "macchina": {
+   "kind": "cli",
+   "binary": "macchina",
+   "crate": "macchina",
+   "capabilities": [
+    "system-info"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows",
+    "bsd"
+   ],
+   "flags": {
+    "--doctor": "explain which readouts failed",
+    "-o / --show": "select readouts (vd)"
+   },
+   "output": "decorated text",
+   "automation": "medium",
+   "alternatives": [
+    "uname -a",
+    "hostnamectl",
+    "lscpu",
+    "rsftch",
+    "fastfetch"
+   ],
+   "workflows": [
+    "sysdiag"
+   ]
+  },
+  "macmon": {
+   "kind": "tui",
+   "binary": "macmon",
+   "crate": "macmon",
+   "capabilities": [
+    "power-monitor",
+    "system-monitor"
+   ],
+   "platforms": [
+    "macos (Apple Silicon)"
+   ],
+   "flags": {
+    "pipe": "JSON lines to stdout (non-interactive)",
+    "-i MS": "interval"
+   },
+   "structured_output": [
+    "jsonl"
+   ],
+   "interactive": "optional",
+   "automation": "high",
+   "alternatives": [
+    "powermetrics (needs sudo)"
+   ],
+   "workflows": [
+    "sysdiag"
+   ]
+  },
+  "pik": {
+   "kind": "tui",
+   "binary": "pik",
+   "crate": "pik",
+   "capabilities": [
+    "process-kill",
+    "process-list"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "destructive",
+   "alternatives": [
+    "kill",
+    "pkill"
+   ]
+  },
+  "procs": {
+   "kind": "cli",
+   "binary": "procs",
+   "crate": "procs",
+   "capabilities": [
+    "process-list"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows",
+    "freebsd"
+   ],
+   "flags": {
+    "KEYWORD": "filter",
+    "--tree": "process tree",
+    "--sortd cpu|mem": "sort descending",
+    "--json": "JSON output (vd)",
+    "--no-header": "no header",
+    "--color disable": "no ANSI",
+    "-w": "watch (interactive)"
+   },
+   "structured_output": [
+    "json (vd)"
+   ],
+   "automation": "medium",
+   "alternatives": [
+    "ps",
+    "pgrep"
+   ],
+   "workflows": [
+    "sysdiag"
+   ],
+   "limitations": [
+    "Pager may engage on TTY; use --pager disable (vd)"
+   ]
+  },
+  "rsftch": {
+   "kind": "cli",
+   "binary": "rsftch",
+   "crate": "rsftch",
+   "capabilities": [
+    "system-info"
+   ],
+   "automation": "medium",
+   "alternatives": [
+    "macchina",
+    "uname -a"
+   ]
+  },
+  "rustnet": {
+   "kind": "tui",
+   "binary": "rustnet",
+   "crate": "rustnet-monitor",
+   "capabilities": [
+    "network-monitor",
+    "packet-inspect"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "dependencies": [
+    "libpcap/npcap",
+    "root or packet-capture capabilities"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "risk": "needs-privilege",
+   "alternatives": [
+    "bandwhich",
+    "ss -tunap",
+    "tcpdump"
+   ],
+   "workflows": [
+    "netdiag",
+    "sysdiag"
+   ]
+  },
+  "rustscan": {
+   "kind": "cli",
+   "binary": "rustscan",
+   "crate": "rustscan",
+   "capabilities": [
+    "port-scan"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "-a ADDR": "targets",
+    "-p / -r": "ports / range",
+    "-g": "greppable output",
+    "-b N": "batch size",
+    "-t MS": "timeout",
+    "--ulimit N": "fd limit",
+    "-- NMAP_ARGS": "pipe results into nmap"
+   },
+   "risk": "network-active",
+   "automation": "high",
+   "alternatives": [
+    "nmap",
+    "nc -z"
+   ],
+   "workflows": [
+    "netdiag"
+   ],
+   "limitations": [
+    "Active scanning — authorized targets only",
+    "An open port list is not a security assessment"
+   ]
+  },
+  "sniffnet": {
+   "kind": "gui",
+   "binary": "sniffnet",
+   "crate": "sniffnet",
+   "capabilities": [
+    "network-monitor"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "dependencies": [
+    "libpcap/npcap"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "needs-privilege",
+   "alternatives": [
+    "rustnet",
+    "tcpdump"
+   ]
+  },
+  "trippy": {
+   "kind": "tui",
+   "binary": "trip",
+   "crate": "trippy",
+   "capabilities": [
+    "traceroute"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows",
+    "bsd"
+   ],
+   "dependencies": [
+    "root or CAP_NET_RAW (unprivileged mode on some platforms)"
+   ],
+   "flags": {
+    "-m json|csv|pretty|markdown|stream": "report mode (non-interactive)",
+    "-C N / --report-cycles": "cycles in report mode",
+    "-p icmp|udp|tcp": "protocol",
+    "-u": "unprivileged mode (macOS/Linux with ping_group_range)"
+   },
+   "structured_output": [
+    "json",
+    "csv"
+   ],
+   "interactive": "optional",
+   "automation": "high",
+   "risk": "network-active",
+   "alternatives": [
+    "mtr",
+    "traceroute",
+    "tracepath"
+   ],
+   "workflows": [
+    "netdiag"
+   ]
+  },
+  "ytop": {
+   "kind": "tui",
+   "binary": "ytop",
+   "crate": "ytop",
+   "capabilities": [
+    "system-monitor"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "status_override": "archived",
+   "alternatives": [
+    "bottom",
+    "zenith"
+   ]
+  },
+  "zenith": {
+   "kind": "tui",
+   "binary": "zenith",
+   "capabilities": [
+    "system-monitor",
+    "process-list"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "bottom",
+    "htop"
+   ]
+  },
+  "macdisp": {
+   "kind": "cli",
+   "binary": "macdisp",
+   "capabilities": [
+    "display-config"
+   ],
+   "platforms": [
+    "macos"
+   ],
+   "risk": "changes-system",
+   "automation": "medium"
+  },
+  "alacritty": {
+   "kind": "gui",
+   "binary": "alacritty",
+   "crate": "alacritty",
+   "capabilities": [
+    "terminal-emulator"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows",
+    "bsd"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "atuin": {
+   "kind": "cli",
+   "binary": "atuin",
+   "crate": "atuin",
+   "capabilities": [
+    "shell-history"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "flags": {
+    "search --cmd-only QUERY": "non-interactive search",
+    "history list --format FMT": "list history",
+    "stats": "usage stats"
+   },
+   "interactive": "optional",
+   "automation": "medium",
+   "limitations": [
+    "Personal shell history may contain secrets — read only when the user asks"
+   ]
+  },
+  "createnv": {
+   "kind": "cli",
+   "binary": "createnv",
+   "crate": "createnv",
+   "capabilities": [
+    "env-file"
+   ],
+   "interactive": "required",
+   "risk": "writes-files",
+   "automation": "low"
+  },
+  "handlr-regex": {
+   "kind": "cli",
+   "binary": "handlr",
+   "crate": "handlr-regex",
+   "capabilities": [
+    "xdg-open"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "flags": {
+    "open PATH": "open with default app",
+    "get MIME": "query handler",
+    "set": "change association"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "xdg-open",
+    "xdg-mime"
+   ]
+  },
+  "just": {
+   "kind": "cli",
+   "binary": "just",
+   "crate": "just",
+   "capabilities": [
+    "task-runner"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install just",
+    "brew install just",
+    "pacman -S just"
+   ],
+   "input": "justfile recipes",
+   "flags": {
+    "--list": "list recipes",
+    "--summary": "names only",
+    "--dry-run / -n": "print without running",
+    "--dump --dump-format json": "machine-readable justfile",
+    "-f FILE": "justfile path",
+    "--set VAR VAL": "override variable"
+   },
+   "structured_output": [
+    "json (--dump)"
+   ],
+   "exit": "propagates the failing recipe line's exit code",
+   "risk": "runs-user-code",
+   "automation": "high",
+   "alternatives": [
+    "make",
+    "mask",
+    "mise run"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "mprocs": {
+   "kind": "tui",
+   "binary": "dekit",
+   "crate": "mprocs",
+   "capabilities": [
+    "multi-process"
+   ],
+   "interactive": "required",
+   "automation": "low",
+   "risk": "runs-user-code",
+   "alternatives": [
+    "rust-parallel",
+    "tmux"
+   ],
+   "workflows": [
+    "automation"
+   ],
+   "limitations": [
+    "TUI — for agent automation prefer rust-parallel or background jobs with captured logs"
+   ],
+   "aliases": [
+    "mprocs"
+   ],
+   "notes": "Upstream renamed to dekit (pvolok/dekit); current HEAD builds only `dekit`. Older mprocs 0.9.x releases install an `mprocs` binary (kept as alias)."
+  },
+  "navi": {
+   "kind": "tui",
+   "binary": "navi",
+   "crate": "navi",
+   "capabilities": [
+    "cheatsheet"
+   ],
+   "flags": {
+    "--print": "print command instead of running",
+    "--query Q --best-match": "non-interactive pick"
+   },
+   "dependencies": [
+    "fzf or skim"
+   ],
+   "interactive": "optional",
+   "automation": "low",
+   "alternatives": [
+    "tealdeer",
+    "tlrc"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "nushell": {
+   "kind": "shell",
+   "binary": "nu",
+   "crate": "nu",
+   "capabilities": [
+    "shell",
+    "structured-data"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "-c CMD": "run command",
+    "| to json": "structured output"
+   },
+   "structured_output": [
+    "json",
+    "csv",
+    "yaml",
+    "nuon"
+   ],
+   "automation": "high",
+   "risk": "runs-user-code",
+   "alternatives": [
+    "bash",
+    "jaq",
+    "qsv"
+   ],
+   "workflows": [
+    "data"
+   ]
+  },
+  "rargs": {
+   "kind": "cli",
+   "binary": "rargs",
+   "crate": "rargs",
+   "capabilities": [
+    "xargs-like"
+   ],
+   "flags": {
+    "-p REGEX": "capture groups as {1} {name}",
+    "-d DELIM": "delimiter",
+    "-0": "NUL input"
+   },
+   "risk": "runs-user-code",
+   "automation": "high",
+   "alternatives": [
+    "xargs",
+    "rust-parallel"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "rio": {
+   "kind": "gui",
+   "binary": "rio",
+   "crate": "rioterm",
+   "capabilities": [
+    "terminal-emulator"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "rust-parallel": {
+   "kind": "cli",
+   "binary": "rust-parallel",
+   "crate": "rust-parallel",
+   "capabilities": [
+    "parallel-exec"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "-j N": "jobs",
+    "::: ARGS": "argument lists",
+    "-r REGEX": "regex captures",
+    "--exit-on-error": "stop on first failure",
+    "-p": "progress bar",
+    "-s": "run via shell",
+    "--dry-run": "print commands"
+   },
+   "risk": "runs-user-code",
+   "automation": "high",
+   "alternatives": [
+    "xargs -P",
+    "GNU parallel"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "sd": {
+   "kind": "cli",
+   "binary": "sd",
+   "crate": "sd",
+   "capabilities": [
+    "search-replace",
+    "text-transform"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "input": "FIND REPLACE [FILES] (stdin->stdout when no files)",
+   "flags": {
+    "-F": "literal strings",
+    "-p / --preview": "preview, do not write",
+    "-n N": "max replacements",
+    "-f FLAGS": "regex flags (i, m, s, w, ...)"
+   },
+   "risk": "modifies-files (in place when FILES given)",
+   "automation": "high",
+   "alternatives": [
+    "sed",
+    "ruplacer",
+    "perl -pi"
+   ],
+   "workflows": [
+    "file-ops"
+   ],
+   "limitations": [
+    "Writes files in place without backup when given paths — preview with -p first",
+    "Regex syntax differs from sed (Rust regex, $1 captures)"
+   ]
+  },
+  "shrs": {
+   "kind": "library",
+   "crate": "shrs",
+   "capabilities": [
+    "shell-toolkit"
+   ],
+   "automation": "none",
+   "notes": "Rust crate for building shells, not a ready CLI."
+  },
+  "sparklebios": {
+   "kind": "cli",
+   "capabilities": [
+    "shell-splash"
+   ],
+   "automation": "none",
+   "experimental": true
+  },
+  "splashboard": {
+   "kind": "cli",
+   "binary": "splashboard",
+   "capabilities": [
+    "shell-splash"
+   ],
+   "automation": "none",
+   "experimental": true
+  },
+  "starship": {
+   "kind": "cli",
+   "binary": "starship",
+   "crate": "starship",
+   "capabilities": [
+    "prompt"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "automation": "none",
+   "notes": "Prompt renderer; not useful as an agent tool beyond `starship explain`."
+  },
+  "tty7": {
+   "kind": "gui",
+   "capabilities": [
+    "terminal-emulator"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "experimental": true
+  },
+  "wezterm": {
+   "kind": "gui",
+   "binary": "wezterm",
+   "capabilities": [
+    "terminal-emulator",
+    "multiplexer"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "cli list --format json": "list panes",
+    "cli spawn / send-text": "pane automation"
+   },
+   "interactive": "required",
+   "automation": "low"
+  },
+  "zellij": {
+   "kind": "tui",
+   "binary": "zellij",
+   "crate": "zellij",
+   "capabilities": [
+    "multiplexer"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "flags": {
+    "run -- CMD": "run in new pane",
+    "action ...": "scripted actions",
+    "list-sessions": "sessions"
+   },
+   "interactive": "required",
+   "automation": "low",
+   "alternatives": [
+    "tmux"
+   ]
+  },
+  "cargo-flamegraph": {
+   "kind": "cli",
+   "binary": "flamegraph",
+   "aliases": [
+    "cargo-flamegraph"
+   ],
+   "crate": "flamegraph",
+   "capabilities": [
+    "cpu-profile",
+    "flamegraph"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "dependencies": [
+    "perf (Linux)",
+    "dtrace (macOS/Windows)",
+    "debug symbols recommended"
+   ],
+   "flags": {
+    "cargo flamegraph --bin X": "profile a Rust binary",
+    "flamegraph -- CMD": "profile any command",
+    "-o FILE.svg": "output",
+    "--root": "run profiler as root",
+    "-p PID": "attach",
+    "-F HZ": "sampling frequency"
+   },
+   "output": "flamegraph.svg (+ perf.data)",
+   "risk": "runs-user-code, may need privilege (perf_event_paranoid)",
+   "automation": "high",
+   "alternatives": [
+    "perf record + inferno",
+    "samply"
+   ],
+   "related": [
+    "inferno",
+    "hyperfine"
+   ],
+   "workflows": [
+    "perf"
+   ]
+  },
+  "hyperfine": {
+   "kind": "cli",
+   "binary": "hyperfine",
+   "crate": "hyperfine",
+   "capabilities": [
+    "benchmark"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install hyperfine",
+    "brew install hyperfine",
+    "pacman -S hyperfine"
+   ],
+   "flags": {
+    "-w N / --warmup": "warmup runs",
+    "-r N / --runs": "exact runs",
+    "-m N": "min runs",
+    "--export-json F": "full results JSON",
+    "--export-markdown F": "table",
+    "-N / --shell=none": "no shell (lower overhead)",
+    "-p CMD / --prepare": "before each run",
+    "-i": "ignore non-zero exit",
+    "-P VAR MIN MAX": "parameter scan",
+    "--style basic|none": "plain output",
+    "-n NAME": "command label"
+   },
+   "structured_output": [
+    "json",
+    "csv",
+    "markdown"
+   ],
+   "exit": "non-zero if a benchmarked command fails (unless -i)",
+   "risk": "runs-user-code",
+   "automation": "high",
+   "alternatives": [
+    "time",
+    "perf stat"
+   ],
+   "related": [
+    "cargo-flamegraph"
+   ],
+   "workflows": [
+    "perf"
+   ],
+   "limitations": [
+    "Measures wall-clock of whole commands; noisy on busy machines — compare with same settings"
+   ]
+  },
+  "inferno": {
+   "kind": "cli",
+   "binary": "inferno-flamegraph",
+   "aliases": [
+    "inferno-collapse-perf",
+    "inferno-collapse-dtrace",
+    "inferno-diff-folded"
+   ],
+   "crate": "inferno",
+   "capabilities": [
+    "flamegraph"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "input": "perf script / dtrace output or folded stacks on stdin",
+   "output": "SVG (flamegraph) or folded stacks",
+   "flags": {
+    "inferno-collapse-perf < perf.script": "fold stacks",
+    "inferno-flamegraph < folded > out.svg": "render",
+    "inferno-diff-folded a b": "differential"
+   },
+   "automation": "high",
+   "alternatives": [
+    "flamegraph.pl"
+   ],
+   "related": [
+    "cargo-flamegraph"
+   ],
+   "workflows": [
+    "perf"
+   ]
+  },
+  "py-spy": {
+   "kind": "cli",
+   "binary": "py-spy",
+   "crate": "py-spy",
+   "capabilities": [
+    "python-profile",
+    "cpu-profile"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "pip install py-spy",
+    "cargo install py-spy"
+   ],
+   "dependencies": [
+    "ptrace permission or root for attaching to other processes"
+   ],
+   "flags": {
+    "record -o out.svg --pid PID": "sample to flamegraph",
+    "record -f speedscope|raw|flamegraph": "format",
+    "record -d SECS": "duration",
+    "dump --pid PID": "current stacks",
+    "top --pid PID": "live (interactive)",
+    "-- python script.py": "launch under profiler"
+   },
+   "structured_output": [
+    "speedscope json",
+    "raw folded"
+   ],
+   "risk": "needs-privilege when attaching",
+   "automation": "high",
+   "alternatives": [
+    "cProfile",
+    "austin"
+   ],
+   "workflows": [
+    "perf"
+   ]
+  },
+  "bytehound": {
+   "kind": "cli",
+   "capabilities": [
+    "memory-profile"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "install": [
+    "build from source (cargo build --release -p bytehound-preload / -p bytehound-cli)"
+   ],
+   "dependencies": [
+    "LD_PRELOAD=libbytehound.so",
+    "yarn/nodejs for the web UI build"
+   ],
+   "flags": {
+    "LD_PRELOAD=./libbytehound.so CMD": "record",
+    "bytehound server memory-profiling_*.dat": "web UI"
+   },
+   "risk": "runs-user-code",
+   "automation": "medium",
+   "alternatives": [
+    "heaptrack",
+    "valgrind --tool=massif"
+   ],
+   "workflows": [
+    "perf"
+   ]
+  },
+  "delta": {
+   "kind": "cli",
+   "binary": "delta",
+   "crate": "git-delta",
+   "capabilities": [
+    "diff-pager"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "input": "unified diff on stdin (or two files)",
+   "flags": {
+    "--side-by-side": "split view",
+    "-n": "line numbers",
+    "--color-only": "keep diff structure",
+    "--paging never": "no pager"
+   },
+   "automation": "low",
+   "alternatives": [
+    "git diff --color",
+    "riff",
+    "diff-so-fancy"
+   ],
+   "related": [
+    "difftastic"
+   ],
+   "workflows": [
+    "git-review"
+   ],
+   "limitations": [
+    "Presentation-only: output is for humans; agents should read raw `git diff`"
+   ]
+  },
+  "difftastic": {
+   "kind": "cli",
+   "binary": "difft",
+   "crate": "difftastic",
+   "capabilities": [
+    "diff-structural"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "brew install difftastic",
+    "pacman -S difftastic"
+   ],
+   "input": "two files/dirs or via GIT_EXTERNAL_DIFF=difft",
+   "flags": {
+    "--display inline|side-by-side": "layout",
+    "--color never": "plain",
+    "--exit-code": "exit 1 when syntactic changes exist (vd)",
+    "--skip-unchanged": "omit unchanged files",
+    "--override GLOB:LANG": "force language",
+    "git -c diff.external=difft diff": "use with git"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "git diff -w",
+    "diff -u",
+    "intentdiff",
+    "sem"
+   ],
+   "related": [
+    "delta"
+   ],
+   "workflows": [
+    "git-review"
+   ],
+   "limitations": [
+    "Falls back to line diff for unsupported languages or very large files",
+    "Not a patch format — cannot be applied"
+   ]
+  },
+  "dnspeep": {
+   "kind": "cli",
+   "binary": "dnspeep",
+   "crate": "dnspeep",
+   "capabilities": [
+    "dns-observe"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "dependencies": [
+    "root",
+    "libpcap"
+   ],
+   "risk": "needs-privilege",
+   "automation": "medium",
+   "alternatives": [
+    "tcpdump -n port 53",
+    "resolvectl monitor"
+   ],
+   "workflows": [
+    "netdiag"
+   ],
+   "limitations": [
+    "Passive; runs until killed — wrap with timeout"
+   ]
+  },
+  "dotter": {
+   "kind": "cli",
+   "binary": "dotter",
+   "crate": "dotter",
+   "capabilities": [
+    "dotfiles"
+   ],
+   "flags": {
+    "deploy --dry-run": "preview",
+    "deploy": "symlink/template files",
+    "undeploy": "remove"
+   },
+   "risk": "modifies-files",
+   "automation": "medium",
+   "alternatives": [
+    "stow",
+    "chezmoi"
+   ]
+  },
+  "dtool": {
+   "kind": "cli",
+   "binary": "dtool",
+   "crate": "dtool",
+   "capabilities": [
+    "encoding-convert",
+    "hash"
+   ],
+   "flags": {
+    "h2s/s2h": "hex<->string",
+    "ts": "timestamp convert",
+    "b64e/b64d": "base64",
+    "hash -a md5|sha256": "hashes"
+   },
+   "automation": "high",
+   "alternatives": [
+    "xxd",
+    "base64",
+    "date",
+    "sha256sum"
+   ]
+  },
+  "edky": {
+   "kind": "cli",
+   "binary": "edky",
+   "capabilities": [
+    "key-convert"
+   ],
+   "automation": "high",
+   "experimental": true
+  },
+  "eva": {
+   "kind": "cli",
+   "binary": "eva",
+   "crate": "eva",
+   "capabilities": [
+    "calculator"
+   ],
+   "flags": {
+    "'EXPR'": "evaluate once (non-interactive)"
+   },
+   "interactive": "optional",
+   "automation": "high",
+   "alternatives": [
+    "bc",
+    "fend",
+    "python3 -c"
+   ]
+  },
+  "fnm": {
+   "kind": "cli",
+   "binary": "fnm",
+   "crate": "fnm",
+   "capabilities": [
+    "version-manager"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "list": "installed",
+    "install VER": "install",
+    "use VER": "switch",
+    "env": "shell env (eval)",
+    "exec --using=VER -- CMD": "run with version"
+   },
+   "risk": "writes-files",
+   "automation": "high",
+   "alternatives": [
+    "mise",
+    "nvm"
+   ]
+  },
+  "forge": {
+   "kind": "agent",
+   "binary": "forge",
+   "capabilities": [
+    "ai-agent"
+   ],
+   "interactive": "optional",
+   "risk": "runs-user-code",
+   "automation": "low",
+   "notes": "AI pair programmer (antinomyhq/forge, a.k.a. forgecode); install method varies by release — consult upstream."
+  },
+  "forge-norvialabs": {
+   "kind": "agent",
+   "capabilities": [
+    "ai-agent"
+   ],
+   "interactive": "required",
+   "risk": "runs-user-code",
+   "automation": "low",
+   "experimental": true
+  },
+  "octomind": {
+   "kind": "agent",
+   "binary": "octomind",
+   "capabilities": [
+    "ai-agent"
+   ],
+   "interactive": "optional",
+   "risk": "runs-user-code",
+   "automation": "low"
+  },
+  "fw": {
+   "kind": "cli",
+   "binary": "fw",
+   "crate": "fw",
+   "capabilities": [
+    "workspace-manager"
+   ],
+   "automation": "medium"
+  },
+  "git-absorb": {
+   "kind": "cli",
+   "binary": "git-absorb",
+   "crate": "git-absorb",
+   "capabilities": [
+    "git-fixup"
+   ],
+   "dependencies": [
+    "git"
+   ],
+   "flags": {
+    "git absorb --dry-run / -n": "show what would be absorbed",
+    "git absorb": "create fixup! commits for staged changes",
+    "--and-rebase / -r": "also autosquash rebase (rewrites history)",
+    "--base REF": "limit search"
+   },
+   "risk": "history-rewrite (with --and-rebase); creates commits otherwise",
+   "automation": "medium",
+   "alternatives": [
+    "git commit --fixup + git rebase -i --autosquash"
+   ],
+   "workflows": [
+    "git-review"
+   ],
+   "limitations": [
+    "Requires authorization: creates commits, and --and-rebase rewrites history"
+   ]
+  },
+  "gitlogue": {
+   "kind": "tui",
+   "binary": "gitlogue",
+   "capabilities": [
+    "git-history-view"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "git log -p"
+   ]
+  },
+  "gitoxide": {
+   "kind": "cli",
+   "binary": "gix",
+   "aliases": [
+    "ein"
+   ],
+   "crate": "gitoxide",
+   "capabilities": [
+    "git-impl"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "gix clone": "clone",
+    "ein tool estimate-hours": "repo stats",
+    "gix --format json": "JSON for some commands (vd)"
+   },
+   "automation": "medium",
+   "alternatives": [
+    "git"
+   ],
+   "workflows": [
+    "git-review"
+   ],
+   "limitations": [
+    "CLI is a dev tool; plumbing coverage is partial vs git — prefer git for correctness"
+   ]
+  },
+  "gitui": {
+   "kind": "tui",
+   "binary": "gitui",
+   "crate": "gitui",
+   "capabilities": [
+    "git-tui"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "modifies-repo",
+   "alternatives": [
+    "git",
+    "lazygit",
+    "gitside"
+   ],
+   "workflows": [
+    "git-review"
+   ]
+  },
+  "gitside": {
+   "kind": "tui",
+   "capabilities": [
+    "git-tui"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "modifies-repo",
+   "experimental": true,
+   "alternatives": [
+    "gitui"
+   ]
+  },
+  "gity": {
+   "kind": "daemon",
+   "binary": "gity",
+   "capabilities": [
+    "git-accelerate"
+   ],
+   "risk": "starts-service",
+   "automation": "low",
+   "experimental": true,
+   "notes": "fsmonitor daemon; affects git behavior repo-wide once enabled."
+  },
+  "gpg-tui": {
+   "kind": "tui",
+   "binary": "gpg-tui",
+   "crate": "gpg-tui",
+   "capabilities": [
+    "gpg-manage"
+   ],
+   "dependencies": [
+    "gpgme"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "modifies-keyring",
+   "alternatives": [
+    "gpg --list-keys"
+   ]
+  },
+  "grex": {
+   "kind": "cli",
+   "binary": "grex",
+   "crate": "grex",
+   "capabilities": [
+    "regex-generate"
+   ],
+   "flags": {
+    "-d": "\\d for digits",
+    "-s": "\\s for whitespace",
+    "-w": "\\w for word chars",
+    "-r": "detect repetitions",
+    "--no-anchors": "no ^$",
+    "-f FILE": "inputs from file"
+   },
+   "automation": "high",
+   "limitations": [
+    "Generated regex matches the examples; it does not generalize semantically — test it"
+   ]
+  },
+  "hurl": {
+   "kind": "cli",
+   "binary": "hurl",
+   "crate": "hurl",
+   "capabilities": [
+    "http-test",
+    "http-client"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "brew install hurl",
+    "apt install ./hurl_*.deb (GitHub releases)",
+    "cargo install --locked hurl (needs libcurl, libxml2)"
+   ],
+   "input": ".hurl files",
+   "flags": {
+    "--test": "test mode with summary",
+    "--json": "JSON results to stdout",
+    "--report-junit F / --report-html DIR": "reports",
+    "--variable k=v": "variables",
+    "--very-verbose": "debug"
+   },
+   "structured_output": [
+    "json",
+    "junit"
+   ],
+   "exit": "0 ok, 1 CLI/options error, 2 input parse error, 3 runtime error, 4 assert failure",
+   "risk": "network-active",
+   "automation": "high",
+   "alternatives": [
+    "curl",
+    "slumber"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "hyperconsciousness": {
+   "kind": "cli",
+   "capabilities": [
+    "knowledge-store"
+   ],
+   "automation": "unknown",
+   "experimental": true,
+   "notes": "Developer-alpha per catalogue."
+  },
+  "intentdiff": {
+   "kind": "cli",
+   "capabilities": [
+    "diff-structural",
+    "semantic-diff"
+   ],
+   "automation": "unknown",
+   "experimental": true,
+   "alternatives": [
+    "difftastic",
+    "sem"
+   ],
+   "workflows": [
+    "git-review"
+   ]
+  },
+  "jaq": {
+   "kind": "cli",
+   "binary": "jaq",
+   "crate": "jaq",
+   "capabilities": [
+    "json-query"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "brew install jaq",
+    "pacman -S jaq"
+   ],
+   "input": "JSON (and YAML/CBOR/TOML/XML in newer versions, vd) on stdin or files",
+   "output": "JSON",
+   "structured_output": [
+    "json"
+   ],
+   "flags": {
+    "-r": "raw strings",
+    "-c": "compact",
+    "-s": "slurp",
+    "-n": "null input",
+    "--arg k v": "variables",
+    "-e": "exit status from output (vd)"
+   },
+   "exit": "0 ok; non-zero on parse or filter error",
+   "automation": "high",
+   "alternatives": [
+    "jq",
+    "python3 -m json.tool",
+    "nushell"
+   ],
+   "workflows": [
+    "data"
+   ],
+   "limitations": [
+    "Mostly but not fully jq-compatible (e.g. some builtins, path semantics)"
+   ]
+  },
+  "jj": {
+   "kind": "cli",
+   "binary": "jj",
+   "crate": "jj-cli",
+   "capabilities": [
+    "vcs"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "jj st": "status",
+    "jj log -T TEMPLATE": "log",
+    "jj diff --git": "patch diff",
+    "jj op log / jj undo": "operation log & undo",
+    "--no-pager": "no pager"
+   },
+   "risk": "modifies-repo",
+   "automation": "high",
+   "alternatives": [
+    "git"
+   ],
+   "workflows": [
+    "git-review"
+   ],
+   "limitations": [
+    "Only use in repos the user already manages with jj; colocating jj with git changes repo state"
+   ]
+  },
+  "jless": {
+   "kind": "tui",
+   "binary": "jless",
+   "crate": "jless",
+   "capabilities": [
+    "json-view"
+   ],
+   "platforms": [
+    "linux",
+    "macos"
+   ],
+   "input": "JSON or YAML (--yaml)",
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "jaq .",
+    "jq ."
+   ],
+   "workflows": [
+    "data"
+   ]
+  },
+  "lurk": {
+   "kind": "cli",
+   "binary": "lurk",
+   "crate": "lurk-cli",
+   "capabilities": [
+    "syscall-trace"
+   ],
+   "platforms": [
+    "linux (x86_64)"
+   ],
+   "flags": {
+    "--json / -j": "JSON output",
+    "-f": "follow forks",
+    "-p PID": "attach",
+    "-e EXPR": "filter syscalls",
+    "-c": "summary"
+   },
+   "structured_output": [
+    "json"
+   ],
+   "risk": "needs-privilege when attaching",
+   "automation": "high",
+   "alternatives": [
+    "strace"
+   ],
+   "workflows": [
+    "sysdiag",
+    "perf"
+   ]
+  },
+  "mask": {
+   "kind": "cli",
+   "binary": "mask",
+   "crate": "mask",
+   "capabilities": [
+    "task-runner"
+   ],
+   "input": "maskfile.md",
+   "flags": {
+    "--maskfile PATH": "custom file",
+    "--help": "list tasks"
+   },
+   "risk": "runs-user-code",
+   "automation": "high",
+   "alternatives": [
+    "just",
+    "make"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "mise": {
+   "kind": "cli",
+   "binary": "mise",
+   "crate": "mise",
+   "capabilities": [
+    "version-manager",
+    "task-runner",
+    "dev-env-manager"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "ls --json": "installed tools",
+    "tasks ls": "tasks",
+    "run TASK": "run task",
+    "exec TOOL@VER -- CMD": "run with version",
+    "doctor": "diagnose"
+   },
+   "structured_output": [
+    "json"
+   ],
+   "risk": "runs-user-code",
+   "automation": "high",
+   "alternatives": [
+    "asdf",
+    "fnm",
+    "just"
+   ],
+   "workflows": [
+    "automation"
+   ]
+  },
+  "nika": {
+   "kind": "cli",
+   "capabilities": [
+    "workflow-engine"
+   ],
+   "automation": "unknown",
+   "experimental": true
+  },
+  "onefetch": {
+   "kind": "cli",
+   "binary": "onefetch",
+   "crate": "onefetch",
+   "capabilities": [
+    "git-info"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "-o json|yaml": "structured output",
+    "--no-art": "no ASCII art"
+   },
+   "structured_output": [
+    "json",
+    "yaml"
+   ],
+   "automation": "high",
+   "alternatives": [
+    "tokei",
+    "git log --shortstat"
+   ],
+   "workflows": [
+    "repo-intel"
+   ]
+  },
+  "omnigraph": {
+   "kind": "service",
+   "capabilities": [
+    "graph-db"
+   ],
+   "risk": "starts-service",
+   "automation": "unknown",
+   "experimental": true
+  },
+  "pastel": {
+   "kind": "cli",
+   "binary": "pastel",
+   "crate": "pastel",
+   "capabilities": [
+    "color-tool"
+   ],
+   "flags": {
+    "format hex|rgb|hsl COLOR": "convert",
+    "color COLOR": "inspect",
+    "random": "random"
+   },
+   "automation": "high"
+  },
+  "qsv": {
+   "kind": "cli",
+   "binary": "qsv",
+   "crate": "qsv",
+   "capabilities": [
+    "csv-query",
+    "csv-transform"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "prebuilt binaries from GitHub releases (qsv, qsvlite, qsvdp variants)",
+    "brew install qsv",
+    "cargo install qsv --locked --features all_features"
+   ],
+   "input": "CSV/TSV (and others via `qsv to/from`)",
+   "output": "CSV; some commands emit JSON",
+   "structured_output": [
+    "csv",
+    "json (some commands)"
+   ],
+   "flags": {
+    "headers": "column names",
+    "count": "row count",
+    "stats --everything": "per-column stats",
+    "select COLS": "projection",
+    "search -s COL REGEX": "filter",
+    "frequency -s COL": "value counts",
+    "sort -s COL": "sort",
+    "sqlp FILE 'SQL'": "Polars SQL (feature)",
+    "validate [SCHEMA]": "RFC4180/JSON Schema validation",
+    "table": "aligned view"
+   },
+   "automation": "high",
+   "alternatives": [
+    "xsv",
+    "nushell",
+    "python csv",
+    "awk"
+   ],
+   "workflows": [
+    "data"
+   ],
+   "limitations": [
+    "Feature set differs by build variant — check `qsv --list`"
+   ]
+  },
+  "riff": {
+   "kind": "cli",
+   "binary": "riff",
+   "crate": "riffdiff",
+   "capabilities": [
+    "diff-pager"
+   ],
+   "automation": "low",
+   "alternatives": [
+    "delta"
+   ],
+   "workflows": [
+    "git-review"
+   ]
+  },
+  "rust-sqlite": {
+   "kind": "cli",
+   "capabilities": [
+    "embedded-db"
+   ],
+   "automation": "none",
+   "experimental": true,
+   "notes": "Educational SQLite-like database; not a sqlite3 replacement.",
+   "alternatives": [
+    "sqlite3"
+   ]
+  },
+  "rust-kanban": {
+   "kind": "tui",
+   "binary": "rust-kanban",
+   "crate": "rust-kanban",
+   "capabilities": [
+    "kanban"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "sccache": {
+   "kind": "cli",
+   "binary": "sccache",
+   "crate": "sccache",
+   "capabilities": [
+    "compile-cache"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "RUSTC_WRAPPER=sccache cargo build": "enable for Rust",
+    "--show-stats": "cache stats",
+    "--stats-format json": "JSON stats (vd)",
+    "--zero-stats": "reset",
+    "--stop-server": "stop daemon"
+   },
+   "risk": "starts-service (background server)",
+   "automation": "high",
+   "alternatives": [
+    "ccache"
+   ],
+   "workflows": [
+    "perf"
+   ]
+  },
+  "sem": {
+   "kind": "cli",
+   "capabilities": [
+    "semantic-diff",
+    "diff-structural"
+   ],
+   "dependencies": [
+    "git"
+   ],
+   "automation": "unknown",
+   "experimental": true,
+   "alternatives": [
+    "difftastic",
+    "intentdiff"
+   ],
+   "workflows": [
+    "git-review"
+   ]
+  },
+  "silicon": {
+   "kind": "cli",
+   "binary": "silicon",
+   "crate": "silicon",
+   "capabilities": [
+    "code-image"
+   ],
+   "dependencies": [
+    "fontconfig, freetype, harfbuzz (Linux)"
+   ],
+   "flags": {
+    "FILE -o out.png": "render",
+    "-l LANG": "language",
+    "--theme T": "theme"
+   },
+   "risk": "writes-files",
+   "automation": "high"
+  },
+  "slumber": {
+   "kind": "tui",
+   "binary": "slumber",
+   "crate": "slumber",
+   "capabilities": [
+    "http-client"
+   ],
+   "flags": {
+    "request RECIPE": "non-interactive request (vd)"
+   },
+   "interactive": "optional",
+   "risk": "network-active",
+   "automation": "medium",
+   "alternatives": [
+    "hurl",
+    "curl"
+   ]
+  },
+  "sqleibniz": {
+   "kind": "cli",
+   "binary": "sqleibniz",
+   "capabilities": [
+    "sql-lint"
+   ],
+   "automation": "medium",
+   "experimental": true,
+   "alternatives": [
+    "sqlfluff",
+    "sqlite3 -bail"
+   ]
+  },
+  "steel": {
+   "kind": "cli",
+   "binary": "steel",
+   "capabilities": [
+    "scheme-interpreter"
+   ],
+   "interactive": "optional",
+   "risk": "runs-user-code",
+   "automation": "medium"
+  },
+  "stylua": {
+   "kind": "cli",
+   "binary": "stylua",
+   "crate": "stylua",
+   "capabilities": [
+    "lua-format"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "--check": "report only, exit 1 if unformatted",
+    "--output-format json": "JSON diagnostics with --check (vd)",
+    "-": "stdin"
+   },
+   "risk": "modifies-files (without --check)",
+   "automation": "high"
+  },
+  "supercov": {
+   "kind": "cli",
+   "capabilities": [
+    "coverage"
+   ],
+   "dependencies": [
+    "cargo",
+    "cargo-nextest (optional)"
+   ],
+   "automation": "unknown",
+   "experimental": true,
+   "alternatives": [
+    "cargo-llvm-cov",
+    "cargo-tarpaulin"
+   ],
+   "workflows": [
+    "perf"
+   ]
+  },
+  "tealdeer": {
+   "kind": "cli",
+   "binary": "tldr",
+   "crate": "tealdeer",
+   "capabilities": [
+    "tldr"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "--update": "fetch pages (network)",
+    "-r / --raw": "raw markdown",
+    "-q": "quiet"
+   },
+   "automation": "high",
+   "alternatives": [
+    "tlrc",
+    "CMD --help",
+    "man"
+   ],
+   "limitations": [
+    "Binary name tldr collides with tlrc and the Node tldr client"
+   ]
+  },
+  "tlrc": {
+   "kind": "cli",
+   "binary": "tldr",
+   "crate": "tlrc",
+   "capabilities": [
+    "tldr"
+   ],
+   "flags": {
+    "--update": "fetch pages",
+    "--raw": "raw"
+   },
+   "automation": "high",
+   "alternatives": [
+    "tealdeer"
+   ],
+   "limitations": [
+    "Binary name tldr collides with tealdeer"
+   ]
+  },
+  "tinty": {
+   "kind": "cli",
+   "binary": "tinty",
+   "crate": "tinty",
+   "capabilities": [
+    "theme-manager"
+   ],
+   "risk": "modifies-files",
+   "automation": "medium"
+  },
+  "tokei": {
+   "kind": "cli",
+   "binary": "tokei",
+   "crate": "tokei",
+   "capabilities": [
+    "code-stats"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "apt install tokei",
+    "brew install tokei",
+    "pacman -S tokei"
+   ],
+   "flags": {
+    "-o json": "JSON output (needs a build with output formats; vd)",
+    "-e GLOB": "exclude",
+    "-t LANG": "filter languages",
+    "-s lines|code|files": "sort",
+    "--hidden": "include hidden",
+    "-C": "compact"
+   },
+   "structured_output": [
+    "json (vd)",
+    "yaml (vd)"
+   ],
+   "automation": "high",
+   "alternatives": [
+    "cloc",
+    "scc",
+    "onefetch"
+   ],
+   "workflows": [
+    "repo-intel"
+   ]
+  },
+  "tura": {
+   "kind": "agent",
+   "capabilities": [
+    "ai-agent"
+   ],
+   "automation": "unknown",
+   "experimental": true
+  },
+  "ugdb": {
+   "kind": "tui",
+   "binary": "ugdb",
+   "crate": "ugdb",
+   "capabilities": [
+    "debugger-ui"
+   ],
+   "dependencies": [
+    "gdb"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "gdb -batch"
+   ]
+  },
+  "xsv": {
+   "kind": "cli",
+   "binary": "xsv",
+   "crate": "xsv",
+   "capabilities": [
+    "csv-query",
+    "csv-transform"
+   ],
+   "flags": {
+    "headers": "columns",
+    "count": "rows",
+    "stats": "stats",
+    "select": "columns",
+    "search -s COL RE": "filter",
+    "frequency": "counts",
+    "table": "aligned view"
+   },
+   "automation": "high",
+   "alternatives": [
+    "qsv"
+   ],
+   "workflows": [
+    "data"
+   ],
+   "limitations": [
+    "Upstream recommends qsv/xan as maintained successors"
+   ]
+  },
+  "amp": {
+   "kind": "tui",
+   "binary": "amp",
+   "crate": "amp",
+   "capabilities": [
+    "edit-text"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "gnvim": {
+   "kind": "gui",
+   "binary": "gnvim",
+   "capabilities": [
+    "edit-text"
+   ],
+   "dependencies": [
+    "neovim",
+    "GTK4"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "helix": {
+   "kind": "tui",
+   "binary": "hx",
+   "aliases": [
+    "helix"
+   ],
+   "capabilities": [
+    "edit-text"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "install": [
+    "brew install helix",
+    "pacman -S helix (binary: helix)",
+    "apt install hx (newer distros)"
+   ],
+   "flags": {
+    "--health [LANG]": "check language server / grammar setup (non-interactive)"
+   },
+   "interactive": "required",
+   "automation": "none",
+   "limitations": [
+    "hx collides with the hex tool's binary"
+   ]
+  },
+  "iota": {
+   "kind": "tui",
+   "binary": "iota",
+   "crate": "iota-editor",
+   "capabilities": [
+    "edit-text"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "lapce": {
+   "kind": "gui",
+   "binary": "lapce",
+   "capabilities": [
+    "edit-text"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "neovide": {
+   "kind": "gui",
+   "binary": "neovide",
+   "crate": "neovide",
+   "capabilities": [
+    "edit-text"
+   ],
+   "dependencies": [
+    "neovim"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "pinkdown": {
+   "kind": "gui",
+   "capabilities": [
+    "edit-text",
+    "markdown-view"
+   ],
+   "platforms": [
+    "windows",
+    "macos"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "qnote": {
+   "kind": "gui",
+   "capabilities": [
+    "edit-text",
+    "markdown-view"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "rnote": {
+   "kind": "gui",
+   "binary": "rnote",
+   "capabilities": [
+    "note-taking"
+   ],
+   "flags": {
+    "rnote-cli export": "export documents (separate rnote-cli binary)"
+   },
+   "interactive": "required",
+   "automation": "low"
+  },
+  "tui-journal": {
+   "kind": "tui",
+   "binary": "tjournal",
+   "crate": "tui-journal",
+   "capabilities": [
+    "note-taking"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "xi-editor": {
+   "kind": "service",
+   "capabilities": [
+    "edit-text"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "notes": "Editor backend; project discontinued upstream."
+  },
+  "zed": {
+   "kind": "gui",
+   "binary": "zed",
+   "aliases": [
+    "zeditor"
+   ],
+   "capabilities": [
+    "edit-text"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "bartib": {
+   "kind": "cli",
+   "binary": "bartib",
+   "crate": "bartib",
+   "capabilities": [
+    "time-tracking"
+   ],
+   "risk": "writes-files",
+   "automation": "medium"
+  },
+  "coreutils": {
+   "kind": "cli",
+   "binary": "coreutils",
+   "crate": "coreutils",
+   "capabilities": [
+    "coreutils"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "coreutils UTIL ARGS": "multicall",
+    "uu-UTIL": "per-utility binaries on some distros"
+   },
+   "automation": "high",
+   "alternatives": [
+    "GNU coreutils",
+    "busybox"
+   ],
+   "limitations": [
+    "Not 100% GNU-compatible for every flag; check behaviour for edge cases"
+   ]
+  },
+  "fend": {
+   "kind": "cli",
+   "binary": "fend",
+   "crate": "fend",
+   "capabilities": [
+    "calculator",
+    "unit-convert"
+   ],
+   "flags": {
+    "'EXPR'": "evaluate once, e.g. fend '5 GiB to MB'"
+   },
+   "interactive": "optional",
+   "automation": "high",
+   "alternatives": [
+    "eva",
+    "bc",
+    "units"
+   ]
+  },
+  "gittype": {
+   "kind": "tui",
+   "binary": "gittype",
+   "capabilities": [
+    "typing-game"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "himalaya": {
+   "kind": "cli",
+   "binary": "himalaya",
+   "crate": "himalaya",
+   "capabilities": [
+    "email"
+   ],
+   "flags": {
+    "envelope list -o json": "list (JSON)",
+    "message read ID": "read"
+   },
+   "structured_output": [
+    "json"
+   ],
+   "risk": "network-active, can send mail",
+   "automation": "medium",
+   "limitations": [
+    "Accesses the user's mailbox — only with explicit request"
+   ]
+  },
+  "inlyne": {
+   "kind": "gui",
+   "binary": "inlyne",
+   "crate": "inlyne",
+   "capabilities": [
+    "markdown-view"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "md-tui",
+    "see",
+    "bat"
+   ]
+  },
+  "kanata": {
+   "kind": "daemon",
+   "binary": "kanata",
+   "crate": "kanata",
+   "capabilities": [
+    "keyboard-remap"
+   ],
+   "risk": "changes-system",
+   "automation": "none",
+   "dependencies": [
+    "uinput access (Linux)"
+   ]
+  },
+  "md-tui": {
+   "kind": "tui",
+   "binary": "mdt",
+   "crate": "md-tui",
+   "capabilities": [
+    "markdown-view"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "alternatives": [
+    "bat -l md",
+    "see"
+   ]
+  },
+  "opentypeless": {
+   "kind": "gui",
+   "capabilities": [
+    "voice-typing"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "experimental": true
+  },
+  "see": {
+   "kind": "cli",
+   "binary": "see",
+   "crate": "see-cat",
+   "capabilities": [
+    "view-file",
+    "markdown-view"
+   ],
+   "automation": "medium",
+   "alternatives": [
+    "bat",
+    "cat"
+   ]
+  },
+  "poketex": {
+   "kind": "tui",
+   "binary": "poketex",
+   "crate": "poketex",
+   "capabilities": [
+    "entertainment"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "ratatui": {
+   "kind": "library",
+   "crate": "ratatui",
+   "capabilities": [
+    "tui-library"
+   ],
+   "automation": "none",
+   "notes": "Rust crate for building TUIs; no binary."
+  },
+  "rustdesk": {
+   "kind": "gui",
+   "binary": "rustdesk",
+   "capabilities": [
+    "remote-desktop"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "network-active"
+  },
+  "subnetdesk": {
+   "kind": "gui",
+   "capabilities": [
+    "remote-desktop"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "network-active",
+   "experimental": true
+  },
+  "screenpipe": {
+   "kind": "service",
+   "binary": "screenpipe",
+   "capabilities": [
+    "screen-record"
+   ],
+   "risk": "privacy-sensitive (records screen and microphone)",
+   "automation": "low",
+   "limitations": [
+    "Never start without explicit user request"
+   ]
+  },
+  "shadowsocks-rust": {
+   "kind": "service",
+   "binary": "sslocal",
+   "aliases": [
+    "ssserver",
+    "ssurl",
+    "ssmanager"
+   ],
+   "crate": "shadowsocks-rust",
+   "capabilities": [
+    "proxy"
+   ],
+   "risk": "starts-service, network-active",
+   "automation": "medium"
+  },
+  "sudo-rs": {
+   "kind": "cli",
+   "binary": "sudo",
+   "aliases": [
+    "sudo-rs",
+    "su-rs"
+   ],
+   "crate": "sudo-rs",
+   "capabilities": [
+    "privilege-escalation"
+   ],
+   "platforms": [
+    "linux",
+    "freebsd"
+   ],
+   "risk": "privileged",
+   "automation": "none",
+   "limitations": [
+    "Never invoke autonomously; privilege escalation requires explicit user approval"
+   ]
+  },
+  "vaultwarden": {
+   "kind": "service",
+   "binary": "vaultwarden",
+   "capabilities": [
+    "password-server"
+   ],
+   "install": [
+    "docker run vaultwarden/server"
+   ],
+   "risk": "starts-service",
+   "automation": "low"
+  },
+  "youtube-tui": {
+   "kind": "tui",
+   "binary": "youtube-tui",
+   "crate": "youtube-tui",
+   "capabilities": [
+    "media"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "ytermusic": {
+   "kind": "tui",
+   "binary": "ytermusic",
+   "capabilities": [
+    "media"
+   ],
+   "interactive": "required",
+   "automation": "none"
+  },
+  "zola": {
+   "kind": "cli",
+   "binary": "zola",
+   "capabilities": [
+    "static-site"
+   ],
+   "platforms": [
+    "linux",
+    "macos",
+    "windows"
+   ],
+   "flags": {
+    "build": "build site",
+    "check": "validate links/content",
+    "serve": "dev server (long-running)"
+   },
+   "risk": "writes-files",
+   "automation": "high",
+   "alternatives": [
+    "hugo"
+   ]
+  },
+  "zerobrew": {
+   "kind": "cli",
+   "binary": "zb",
+   "capabilities": [
+    "package-manager"
+   ],
+   "platforms": [
+    "macos",
+    "linux"
+   ],
+   "risk": "installs-software",
+   "automation": "medium",
+   "experimental": true,
+   "alternatives": [
+    "brew"
+   ]
+  },
+  "fnprint": {
+   "kind": "cli",
+   "capabilities": [
+    "binary-analysis"
+   ],
+   "platforms": [
+    "linux"
+   ],
+   "automation": "unknown",
+   "experimental": true,
+   "workflows": [
+    "security"
+   ],
+   "alternatives": [
+    "radare2",
+    "ghidra"
+   ]
+  },
+  "n01d-forge": {
+   "kind": "gui",
+   "capabilities": [
+    "disk-image-burn"
+   ],
+   "risk": "destructive (overwrites block devices)",
+   "interactive": "required",
+   "automation": "none",
+   "experimental": true
+  },
+  "n01d-machine": {
+   "kind": "gui",
+   "capabilities": [
+    "vm-manager"
+   ],
+   "interactive": "required",
+   "automation": "none",
+   "risk": "changes-system",
+   "experimental": true
+  }
+ }
+}

@@ -1,0 +1,8 @@
+{"type":"begin","data":{"path":{"text":"./src/main.rs"}}}
+{"type":"match","data":{"path":{"text":"./src/main.rs"},"lines":{"text":"fn old_name() {}\n"},"line_number":1,"absolute_offset":0,"submatches":[{"match":{"text":"old_name"},"start":3,"end":11}]}}
+{"type":"match","data":{"path":{"text":"./src/main.rs"},"lines":{"text":"fn main() { old_name(); }\n"},"line_number":2,"absolute_offset":17,"submatches":[{"match":{"text":"old_name"},"start":12,"end":20}]}}
+{"type":"end","data":{"path":{"text":"./src/main.rs"},"binary_offset":null,"stats":{"elapsed":{"secs":0,"nanos":106612,"human":"0.000107s"},"searches":1,"searches_with_match":1,"bytes_searched":51,"bytes_printed":461,"matched_lines":2,"matches":2}}}
+{"type":"begin","data":{"path":{"text":"./notes.txt"}}}
+{"type":"match","data":{"path":{"text":"./notes.txt"},"lines":{"text":"old_name here\n"},"line_number":1,"absolute_offset":0,"submatches":[{"match":{"text":"old_name"},"start":0,"end":8}]}}
+{"type":"end","data":{"path":{"text":"./notes.txt"},"binary_offset":null,"stats":{"elapsed":{"secs":0,"nanos":31181,"human":"0.000031s"},"searches":1,"searches_with_match":1,"bytes_searched":14,"bytes_printed":246,"matched_lines":1,"matches":1}}}
+{"data":{"elapsed_total":{"human":"0.079934s","nanos":79934139,"secs":0},"stats":{"bytes_printed":707,"bytes_searched":65,"elapsed":{"human":"0.000138s","nanos":137793,"secs":0},"matched_lines":3,"matches":3,"searches":2,"searches_with_match":2}},"type":"summary"}

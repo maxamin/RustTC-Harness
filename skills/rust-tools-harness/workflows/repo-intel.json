@@ -1,0 +1,97 @@
+{
+ "name": "repo-intel",
+ "description": "Understand a repository: layout, languages, task runners, git state, and where a symbol/pattern lives",
+ "keywords": [
+  "repository",
+  "repo",
+  "codebase",
+  "understand",
+  "overview",
+  "explore",
+  "onboard",
+  "where is",
+  "architecture",
+  "project structure"
+ ],
+ "params": {
+  "path": {
+   "default": "."
+  },
+  "pattern": {
+   "default": null,
+   "help": "optional regex to locate (symbol, TODO, error string)"
+  },
+  "depth": {
+   "default": 2
+  }
+ },
+ "steps": [
+  {
+   "id": "summary",
+   "op": "repo-summary",
+   "purpose": "Branch, commit count, authors",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "repo facts",
+   "critical": false
+  },
+  {
+   "id": "stats",
+   "op": "code-stats",
+   "purpose": "Languages and size",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "per-language line counts"
+  },
+  {
+   "id": "tree",
+   "op": "tree",
+   "purpose": "Top-level layout",
+   "inputs": {
+    "path": "${params.path}",
+    "depth": "${params.depth}"
+   },
+   "expected_output": "directory tree"
+  },
+  {
+   "id": "tasks",
+   "op": "task-list",
+   "purpose": "How to build/test",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "task runners and recipes",
+   "critical": false
+  },
+  {
+   "id": "status",
+   "op": "git-status",
+   "purpose": "Uncommitted work to be careful with",
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "clean or list of changes",
+   "critical": false
+  },
+  {
+   "id": "locate",
+   "op": "search-content",
+   "purpose": "Where the pattern occurs",
+   "inputs": {
+    "pattern": "${params.pattern}",
+    "path": "${params.path}",
+    "limit": 200
+   },
+   "when": "${params.pattern}",
+   "expected_output": "match records (path, line, text)"
+  }
+ ],
+ "strong_keywords": [
+  "codebase",
+  "onboard",
+  "understand",
+  "overview"
+ ]
+}

@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+"""Standalone agent (same as `rth agent`): planner by default; --llm ollama|openai for a local model; --mcp to use MCP."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
+from rth.agent import main  # noqa: E402
+
+main()

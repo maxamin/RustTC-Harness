@@ -1,0 +1,126 @@
+{
+ "name": "search-replace",
+ "description": "Preview a regex replacement across files, apply it to exactly the previewed files, then verify",
+ "keywords": [
+  "replace",
+  "rename",
+  "substitute",
+  "find and replace",
+  "refactor",
+  "rewrite string"
+ ],
+ "params": {
+  "pattern": {
+   "required": true
+  },
+  "replacement": {
+   "required": true
+  },
+  "path": {
+   "default": "."
+  },
+  "glob": {
+   "default": null
+  },
+  "fixed": {
+   "default": false
+  }
+ },
+ "notes": "apply needs --allow writes (or --approve apply). Review the preview first; commit or stash before applying.",
+ "steps": [
+  {
+   "id": "before",
+   "op": "search-content",
+   "purpose": "Baseline occurrences",
+   "inputs": {
+    "pattern": "${params.pattern}",
+    "path": "${params.path}",
+    "glob": "${params.glob}",
+    "fixed": "${params.fixed}"
+   },
+   "expected_output": "matches",
+   "verification": {
+    "min_records": 1
+   }
+  },
+  {
+   "id": "preview",
+   "op": "replace-preview",
+   "purpose": "Exact lines after replacement",
+   "depends_on": [
+    "before"
+   ],
+   "inputs": {
+    "pattern": "${params.pattern}",
+    "replacement": "${params.replacement}",
+    "path": "${params.path}",
+    "glob": "${params.glob}",
+    "fixed": "${params.fixed}"
+   },
+   "expected_output": "changes + file list",
+   "verification": {
+    "min_records": 1
+   }
+  },
+  {
+   "id": "apply",
+   "op": "replace-apply",
+   "purpose": "Write the previewed change",
+   "depends_on": [
+    "preview"
+   ],
+   "on_failure": "stop",
+   "inputs": {
+    "pattern": "${params.pattern}",
+    "replacement": "${params.replacement}",
+    "files": "${steps.preview.data.files}",
+    "fixed": "${params.fixed}"
+   },
+   "expected_output": "files rewritten",
+   "verified_by": [
+    "after"
+   ]
+  },
+  {
+   "id": "after",
+   "op": "search-content",
+   "purpose": "Pattern should be gone (unless the replacement re-matches it)",
+   "depends_on": [
+    "apply"
+   ],
+   "inputs": {
+    "pattern": "${params.pattern}",
+    "path": "${params.path}",
+    "glob": "${params.glob}",
+    "fixed": "${params.fixed}"
+   },
+   "expected_output": "0 matches",
+   "verification": {
+    "exit_in": [
+     0,
+     1
+    ],
+    "max_records": 0
+   }
+  },
+  {
+   "id": "diff",
+   "op": "git-diff-stat",
+   "purpose": "Evidence of what changed",
+   "depends_on": [
+    "apply"
+   ],
+   "inputs": {
+    "path": "${params.path}"
+   },
+   "expected_output": "per-file +/-",
+   "critical": false
+  }
+ ],
+ "strong_keywords": [
+  "rename",
+  "replace",
+  "substitute",
+  "find and replace"
+ ]
+}

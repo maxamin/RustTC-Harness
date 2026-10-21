@@ -1,0 +1,1531 @@
+{
+ "_comment": "Capability taxonomy. `keywords` drive intent matching; `native` lists non-catalogue fallbacks that provide the same capability (checked for availability at runtime, never assumed); `semantic_gaps` documents differences that must be surfaced when substituting. Executable ops for a capability are defined in lib/rth/ops.py (Op.capability).",
+ "capabilities": {
+  "find-files": {
+   "description": "Locate files/directories by name, extension, type, size or time",
+   "keywords": [
+    "find",
+    "locate",
+    "files",
+    "filename",
+    "glob",
+    "extension",
+    "list files",
+    "large files",
+    "recent files",
+    "where is the file",
+    "which files are named",
+    "find file"
+   ],
+   "native": [
+    "find",
+    "git ls-files"
+   ],
+   "semantic_gaps": [
+    "fd and rg --files respect .gitignore and skip hidden files by default; find does not"
+   ]
+  },
+  "search-content": {
+   "description": "Search file contents by regex or literal",
+   "keywords": [
+    "grep",
+    "search",
+    "regex",
+    "pattern",
+    "occurrences",
+    "usages",
+    "references",
+    "todo",
+    "code search",
+    "contains",
+    "identifier",
+    "usage",
+    "used",
+    "uses of",
+    "where used",
+    "callers",
+    "symbol",
+    "function",
+    "variable",
+    "line numbers",
+    "grep for",
+    "is used",
+    "references to"
+   ],
+   "native": [
+    "git grep",
+    "grep"
+   ],
+   "semantic_gaps": [
+    "grep -E is POSIX ERE, rg is Rust regex; neither supports backreferences identically",
+    "grep -r does not honor .gitignore"
+   ]
+  },
+  "code-search-index": {
+   "description": "Indexed full-text code search for very large codebases",
+   "keywords": [
+    "index",
+    "large codebase",
+    "trigram"
+   ],
+   "native": []
+  },
+  "interactive-search": {
+   "description": "Interactively browse search hits",
+   "keywords": [
+    "interactive grep",
+    "browse results"
+   ],
+   "native": []
+  },
+  "fuzzy-select": {
+   "description": "Interactive fuzzy picker over lines",
+   "keywords": [
+    "fuzzy",
+    "pick",
+    "choose",
+    "select interactively",
+    "fzf"
+   ],
+   "native": [
+    "fzf"
+   ]
+  },
+  "fuzzy-filter": {
+   "description": "Non-interactive fuzzy filtering of lines",
+   "keywords": [
+    "fuzzy filter",
+    "fuzzy match"
+   ],
+   "native": [
+    "fzf --filter"
+   ]
+  },
+  "search-replace": {
+   "description": "Find and replace text across files (preview, then apply)",
+   "keywords": [
+    "replace",
+    "rename symbol",
+    "substitute",
+    "sed",
+    "refactor text",
+    "find and replace"
+   ],
+   "native": [
+    "sed",
+    "perl",
+    "rg --replace (preview only)"
+   ],
+   "semantic_gaps": [
+    "sed -i syntax differs between GNU and BSD",
+    "sed uses BRE/ERE with \\1 backrefs; sd/ruplacer use Rust regex with $1"
+   ]
+  },
+  "text-transform": {
+   "description": "Stream text substitution on stdin",
+   "keywords": [
+    "transform text",
+    "stdin replace"
+   ],
+   "native": [
+    "sed",
+    "awk",
+    "tr"
+   ]
+  },
+  "view-file": {
+   "description": "Print a file or line range, optionally highlighted",
+   "keywords": [
+    "show file",
+    "view",
+    "cat",
+    "read file",
+    "print lines",
+    "inspect code",
+    "highlight"
+   ],
+   "native": [
+    "sed -n",
+    "cat",
+    "head",
+    "less"
+   ]
+  },
+  "hex-view": {
+   "description": "Hex dump of binary data",
+   "keywords": [
+    "hex",
+    "hexdump",
+    "binary bytes",
+    "magic bytes"
+   ],
+   "native": [
+    "xxd",
+    "od",
+    "hexdump"
+   ]
+  },
+  "list-dir": {
+   "description": "List directory contents with metadata",
+   "keywords": [
+    "ls",
+    "list directory",
+    "permissions",
+    "metadata",
+    "directory contents"
+   ],
+   "native": [
+    "ls",
+    "stat"
+   ]
+  },
+  "tree-view": {
+   "description": "Show a directory tree",
+   "keywords": [
+    "tree",
+    "structure",
+    "layout",
+    "project structure"
+   ],
+   "native": [
+    "tree",
+    "find -maxdepth"
+   ]
+  },
+  "disk-usage": {
+   "description": "Break down disk usage by directory",
+   "keywords": [
+    "disk usage",
+    "disk space",
+    "du",
+    "what is using space",
+    "space",
+    "biggest directories",
+    "storage"
+   ],
+   "native": [
+    "du"
+   ],
+   "semantic_gaps": [
+    "dust/dua default to disk usage; -s/-A switch to apparent size like du --apparent-size"
+   ]
+  },
+  "dir-size": {
+   "description": "Total size of a directory",
+   "keywords": [
+    "total size",
+    "folder size",
+    "du -sh"
+   ],
+   "native": [
+    "du -s"
+   ]
+  },
+  "safe-delete": {
+   "description": "Delete recoverably (trash/graveyard)",
+   "keywords": [
+    "delete",
+    "remove",
+    "trash",
+    "rm safely",
+    "clean up"
+   ],
+   "native": [
+    "gio trash",
+    "trash-put"
+   ],
+   "semantic_gaps": [
+    "rm is NOT a fallback: it is irreversible. If no recoverable delete exists, stop and ask"
+   ]
+  },
+  "copy-files": {
+   "description": "Copy files and trees",
+   "keywords": [
+    "copy",
+    "cp",
+    "duplicate",
+    "backup copy"
+   ],
+   "native": [
+    "cp",
+    "rsync"
+   ]
+  },
+  "archive": {
+   "description": "Create, list or extract archives",
+   "keywords": [
+    "archive",
+    "zip",
+    "tar",
+    "compress",
+    "decompress",
+    "extract",
+    "unzip",
+    "gz",
+    "zst"
+   ],
+   "native": [
+    "tar",
+    "unzip",
+    "zip",
+    "7z",
+    "gzip",
+    "zstd"
+   ]
+  },
+  "identify-strings": {
+   "description": "Identify what a string is (IP, hash, email, key...)",
+   "keywords": [
+    "identify",
+    "what is this string",
+    "classify string"
+   ],
+   "native": [
+    "file"
+   ]
+  },
+  "csv-query": {
+   "description": "Query/profile CSV data",
+   "keywords": [
+    "csv",
+    "tsv",
+    "columns",
+    "rows",
+    "tabular",
+    "spreadsheet",
+    "statistics",
+    "profile data"
+   ],
+   "native": [
+    "python3 csv",
+    "awk",
+    "sqlite3 .import"
+   ]
+  },
+  "csv-transform": {
+   "description": "Select/filter/sort/join CSV",
+   "keywords": [
+    "csv filter",
+    "csv join",
+    "csv select",
+    "csv sort"
+   ],
+   "native": [
+    "awk",
+    "python3 csv"
+   ]
+  },
+  "csv-view": {
+   "description": "Interactive CSV viewer",
+   "keywords": [
+    "view csv"
+   ],
+   "native": [
+    "column -s, -t"
+   ]
+  },
+  "cut-fields": {
+   "description": "Extract delimited fields",
+   "keywords": [
+    "cut",
+    "columns",
+    "fields",
+    "awk print"
+   ],
+   "native": [
+    "cut",
+    "awk"
+   ]
+  },
+  "dedupe-lines": {
+   "description": "Remove duplicate lines without sorting",
+   "keywords": [
+    "dedupe",
+    "unique",
+    "uniq",
+    "duplicate lines"
+   ],
+   "native": [
+    "sort -u",
+    "awk '!seen[$0]++'"
+   ]
+  },
+  "json-query": {
+   "description": "Query and transform JSON",
+   "keywords": [
+    "json",
+    "jq",
+    "parse json",
+    "filter json",
+    "api response"
+   ],
+   "native": [
+    "jq",
+    "python3 -m json.tool (identity only)"
+   ],
+   "semantic_gaps": [
+    "jaq and jq differ in some builtins and error messages"
+   ]
+  },
+  "json-view": {
+   "description": "Interactive JSON viewer",
+   "keywords": [
+    "explore json",
+    "browse json"
+   ],
+   "native": [
+    "jq ."
+   ]
+  },
+  "structured-data": {
+   "description": "Shell with structured pipelines",
+   "keywords": [
+    "structured pipeline",
+    "table data"
+   ],
+   "native": []
+  },
+  "filesystem-sql": {
+   "description": "SQL-like queries over files",
+   "keywords": [
+    "sql files",
+    "query filesystem",
+    "select files where"
+   ],
+   "native": [
+    "find -printf"
+   ]
+  },
+  "snapshot-browse": {
+   "description": "Browse/restore file versions from snapshots",
+   "keywords": [
+    "snapshot",
+    "zfs",
+    "btrfs",
+    "previous version",
+    "time machine",
+    "restic"
+   ],
+   "native": [
+    "zfs list -t snapshot",
+    "btrfs subvolume list"
+   ]
+  },
+  "file-manager": {
+   "description": "Interactive file manager",
+   "keywords": [
+    "file manager",
+    "browse files"
+   ],
+   "native": [
+    "mc"
+   ]
+  },
+  "file-transfer": {
+   "description": "Transfer files to remote hosts",
+   "keywords": [
+    "scp",
+    "sftp",
+    "ftp",
+    "s3",
+    "upload",
+    "transfer"
+   ],
+   "native": [
+    "scp",
+    "rsync",
+    "sftp"
+   ]
+  },
+  "cd-jump": {
+   "description": "Jump to frequently used directories",
+   "keywords": [
+    "cd",
+    "jump",
+    "frecent"
+   ],
+   "native": []
+  },
+  "color-paths": {
+   "description": "Colorize paths with LS_COLORS",
+   "keywords": [
+    "ls_colors"
+   ],
+   "native": [
+    "ls --color"
+   ]
+  },
+  "process-list": {
+   "description": "List and inspect processes",
+   "keywords": [
+    "process",
+    "processes",
+    "ps",
+    "cpu hog",
+    "memory usage by process",
+    "pid",
+    "running"
+   ],
+   "native": [
+    "ps",
+    "pgrep",
+    "top -b -n1"
+   ]
+  },
+  "process-kill": {
+   "description": "Terminate processes",
+   "keywords": [
+    "kill",
+    "terminate",
+    "stop process"
+   ],
+   "native": [
+    "kill",
+    "pkill"
+   ]
+  },
+  "system-monitor": {
+   "description": "Live system resource monitor",
+   "keywords": [
+    "monitor",
+    "top",
+    "htop",
+    "resources",
+    "load"
+   ],
+   "native": [
+    "top -b -n1",
+    "vmstat",
+    "free",
+    "uptime"
+   ]
+  },
+  "resource-history": {
+   "description": "Record and replay historical resource data",
+   "keywords": [
+    "history",
+    "what happened at",
+    "past load",
+    "replay"
+   ],
+   "native": [
+    "sar",
+    "atop"
+   ]
+  },
+  "system-info": {
+   "description": "OS/hardware facts",
+   "keywords": [
+    "system info",
+    "os version",
+    "hardware",
+    "kernel",
+    "cpu model",
+    "neofetch"
+   ],
+   "native": [
+    "uname",
+    "hostnamectl",
+    "lscpu",
+    "sw_vers",
+    "/etc/os-release"
+   ]
+  },
+  "ebpf-inspect": {
+   "description": "Inspect running eBPF programs",
+   "keywords": [
+    "ebpf",
+    "bpf programs"
+   ],
+   "native": [
+    "bpftool prog show"
+   ]
+  },
+  "power-monitor": {
+   "description": "CPU/GPU power and temperature (Apple Silicon)",
+   "keywords": [
+    "power",
+    "temperature",
+    "watts",
+    "thermal"
+   ],
+   "native": [
+    "powermetrics",
+    "sensors"
+   ]
+  },
+  "hpc-jobs": {
+   "description": "Monitor Slurm jobs",
+   "keywords": [
+    "slurm",
+    "hpc",
+    "squeue",
+    "cluster jobs"
+   ],
+   "native": [
+    "squeue",
+    "sacct"
+   ]
+  },
+  "display-config": {
+   "description": "Change display settings (macOS)",
+   "keywords": [
+    "display",
+    "resolution",
+    "monitor settings"
+   ],
+   "native": [
+    "displayplacer"
+   ]
+  },
+  "network-bandwidth": {
+   "description": "Per-process/connection bandwidth",
+   "keywords": [
+    "bandwidth",
+    "network usage",
+    "which process uses network",
+    "traffic per process"
+   ],
+   "native": [
+    "nethogs",
+    "iftop",
+    "ss -tunp"
+   ]
+  },
+  "network-monitor": {
+   "description": "Observe connections/traffic",
+   "keywords": [
+    "connections",
+    "network monitor",
+    "open sockets",
+    "listening ports",
+    "listening",
+    "open ports",
+    "which ports",
+    "sockets"
+   ],
+   "native": [
+    "ss",
+    "netstat",
+    "lsof -i"
+   ]
+  },
+  "packet-inspect": {
+   "description": "Capture and inspect packets",
+   "keywords": [
+    "packets",
+    "pcap",
+    "dpi",
+    "sniff"
+   ],
+   "native": [
+    "tcpdump",
+    "tshark"
+   ]
+  },
+  "dns-observe": {
+   "description": "Observe DNS queries",
+   "keywords": [
+    "dns",
+    "dns queries",
+    "resolver"
+   ],
+   "native": [
+    "tcpdump -n port 53",
+    "resolvectl monitor"
+   ]
+  },
+  "traceroute": {
+   "description": "Path and latency/loss per hop",
+   "keywords": [
+    "traceroute",
+    "latency",
+    "packet loss",
+    "route",
+    "mtr",
+    "hop",
+    "connectivity"
+   ],
+   "native": [
+    "mtr",
+    "traceroute",
+    "tracepath"
+   ]
+  },
+  "port-scan": {
+   "description": "Active TCP port scanning (authorized targets only)",
+   "keywords": [
+    "port scan",
+    "scan ports",
+    "scan host",
+    "nmap",
+    "rustscan",
+    "open ports on"
+   ],
+   "native": [
+    "nmap",
+    "nc -z"
+   ],
+   "semantic_gaps": [
+    "Active scanning: require explicit authorization and scope; open ports != secure/insecure"
+   ]
+  },
+  "network-scan": {
+   "description": "Discover hosts on a network (authorized)",
+   "keywords": [
+    "network scan",
+    "discover hosts",
+    "arp scan",
+    "lan devices"
+   ],
+   "native": [
+    "ip neigh",
+    "nmap -sn",
+    "arp -a"
+   ]
+  },
+  "terminal-emulator": {
+   "description": "Terminal emulator application",
+   "keywords": [
+    "terminal emulator"
+   ],
+   "native": []
+  },
+  "multiplexer": {
+   "description": "Terminal multiplexer / workspace",
+   "keywords": [
+    "tmux",
+    "panes",
+    "multiplexer"
+   ],
+   "native": [
+    "tmux",
+    "screen"
+   ]
+  },
+  "shell": {
+   "description": "Interactive/scripting shell",
+   "keywords": [
+    "shell"
+   ],
+   "native": [
+    "bash",
+    "zsh",
+    "sh"
+   ]
+  },
+  "shell-toolkit": {
+   "description": "Library for building shells",
+   "keywords": [],
+   "native": []
+  },
+  "shell-history": {
+   "description": "Search shell history",
+   "keywords": [
+    "shell history",
+    "previous commands"
+   ],
+   "native": [
+    "history",
+    "fc -l"
+   ]
+  },
+  "shell-splash": {
+   "description": "Shell startup splash screen",
+   "keywords": [],
+   "native": []
+  },
+  "prompt": {
+   "description": "Shell prompt",
+   "keywords": [
+    "prompt"
+   ],
+   "native": []
+  },
+  "env-file": {
+   "description": "Create .env files",
+   "keywords": [
+    ".env",
+    "dotenv"
+   ],
+   "native": [
+    "cp .env.example .env"
+   ]
+  },
+  "xdg-open": {
+   "description": "Open files with default applications",
+   "keywords": [
+    "open with",
+    "default application",
+    "mime"
+   ],
+   "native": [
+    "xdg-open",
+    "open"
+   ]
+  },
+  "task-runner": {
+   "description": "Run project task recipes",
+   "keywords": [
+    "task runner",
+    "make",
+    "justfile",
+    "recipes",
+    "build tasks",
+    "run task"
+   ],
+   "native": [
+    "make",
+    "npm run"
+   ]
+  },
+  "parallel-exec": {
+   "description": "Run many commands in parallel",
+   "keywords": [
+    "parallel",
+    "concurrently",
+    "xargs -P",
+    "batch run",
+    "fan out"
+   ],
+   "native": [
+    "xargs -P",
+    "parallel"
+   ]
+  },
+  "multi-process": {
+   "description": "Interactive multi-process runner",
+   "keywords": [
+    "run several servers",
+    "multiple processes"
+   ],
+   "native": [
+    "tmux"
+   ]
+  },
+  "xargs-like": {
+   "description": "Build commands from input with captures",
+   "keywords": [
+    "xargs",
+    "for each line"
+   ],
+   "native": [
+    "xargs",
+    "while read"
+   ]
+  },
+  "cheatsheet": {
+   "description": "Interactive command cheatsheets",
+   "keywords": [
+    "cheatsheet",
+    "snippets"
+   ],
+   "native": []
+  },
+  "tldr": {
+   "description": "Concise command examples",
+   "keywords": [
+    "tldr",
+    "examples",
+    "how to use command",
+    "usage examples"
+   ],
+   "native": [
+    "man",
+    "CMD --help"
+   ]
+  },
+  "benchmark": {
+   "description": "Statistically benchmark commands",
+   "keywords": [
+    "benchmark",
+    "timing",
+    "how fast",
+    "compare speed",
+    "performance comparison",
+    "regression"
+   ],
+   "native": [
+    "time",
+    "perf stat"
+   ],
+   "semantic_gaps": [
+    "Single `time` runs give no variance — label such numbers as indicative only"
+   ]
+  },
+  "cpu-profile": {
+   "description": "Sample CPU usage of a program",
+   "keywords": [
+    "profile",
+    "profiling",
+    "hot path",
+    "bottleneck",
+    "cpu time",
+    "perf"
+   ],
+   "native": [
+    "perf record",
+    "samply"
+   ]
+  },
+  "flamegraph": {
+   "description": "Render flamegraphs from stack samples",
+   "keywords": [
+    "flamegraph",
+    "flame graph",
+    "stack samples"
+   ],
+   "native": [
+    "flamegraph.pl"
+   ]
+  },
+  "python-profile": {
+   "description": "Sample-profile Python processes",
+   "keywords": [
+    "python profile",
+    "python slow",
+    "py-spy"
+   ],
+   "native": [
+    "python -m cProfile"
+   ]
+  },
+  "memory-profile": {
+   "description": "Heap allocation profiling",
+   "keywords": [
+    "memory leak",
+    "allocations",
+    "heap"
+   ],
+   "native": [
+    "heaptrack",
+    "valgrind"
+   ]
+  },
+  "syscall-trace": {
+   "description": "Trace system calls",
+   "keywords": [
+    "strace",
+    "syscalls",
+    "system calls"
+   ],
+   "native": [
+    "strace",
+    "dtruss"
+   ]
+  },
+  "coverage": {
+   "description": "Test coverage",
+   "keywords": [
+    "coverage",
+    "test coverage"
+   ],
+   "native": [
+    "cargo llvm-cov",
+    "cargo tarpaulin"
+   ]
+  },
+  "compile-cache": {
+   "description": "Compiler output caching",
+   "keywords": [
+    "build cache",
+    "ccache",
+    "compile faster"
+   ],
+   "native": [
+    "ccache"
+   ]
+  },
+  "diff-structural": {
+   "description": "Syntax-aware diff",
+   "keywords": [
+    "structural diff",
+    "semantic diff",
+    "ignore formatting",
+    "ast diff",
+    "diff"
+   ],
+   "native": [
+    "git diff -w",
+    "diff -u"
+   ],
+   "semantic_gaps": [
+    "Line diffs report formatting-only changes that structural diffs hide"
+   ]
+  },
+  "semantic-diff": {
+   "description": "Entity-level diff / impact analysis",
+   "keywords": [
+    "entity diff",
+    "impact analysis",
+    "moved code"
+   ],
+   "native": [
+    "git diff --color-moved"
+   ]
+  },
+  "diff-pager": {
+   "description": "Pretty diff display for humans",
+   "keywords": [
+    "pretty diff",
+    "side by side"
+   ],
+   "native": [
+    "git diff --color"
+   ]
+  },
+  "git-tui": {
+   "description": "Interactive git UI",
+   "keywords": [
+    "git ui"
+   ],
+   "native": [
+    "git"
+   ]
+  },
+  "git-fixup": {
+   "description": "Automatic fixup commits",
+   "keywords": [
+    "fixup",
+    "absorb",
+    "amend earlier commit"
+   ],
+   "native": [
+    "git commit --fixup"
+   ]
+  },
+  "git-impl": {
+   "description": "Alternative git implementation",
+   "keywords": [
+    "gitoxide"
+   ],
+   "native": [
+    "git"
+   ]
+  },
+  "git-info": {
+   "description": "Repository summary (languages, authors, size)",
+   "keywords": [
+    "repo summary",
+    "repository overview",
+    "authors",
+    "languages used"
+   ],
+   "native": [
+    "git shortlog -sn",
+    "git log"
+   ]
+  },
+  "git-history-view": {
+   "description": "Visual history replay",
+   "keywords": [],
+   "native": [
+    "git log -p"
+   ]
+  },
+  "git-accelerate": {
+   "description": "Speed up git on huge repos",
+   "keywords": [
+    "fsmonitor",
+    "slow git status"
+   ],
+   "native": [
+    "git config core.fsmonitor true"
+   ]
+  },
+  "vcs": {
+   "description": "Version control",
+   "keywords": [
+    "version control",
+    "commits",
+    "branches"
+   ],
+   "native": [
+    "git"
+   ]
+  },
+  "code-stats": {
+   "description": "Count lines of code by language",
+   "keywords": [
+    "lines of code",
+    "loc",
+    "count code",
+    "languages",
+    "codebase size",
+    "cloc"
+   ],
+   "native": [
+    "cloc",
+    "wc -l"
+   ]
+  },
+  "regex-generate": {
+   "description": "Generate regex from examples",
+   "keywords": [
+    "generate regex",
+    "regex from examples"
+   ],
+   "native": []
+  },
+  "http-test": {
+   "description": "Run/assert HTTP requests from files",
+   "keywords": [
+    "http test",
+    "api test",
+    "assert http",
+    "smoke test endpoint"
+   ],
+   "native": [
+    "curl"
+   ]
+  },
+  "http-client": {
+   "description": "Send HTTP requests",
+   "keywords": [
+    "http request",
+    "rest",
+    "api call",
+    "curl"
+   ],
+   "native": [
+    "curl",
+    "wget"
+   ]
+  },
+  "color-tool": {
+   "description": "Color conversion/manipulation",
+   "keywords": [
+    "color",
+    "hex color",
+    "rgb"
+   ],
+   "native": []
+  },
+  "calculator": {
+   "description": "Evaluate arithmetic",
+   "keywords": [
+    "calculate",
+    "math",
+    "calculator"
+   ],
+   "native": [
+    "bc",
+    "python3 -c",
+    "awk"
+   ]
+  },
+  "unit-convert": {
+   "description": "Convert units",
+   "keywords": [
+    "convert units",
+    "unit conversion"
+   ],
+   "native": [
+    "units"
+   ]
+  },
+  "version-manager": {
+   "description": "Manage runtime versions",
+   "keywords": [
+    "node version",
+    "nvm",
+    "runtime version",
+    "switch version"
+   ],
+   "native": [
+    "nvm",
+    "asdf"
+   ]
+  },
+  "dev-env-manager": {
+   "description": "Per-project tools and env vars",
+   "keywords": [
+    "dev environment",
+    "toolchain versions"
+   ],
+   "native": [
+    "asdf",
+    "direnv"
+   ]
+  },
+  "dotfiles": {
+   "description": "Deploy dotfiles",
+   "keywords": [
+    "dotfiles"
+   ],
+   "native": [
+    "stow"
+   ]
+  },
+  "encoding-convert": {
+   "description": "Convert encodings/timestamps",
+   "keywords": [
+    "base64",
+    "hex to string",
+    "timestamp convert",
+    "encode",
+    "decode"
+   ],
+   "native": [
+    "base64",
+    "xxd",
+    "date"
+   ]
+  },
+  "hash": {
+   "description": "Compute hashes",
+   "keywords": [
+    "hash",
+    "sha256",
+    "md5",
+    "checksum"
+   ],
+   "native": [
+    "sha256sum",
+    "shasum",
+    "md5sum"
+   ]
+  },
+  "key-convert": {
+   "description": "Convert Ed25519 key encodings",
+   "keywords": [
+    "ed25519",
+    "key format"
+   ],
+   "native": [
+    "ssh-keygen"
+   ]
+  },
+  "gpg-manage": {
+   "description": "Manage GPG keys",
+   "keywords": [
+    "gpg",
+    "pgp keys"
+   ],
+   "native": [
+    "gpg"
+   ]
+  },
+  "code-image": {
+   "description": "Render code to image",
+   "keywords": [
+    "code screenshot",
+    "code image"
+   ],
+   "native": []
+  },
+  "lua-format": {
+   "description": "Format Lua",
+   "keywords": [
+    "lua format"
+   ],
+   "native": []
+  },
+  "sql-lint": {
+   "description": "Lint/analyze SQL",
+   "keywords": [
+    "sql lint",
+    "sql syntax"
+   ],
+   "native": [
+    "sqlite3"
+   ]
+  },
+  "ai-agent": {
+   "description": "AI coding agent",
+   "keywords": [
+    "ai agent"
+   ],
+   "native": []
+  },
+  "workflow-engine": {
+   "description": "DAG workflow engine",
+   "keywords": [
+    "dag workflow"
+   ],
+   "native": []
+  },
+  "knowledge-store": {
+   "description": "Encrypted knowledge store",
+   "keywords": [],
+   "native": []
+  },
+  "graph-db": {
+   "description": "Graph database",
+   "keywords": [
+    "graph database"
+   ],
+   "native": []
+  },
+  "embedded-db": {
+   "description": "Embedded SQL database",
+   "keywords": [
+    "sqlite"
+   ],
+   "native": [
+    "sqlite3"
+   ]
+  },
+  "debugger-ui": {
+   "description": "Debugger frontend",
+   "keywords": [
+    "gdb",
+    "debugger"
+   ],
+   "native": [
+    "gdb"
+   ]
+  },
+  "kanban": {
+   "description": "Terminal kanban",
+   "keywords": [
+    "kanban"
+   ],
+   "native": []
+  },
+  "scheme-interpreter": {
+   "description": "Scheme interpreter",
+   "keywords": [
+    "scheme",
+    "lisp"
+   ],
+   "native": []
+  },
+  "torrent-metainfo": {
+   "description": "Create/inspect .torrent files",
+   "keywords": [
+    "torrent"
+   ],
+   "native": []
+  },
+  "image-view": {
+   "description": "View images",
+   "keywords": [
+    "image viewer"
+   ],
+   "native": []
+  },
+  "edit-text": {
+   "description": "Text/code editor (interactive)",
+   "keywords": [
+    "editor"
+   ],
+   "native": [
+    "vi",
+    "nano"
+   ]
+  },
+  "markdown-view": {
+   "description": "Render Markdown",
+   "keywords": [
+    "markdown preview",
+    "render markdown"
+   ],
+   "native": []
+  },
+  "note-taking": {
+   "description": "Notes/journal",
+   "keywords": [
+    "notes",
+    "journal"
+   ],
+   "native": []
+  },
+  "static-site": {
+   "description": "Static site generator",
+   "keywords": [
+    "static site",
+    "blog"
+   ],
+   "native": [
+    "hugo"
+   ]
+  },
+  "remote-desktop": {
+   "description": "Remote desktop",
+   "keywords": [
+    "remote desktop"
+   ],
+   "native": []
+  },
+  "email": {
+   "description": "Email client",
+   "keywords": [
+    "email",
+    "mailbox"
+   ],
+   "native": [
+    "mutt"
+   ]
+  },
+  "time-tracking": {
+   "description": "Time tracking",
+   "keywords": [
+    "time tracking"
+   ],
+   "native": []
+  },
+  "keyboard-remap": {
+   "description": "Keyboard remapping daemon",
+   "keywords": [
+    "keyboard remap"
+   ],
+   "native": []
+  },
+  "coreutils": {
+   "description": "Core utilities (ls, cp, ...)",
+   "keywords": [
+    "coreutils"
+   ],
+   "native": [
+    "GNU coreutils"
+   ]
+  },
+  "proxy": {
+   "description": "Proxy client/server",
+   "keywords": [
+    "proxy",
+    "socks"
+   ],
+   "native": []
+  },
+  "privilege-escalation": {
+   "description": "Run as another user",
+   "keywords": [
+    "sudo",
+    "root"
+   ],
+   "native": [
+    "sudo"
+   ],
+   "semantic_gaps": [
+    "Never escalate privileges autonomously"
+   ]
+  },
+  "password-server": {
+   "description": "Password manager server",
+   "keywords": [
+    "bitwarden"
+   ],
+   "native": []
+  },
+  "media": {
+   "description": "Media playback",
+   "keywords": [
+    "youtube",
+    "music"
+   ],
+   "native": []
+  },
+  "typing-game": {
+   "description": "Typing game",
+   "keywords": [],
+   "native": []
+  },
+  "entertainment": {
+   "description": "Entertainment",
+   "keywords": [],
+   "native": []
+  },
+  "screen-record": {
+   "description": "Screen/mic recording and indexing",
+   "keywords": [
+    "screen recording"
+   ],
+   "native": []
+  },
+  "package-manager": {
+   "description": "Package manager",
+   "keywords": [
+    "homebrew",
+    "install package"
+   ],
+   "native": [
+    "brew",
+    "apt",
+    "dnf",
+    "pacman"
+   ]
+  },
+  "search-engine": {
+   "description": "Search engine server",
+   "keywords": [
+    "search engine",
+    "full-text search server",
+    "elasticsearch"
+   ],
+   "native": []
+  },
+  "binary-analysis": {
+   "description": "Analyze stripped binaries",
+   "keywords": [
+    "reverse engineering",
+    "stripped binary",
+    "elf",
+    "patch diff"
+   ],
+   "native": [
+    "objdump",
+    "readelf",
+    "nm"
+   ]
+  },
+  "disk-image-burn": {
+   "description": "Write images to drives",
+   "keywords": [
+    "burn iso",
+    "bootable usb"
+   ],
+   "native": [
+    "dd"
+   ],
+   "semantic_gaps": [
+    "Overwrites block devices — never run without explicit approval"
+   ]
+  },
+  "vm-manager": {
+   "description": "Virtual machine manager",
+   "keywords": [
+    "virtual machine",
+    "vm"
+   ],
+   "native": [
+    "virsh",
+    "qemu"
+   ]
+  },
+  "tui-library": {
+   "description": "TUI library crate",
+   "keywords": [
+    "tui library",
+    "ratatui"
+   ],
+   "native": []
+  },
+  "voice-typing": {
+   "description": "Voice dictation",
+   "keywords": [
+    "voice typing",
+    "dictation"
+   ],
+   "native": []
+  },
+  "workspace-manager": {
+   "description": "Manage many project checkouts",
+   "keywords": [
+    "workspace",
+    "many repos"
+   ],
+   "native": []
+  },
+  "theme-manager": {
+   "description": "Manage terminal/editor color schemes",
+   "keywords": [
+    "color scheme",
+    "base16",
+    "theme"
+   ],
+   "native": []
+  }
+ }
+}

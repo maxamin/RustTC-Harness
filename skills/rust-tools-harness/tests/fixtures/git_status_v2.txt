@@ -1,0 +1,4 @@
+# branch.oid 967b2143441ca536fbd04abe3ff86cd6744e67be
+# branch.head master
+1 .M N... 100644 100644 100644 7b437cea3f665a8ce3e5b7d0e9689b035782ba26 7b437cea3f665a8ce3e5b7d0e9689b035782ba26 src/main.rs
+? untracked.txt

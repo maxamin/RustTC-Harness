@@ -1,0 +1,75 @@
+{
+ "name": "system-diagnostics",
+ "description": "Snapshot system health: facts, load, memory, top processes, disk capacity, sockets",
+ "keywords": [
+  "slow",
+  "system",
+  "diagnose",
+  "high cpu",
+  "memory",
+  "load",
+  "health",
+  "what is running",
+  "machine",
+  "server",
+  "processes"
+ ],
+ "params": {
+  "sort": {
+   "default": "cpu"
+  }
+ },
+ "notes": "Form a hypothesis from this snapshot, then gather targeted evidence (e.g. process-list filter=NAME, disk-usage on the full mount).",
+ "steps": [
+  {
+   "id": "facts",
+   "op": "system-info",
+   "purpose": "OS, CPUs, memory, load",
+   "inputs": {},
+   "expected_output": "facts dict"
+  },
+  {
+   "id": "top-cpu",
+   "op": "process-list",
+   "purpose": "Heaviest processes",
+   "inputs": {
+    "sort": "cpu",
+    "limit": 10
+   },
+   "expected_output": ">=1 process"
+  },
+  {
+   "id": "top-mem",
+   "op": "process-list",
+   "purpose": "Largest memory users",
+   "inputs": {
+    "sort": "mem",
+    "limit": 10
+   },
+   "expected_output": ">=1 process"
+  },
+  {
+   "id": "disks",
+   "op": "disk-free",
+   "purpose": "Full filesystems",
+   "inputs": {},
+   "expected_output": "use% per mount"
+  },
+  {
+   "id": "listening",
+   "op": "net-connections",
+   "purpose": "Listening sockets",
+   "inputs": {
+    "listening": true
+   },
+   "expected_output": "socket list",
+   "critical": false
+  }
+ ],
+ "strong_keywords": [
+  "slow",
+  "diagnose",
+  "high cpu",
+  "health"
+ ]
+}

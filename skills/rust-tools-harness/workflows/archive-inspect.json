@@ -1,0 +1,53 @@
+{
+ "name": "archive-inspect",
+ "description": "List an archive and optionally extract it into a new directory",
+ "keywords": [
+  "archive",
+  "zip",
+  "tarball",
+  "extract",
+  "unzip",
+  "decompress",
+  "tar"
+ ],
+ "params": {
+  "archive": {
+   "required": true
+  },
+  "dest": {
+   "default": null
+  }
+ },
+ "notes": "extract only runs when dest is given and --allow writes; it refuses non-empty destinations.",
+ "steps": [
+  {
+   "id": "list",
+   "op": "archive-list",
+   "purpose": "Contents",
+   "inputs": {
+    "archive": "${params.archive}"
+   },
+   "expected_output": "entries"
+  },
+  {
+   "id": "extract",
+   "op": "archive-extract",
+   "purpose": "Extract to dest",
+   "depends_on": [
+    "list"
+   ],
+   "when": "${params.dest}",
+   "inputs": {
+    "archive": "${params.archive}",
+    "dest": "${params.dest}"
+   },
+   "expected_output": "dest populated"
+  }
+ ],
+ "strong_keywords": [
+  "extract",
+  "unzip",
+  "archive",
+  "tarball"
+ ]
+}

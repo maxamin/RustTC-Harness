@@ -1,0 +1,61 @@
+{
+ "name": "data-profile",
+ "description": "Profile a CSV (columns, types, cardinality) or query a JSON file",
+ "keywords": [
+  "csv",
+  "tsv",
+  "dataset",
+  "profile data",
+  "columns",
+  "json file",
+  "data quality",
+  "spreadsheet"
+ ],
+ "params": {
+  "file": {
+   "required": true
+  },
+  "filter": {
+   "default": "."
+  }
+ },
+ "steps": [
+  {
+   "id": "peek",
+   "op": "view-file",
+   "purpose": "First lines (format check)",
+   "inputs": {
+    "path": "${params.file}",
+    "lines": 5
+   },
+   "expected_output": "header + sample rows"
+  },
+  {
+   "id": "csv",
+   "op": "csv-profile",
+   "purpose": "Column statistics",
+   "inputs": {
+    "file": "${params.file}"
+   },
+   "when": "${params.is_csv}",
+   "expected_output": "per-field stats"
+  },
+  {
+   "id": "json",
+   "op": "json-query",
+   "purpose": "Apply filter",
+   "inputs": {
+    "file": "${params.file}",
+    "filter": "${params.filter}"
+   },
+   "when": "${params.is_json}",
+   "expected_output": "filter result"
+  }
+ ],
+ "notes": "The CLI sets is_csv / is_json from the file extension.",
+ "strong_keywords": [
+  "csv",
+  "dataset",
+  "profile data"
+ ]
+}

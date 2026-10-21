@@ -1,0 +1,50 @@
+{
+ "name": "network-path",
+ "description": "Diagnose connectivity/latency to a host: DNS-free path trace with per-hop loss",
+ "keywords": [
+  "latency",
+  "packet loss",
+  "traceroute",
+  "route",
+  "connectivity",
+  "ping",
+  "unreachable",
+  "network slow",
+  "hop"
+ ],
+ "params": {
+  "target": {
+   "required": true
+  },
+  "cycles": {
+   "default": 5
+  }
+ },
+ "notes": "Sends probes to the target: needs --allow network. Passive alternatives: net-connections. Port scanning is a separate op requiring authorized_scope.",
+ "steps": [
+  {
+   "id": "sockets",
+   "op": "net-connections",
+   "purpose": "Local socket state",
+   "inputs": {},
+   "expected_output": "sockets",
+   "critical": false
+  },
+  {
+   "id": "trace",
+   "op": "trace-route",
+   "purpose": "Per-hop latency/loss",
+   "inputs": {
+    "target": "${params.target}",
+    "cycles": "${params.cycles}"
+   },
+   "expected_output": "hops"
+  }
+ ],
+ "strong_keywords": [
+  "traceroute",
+  "latency",
+  "packet loss",
+  "unreachable"
+ ]
+}

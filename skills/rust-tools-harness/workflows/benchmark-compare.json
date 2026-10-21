@@ -1,0 +1,61 @@
+{
+ "name": "benchmark-compare",
+ "description": "Measure a baseline and a candidate command under identical settings and compare",
+ "keywords": [
+  "benchmark",
+  "faster",
+  "slower",
+  "performance",
+  "compare speed",
+  "regression",
+  "optimize",
+  "timing",
+  "speed up"
+ ],
+ "params": {
+  "baseline": {
+   "required": true
+  },
+  "candidate": {
+   "required": true
+  },
+  "runs": {
+   "default": 10
+  },
+  "warmup": {
+   "default": 2
+  },
+  "prepare": {
+   "default": null
+  }
+ },
+ "notes": "Runs user commands: needs --allow exec. Claim an improvement only if the means differ by more than the combined stddev; profile (cargo flamegraph / py-spy) to explain why.",
+ "steps": [
+  {
+   "id": "bench",
+   "op": "benchmark",
+   "purpose": "Same runs/warmup for both commands",
+   "inputs": {
+    "commands": [
+     "${params.baseline}",
+     "${params.candidate}"
+    ],
+    "runs": "${params.runs}",
+    "warmup": "${params.warmup}",
+    "prepare": "${params.prepare}"
+   },
+   "expected_output": "mean/stddev per command",
+   "verification": {
+    "min_records": 2
+   }
+  }
+ ],
+ "strong_keywords": [
+  "benchmark",
+  "faster",
+  "slower",
+  "speed up",
+  "compare speed",
+  "which is faster"
+ ]
+}

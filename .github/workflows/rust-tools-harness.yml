@@ -1,0 +1,67 @@
+name: rust-tools-harness
+
+on:
+  push:
+    paths: ["skills/rust-tools-harness/**", ".github/workflows/rust-tools-harness.yml", "README.md"]
+  pull_request:
+    # README.md: a tool added to the awesome list must come with curated metadata (test_readme_in_sync)
+    paths: ["skills/rust-tools-harness/**", ".github/workflows/rust-tools-harness.yml", "README.md"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    # registry consistency, parsers (fixtures), executor, rollback, MCP — no extra tools needed
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit tests
+        working-directory: skills/rust-tools-harness
+        run: python -m unittest tests/test_harness.py tests/test_parsers.py tests/test_undo_mcp.py tests/test_agent.py tests/test_builtins.py tests/test_features.py -v
+
+  live:
+    # every adapter against real binaries; fails if a pinned tool silently falls back
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      RTH_LIVE_REQUIRE: fd,rg,sd,jaq,dust,diskus,procs,hexyl,ouch,difft,xcp,tokei,hyperfine,eza,bat,rust-parallel
+      RTH_LIVE_WRITES: "1"
+      RTH_LIVE_REPORT: ${{ github.workspace }}/live-${{ matrix.os }}.json
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: cargo-bins/cargo-binstall@main
+      - name: Install Rust tools (prebuilt via cargo-binstall)
+        run: |
+          for c in fd-find ripgrep sd jaq du-dust diskus procs hexyl ouch difftastic xcp tokei hyperfine eza bat rust-parallel trippy rustscan; do
+            cargo binstall --no-confirm --locked "$c" || echo "::warning::binstall failed for $c"
+          done
+      - name: Install native fallbacks (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y jq tree mtr-tiny traceroute nmap trash-cli unzip
+      - name: Install native fallbacks (macOS)
+        if: runner.os == 'macOS'
+        run: brew install jq tree mtr nmap || true
+      - name: Tool versions
+        run: python skills/rust-tools-harness/bin/rth env --versions
+      - name: All tests (including live adapters)
+        working-directory: skills/rust-tools-harness
+        run: python -m unittest discover -s tests -v
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-matrix-${{ matrix.os }}
+          path: live-${{ matrix.os }}.json

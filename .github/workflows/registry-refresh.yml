@@ -1,0 +1,56 @@
+name: registry-refresh
+
+# Weekly: re-check every catalogue entry upstream (archived, renamed, new release, crate/binary changes)
+# and open a PR with the diff. Nothing is pushed to the default branch directly.
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh registry
+        working-directory: skills/rust-tools-harness
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/build_registry.py parse
+          python scripts/build_registry.py fetch --refresh
+          python scripts/build_registry.py build
+          python scripts/build_registry.py verify-bins || true
+          python scripts/build_registry.py build
+      - name: Tests (registry consistency, README sync)
+        working-directory: skills/rust-tools-harness
+        run: python -m unittest tests/test_harness.py -v
+      - name: Summarize changes
+        id: diff
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, subprocess
+          old = json.loads(subprocess.run(["git", "show", "HEAD:skills/rust-tools-harness/registry/tools.json"], capture_output=True, text=True).stdout or '{"tools": []}')
+          new = json.load(open("skills/rust-tools-harness/registry/tools.json"))
+          o = {t["id"]: t for t in old["tools"]}
+          for t in new["tools"]:
+              p = o.get(t["id"])
+              if not p:
+                  print(f"- new: {t['id']}")
+              elif (p["status"], p["binary"], p["url"]) != (t["status"], t["binary"], t["url"]):
+                  print(f"- {t['id']}: status {p['status']}->{t['status']}, binary {p['binary']}->{t['binary']}, url {p['url']}->{t['url']}")
+          PY
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: registry-refresh
+          title: "rust-tools-harness: weekly registry refresh"
+          body: "Automated upstream re-check (status, redirects, releases, crates, binaries). See the workflow summary for the changes."
+          add-paths: skills/rust-tools-harness/registry, skills/rust-tools-harness/references/catalogue.md
+          commit-message: "rust-tools-harness: refresh registry from upstream"
