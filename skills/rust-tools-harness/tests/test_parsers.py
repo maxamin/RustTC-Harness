@@ -16,7 +16,7 @@ FX = HERE / "fixtures"
 
 
 def fx(name):
-    return (FX / name).read_text()
+    return (FX / name).read_text(encoding="utf-8")
 
 
 def impl(op, tool):
@@ -85,7 +85,9 @@ class Parsers(unittest.TestCase):
         self.assertIn({"path": "./src/a", "bytes": 1024, "depth": 2}, rows)
 
     def test_diskus(self):
+        # piped (what the harness sees) and TTY formats
         self.assertEqual(impl("dir-size", "diskus").parse(fx("diskus.txt"), {"path": "x"}), {"path": "x", "bytes": 1036288})
+        self.assertEqual(impl("dir-size", "diskus").parse(fx("diskus_tty.txt"), {"path": "x"}), {"path": "x", "bytes": 1036288})
 
     def test_df(self):
         rows = impl("disk-free", "df").parse(fx("df.txt"), {})

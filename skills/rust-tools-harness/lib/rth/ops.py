@@ -157,7 +157,8 @@ def _git_when(p, env):
     if p.get("no_ignore"):
         return "no_ignore requested; git only sees non-ignored files"
     if getattr(env, "remote", False):
-        return None  # can't check remote paths locally; git reports not-a-repo itself
+        code, out = env._run(["git", "-C", path, "rev-parse", "--is-inside-work-tree"])
+        return None if code == 0 and out.strip() == "true" else "not inside a git work tree (remote)"
     if not os.path.isdir(path):
         return "path is not a directory"
     return None if _git_repo(path, env) else "not inside a git work tree"
@@ -278,7 +279,8 @@ op(Op("hex-view", "hex-view", "Hex dump the first N bytes",
       {"path": "REQUIRED", "length": "bytes (256)", "skip": "offset (0)"},
       [Impl("hexyl", lambda p, env: ["hexyl", "--color", "never", "-n", str(p.get("length", 256)), "-s", str(p.get("skip", 0)), p["path"]], registry_id="hexyl"),
        Impl("xxd", lambda p, env: ["xxd", "-l", str(p.get("length", 256)), "-s", str(p.get("skip", 0)), p["path"]]),
-       Impl("od", lambda p, env: ["od", "-A", "x", "-t", "x1z", "-N", str(p.get("length", 256)), "-j", str(p.get("skip", 0)), p["path"]])],
+       Impl("od", lambda p, env: ["od", "-A", "x", "-t", "x1z" if env.is_gnu else "x1", "-N", str(p.get("length", 256)), "-j", str(p.get("skip", 0)), p["path"]],
+            semantics="GNU od shows an ASCII column; BSD/macOS od shows hex only.")],
       verify={"exit_in": [0], "not_empty": True}))
 
 op(Op("list-dir", "list-dir", "Long directory listing with metadata",
@@ -357,7 +359,8 @@ op(Op("disk-usage", "disk-usage", "Biggest directories under a path (sizes in by
 
 
 def _diskus_parse(out, p):
-    m = re.search(r"\(([\d,]+) bytes\)", out)
+    """diskus prints a bare byte count when stdout is not a TTY, and '1.04 MB (1,036,288 bytes)' on a TTY."""
+    m = re.fullmatch(r"\s*(\d+)\s*", out) or re.search(r"\(([\d,]+) bytes\)", out)
     if not m:
         raise ValueError("no byte count in diskus output")
     return {"path": p.get("path", "."), "bytes": int(m[1].replace(",", ""))}
@@ -451,7 +454,7 @@ def _sysinfo(p, env):
         info["distro"] = osr.get("PRETTY_NAME")
     mem = Path("/proc/meminfo")
     if mem.exists():
-        kv = {ln.split(":")[0]: int(ln.split()[1]) * 1024 for ln in mem.read_text().splitlines() if ln.split()[1].isdigit()}
+        kv = {ln.split(":")[0]: int(ln.split()[1]) * 1024 for ln in mem.read_text(encoding="utf-8").splitlines() if ln.split()[1].isdigit()}
         info["mem_total_bytes"], info["mem_available_bytes"] = kv.get("MemTotal"), kv.get("MemAvailable")
         info["swap_total_bytes"], info["swap_free_bytes"] = kv.get("SwapTotal"), kv.get("SwapFree")
     elif env.has("sysctl"):
@@ -460,7 +463,7 @@ def _sysinfo(p, env):
             info["mem_total_bytes"] = int(r.stdout)
     up = Path("/proc/uptime")
     if up.exists():
-        info["uptime_s"] = float(up.read_text().split()[0])
+        info["uptime_s"] = float(up.read_text(encoding="utf-8").split()[0])
     return info
 
 
@@ -470,8 +473,10 @@ op(Op("system-info", "system-info", "OS, kernel, CPU count, memory, load, uptime
        Impl("sh", lambda p, env: ["sh", "-c", 'echo "os=$(uname -s)"; echo "release=$(uname -r)"; echo "machine=$(uname -m)"; '
                                               'echo "hostname=$(uname -n)"; echo "cpus=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null)"; '
                                               'grep -E "^(MemTotal|MemAvailable):" /proc/meminfo 2>/dev/null | tr -s " " | sed "s/: /=/"; '
-                                              '. /etc/os-release 2>/dev/null && echo "distro=$PRETTY_NAME"; '
-                                              'echo "loadavg=$(cut -d" " -f1-3 /proc/loadavg 2>/dev/null)"'], _sh_sysinfo,
+                                              '[ -r /etc/os-release ] && . /etc/os-release && echo "distro=$PRETTY_NAME"; '
+                                              'command -v sw_vers >/dev/null 2>&1 && echo "distro=macOS $(sw_vers -productVersion)"; '
+                                              '[ -r /proc/meminfo ] || { m=$(sysctl -n hw.memsize 2>/dev/null) && [ -n "$m" ] && echo "MemTotal=$((m / 1024)) kB"; }; '
+                                              'echo "loadavg=$(cut -d" " -f1-3 /proc/loadavg 2>/dev/null || sysctl -n vm.loadavg 2>/dev/null | tr -d "{}")"; true'], _sh_sysinfo,
             semantics="POSIX sh + uname//proc: works on remote targets; memory/load only where /proc exists."),
        Impl("macchina", lambda p, env: ["macchina"], lines, registry_id="macchina")],
       verify={"not_empty": True}))
@@ -497,7 +502,7 @@ op(Op("json-query", "json-query", "Run a jq filter over JSON (file or stdin)",
       [Impl("jaq", _jq_like("jaq"), _json_out, registry_id="jaq", stdin=lambda p: p.get("stdin"),
             semantics="jaq: jq-compatible for common filters; a few builtins differ."),
        Impl("jq", _jq_like("jq"), _json_out, stdin=lambda p: p.get("stdin")),
-       Impl("builtin", run=lambda p, env: json.loads(Path(p["file"]).read_text() if p.get("file") else p["stdin"]),
+       Impl("builtin", run=lambda p, env: json.loads(Path(p["file"]).read_text(encoding="utf-8") if p.get("file") else p["stdin"]),
             when=lambda p, env: None if p.get("filter", ".") == "." else "python fallback supports only the identity filter '.'",
             semantics="Python json: identity filter only.")],
       verify={"exit_in": [0]}))
@@ -714,7 +719,7 @@ def _cmds(p):
 
 
 def _hyperfine_parse(out, p):
-    data = json.loads(Path(p["_export"]).read_text())
+    data = json.loads(Path(p["_export"]).read_text(encoding="utf-8"))
     os.unlink(p["_export"])
     return {"results": [{k: r.get(k) for k in ("command", "mean", "stddev", "median", "min", "max", "user", "system")} | {"runs": len(r.get("times", [])), "exit_codes": sorted(set(r.get("exit_codes") or []))}
                         for r in data["results"]], "unit": "seconds"}
@@ -863,6 +868,15 @@ op(Op("net-connections", "network-monitor", "Open sockets with owning processes 
       verify={"exit_in": [0, 1]}))
 
 
+def _mtr_parse(out, p):
+    i = out.find("{")
+    if i < 0:
+        raise ValueError("mtr produced no JSON (older mtr without --json support?)")
+    d = json.loads(out[i:])
+    hubs = (d.get("report") or {}).get("hubs", [])
+    return {"target": p["target"], "hops": hubs}
+
+
 def _trip_parse(out, p):
     d = json.loads(out)
     hops = d.get("hops", d)
@@ -874,7 +888,7 @@ op(Op("trace-route", "traceroute", "Path, per-hop latency and loss to a target",
       [Impl("trip", lambda p, env: ["trip", "-m", "json", "-C", str(p.get("cycles", 5)), *flag(env.os != "linux" or not env.data["privileges"]["is_root"], "-u"),
                                     p["target"]], _trip_parse, registry_id="trippy",
             semantics="ICMP; unprivileged mode (-u) where raw sockets are unavailable."),
-       Impl("mtr", lambda p, env: ["mtr", "--report", "--json", "-c", str(p.get("cycles", 5)), p["target"]], json.loads),
+       Impl("mtr", lambda p, env: ["mtr", "--report", "--json", "-c", str(p.get("cycles", 5)), p["target"]], _mtr_parse),
        Impl("traceroute", lambda p, env: ["traceroute", "-n", "-q", "1", "-w", "2", "-m", str(p.get("max_hops", 30)), p["target"]], lines,
             semantics="Single probe per hop: no loss statistics."),
        Impl("tracepath", lambda p, env: ["tracepath", "-n", p["target"]], lines, semantics="No loss statistics.")],
@@ -901,16 +915,16 @@ def _task_builtin(p, env):
         else:
             found["just"] = "justfile present but `just` is not installed"
     if (root / "maskfile.md").exists():
-        found["mask"] = re.findall(r"^##\s+(\S+)", (root / "maskfile.md").read_text(), re.M)
+        found["mask"] = re.findall(r"^##\s+(\S+)", (root / "maskfile.md").read_text(encoding="utf-8"), re.M)
     if (root / "Makefile").exists():
-        found["make"] = sorted(set(re.findall(r"^([A-Za-z0-9_.-]+):(?!=)", (root / "Makefile").read_text(), re.M)) - {".PHONY"})
+        found["make"] = sorted(set(re.findall(r"^([A-Za-z0-9_.-]+):(?!=)", (root / "Makefile").read_text(encoding="utf-8"), re.M)) - {".PHONY"})
     if (root / "package.json").exists():
-        found["npm"] = list((json.loads((root / "package.json").read_text()).get("scripts") or {}).keys())
+        found["npm"] = list((json.loads((root / "package.json").read_text(encoding="utf-8")).get("scripts") or {}).keys())
     if (root / "Cargo.toml").exists():
         found["cargo"] = ["build", "test", "clippy", "fmt --check"]
     for f in ("mise.toml", ".mise.toml"):
         if (root / f).exists():
-            found["mise"] = re.findall(r"^\[tasks\.([^\]]+)\]", (root / f).read_text(), re.M)
+            found["mise"] = re.findall(r"^\[tasks\.([^\]]+)\]", (root / f).read_text(encoding="utf-8"), re.M)
     return found
 
 

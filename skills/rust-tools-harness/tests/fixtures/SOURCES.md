@@ -7,5 +7,5 @@ hyperfine 1.19.0 (`hyperfine.json`), jaq 3.1.1 (`jaq.txt`).
 Sanitized, format-identical to real output (machine details removed): `df.txt` (GNU `df -kP`), `ps_linux.txt` (procps `ps -eo ...`).
 
 Derived from upstream source, not yet recorded from a binary (the live tests in CI cover these):
-`diskus.txt` (format string `"{} ({:} bytes)"` in diskus src/main.rs), `dust_bytes.json` (`dust -j -o b`,
+`diskus.txt` (piped: bare byte count) and `diskus_tty.txt` (TTY format) from diskus src/main.rs `print_result`, `dust_bytes.json` (`dust -j -o b`,
 DisplayNode serializer in dust src/display_node.rs).

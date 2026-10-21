@@ -5,10 +5,12 @@ PATTERNS = [
     ("unsupported-flag", r"unexpected argument|unrecognized (option|argument)|unknown (option|flag|argument)|invalid option|"
                          r"illegal option|wasn't expected|no such option|unknown command|unrecognized subcommand"),
     ("permission-denied", r"permission denied|operation not permitted|EACCES|EPERM|must be (run as )?root|requires root|"
-                          r"CAP_NET_RAW|CAP_NET_ADMIN|insufficient privilege|are you root|perf_event_paranoid|ptrace"),
+                          r"CAP_NET_RAW|CAP_NET_ADMIN|insufficient privilege|are you root|perf_event_paranoid|ptrace|"
+                          r"unprivileged mode not supported|failure to open ipv[46] sockets|raw socket"),
     ("network-error", r"could not resolve|name or service not known|temporary failure in name resolution|"
                       r"network is unreachable|no route to host|connection refused"),
-    ("not-found", r"no such file or directory|not a git repository|does not exist|cannot access"),
+    ("cannot-express", r"not a git repository"),
+    ("not-found", r"no such file or directory|does not exist|cannot access"),
 ]
 
 # what to do for each class: (retry_same, try_fallback, stop)
