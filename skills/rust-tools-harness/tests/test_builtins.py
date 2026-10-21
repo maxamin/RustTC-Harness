@@ -7,6 +7,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "lib"))
+sys.path.insert(0, str(HERE))  # `python -m unittest tests/test_builtins.py` does not put tests/ on sys.path
 os.environ.setdefault("RTH_STATE", tempfile.mkdtemp(prefix="rth-test-state-"))
 
 from rth import env as envmod  # noqa: E402

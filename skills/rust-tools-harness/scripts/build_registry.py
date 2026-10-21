@@ -28,7 +28,10 @@ import re
 import sys
 import threading
 import time
-import tomllib
+try:
+    import tomllib  # 3.11+: only the fetch/verify stages read Cargo.toml
+except ImportError:  # parse/build/docs (and `rth doctor`, which imports parse_readme) work on 3.9
+    tomllib = None
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -257,6 +260,7 @@ def tree_bins(repo, want=None):
 
 def cmd_verify_bins(args):
     """Confirm curated binary names against real build targets (for tools crates.io/root Cargo.toml didn't confirm)."""
+    _need_toml()
     reg = json.loads((REG / "tools.json").read_text())
     up_path = REG / "upstream.json"
     up = json.loads(up_path.read_text())
@@ -274,7 +278,13 @@ def cmd_verify_bins(args):
     up_path.write_text(json.dumps(up, indent=1, ensure_ascii=False) + "\n")
 
 
+def _need_toml():
+    if tomllib is None:
+        sys.exit("fetch/verify-bins need Python 3.11+ (tomllib); parse/build/docs work on 3.9")
+
+
 def cmd_fetch(args):
+    _need_toml()
     entries = json.loads((REG / "catalogue.json").read_text())
     curated = json.loads((REG / "curated.json").read_text()) if (REG / "curated.json").exists() else {}
     hints = {k: ([v["crate"]] if v.get("crate") else []) for k, v in curated.get("tools", {}).items()}
