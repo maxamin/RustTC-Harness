@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-10-21T09:25:47+00:00",
+ "generated_at": "2026-10-26T10:20:15+00:00",
  "tools": {
   "alacritty": {
    "id": "alacritty",
-   "fetched_at": "2026-10-21T09:18:31+00:00",
+   "fetched_at": "2026-10-26T10:16:31+00:00",
    "github": {
     "repo": "alacritty/alacritty",
     "http_status": 200,
@@ -11,7 +11,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A cross-platform, OpenGL terminal emulator. Contribute to alacritty/alacritty development by creating an account on GitHub.",
     "last_commit": "2026-10-16T05:47:54Z",
     "latest_release": "v0.17.0",
@@ -67,7 +66,7 @@
   },
   "amp": {
    "id": "amp",
-   "fetched_at": "2026-10-21T09:20:20+00:00",
+   "fetched_at": "2026-10-26T10:18:16+00:00",
    "github": {
     "repo": "jmacdonald/amp",
     "http_status": 200,
@@ -75,7 +74,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A complete text editor for your terminal. Contribute to jmacdonald/amp development by creating an account on GitHub.",
     "last_commit": "2026-06-10T02:01:11Z",
     "latest_release": "0.7.1",
@@ -108,7 +106,7 @@
   },
   "atuin": {
    "id": "atuin",
-   "fetched_at": "2026-10-21T09:18:32+00:00",
+   "fetched_at": "2026-10-26T10:16:32+00:00",
    "github": {
     "repo": "atuinsh/atuin",
     "http_status": 200,
@@ -116,10 +114,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "✨ Making your shell magical. Contribute to atuinsh/atuin development by creating an account on GitHub.",
-    "last_commit": "2026-10-21T01:59:06Z",
-    "latest_release": "v18.24.1",
+    "last_commit": "2026-10-26T03:12:59Z",
+    "latest_release": "v18.24.2",
     "cargo": {
      "found": true,
      "packages": [],
@@ -144,7 +141,7 @@
   },
   "bandwhich": {
    "id": "bandwhich",
-   "fetched_at": "2026-10-21T09:18:07+00:00",
+   "fetched_at": "2026-10-26T10:16:06+00:00",
    "github": {
     "repo": "imsnif/bandwhich",
     "http_status": 200,
@@ -152,7 +149,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Terminal bandwidth utilization tool. Contribute to imsnif/bandwhich development by creating an account on GitHub.",
     "last_commit": "2026-05-14T09:47:38Z",
     "latest_release": "v0.23.1",
@@ -185,7 +181,7 @@
   },
   "bartib": {
    "id": "bartib",
-   "fetched_at": "2026-10-21T09:20:49+00:00",
+   "fetched_at": "2026-10-26T10:18:46+00:00",
    "github": {
     "repo": "nikolassv/bartib",
     "http_status": 200,
@@ -193,7 +189,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A simple timetracker for the command line. It saves a log of all tracked activities as a plaintext file and allows you to create flexible reports. - nikolassv/bartib",
     "last_commit": "2026-03-25T10:22:10Z",
     "latest_release": "v1.1.0",
@@ -226,7 +221,7 @@
   },
   "bat": {
    "id": "bat",
-   "fetched_at": "2026-10-21T09:17:42+00:00",
+   "fetched_at": "2026-10-26T10:15:42+00:00",
    "github": {
     "repo": "sharkdp/bat",
     "http_status": 200,
@@ -234,7 +229,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A cat(1) clone with wings. Contribute to sharkdp/bat development by creating an account on GitHub.",
     "last_commit": "2026-10-20T19:18:09Z",
     "latest_release": "v0.26.1",
@@ -267,7 +261,7 @@
   },
   "below": {
    "id": "below",
-   "fetched_at": "2026-10-21T09:18:08+00:00",
+   "fetched_at": "2026-10-26T10:16:08+00:00",
    "github": {
     "repo": "facebookincubator/below",
     "http_status": 200,
@@ -275,9 +269,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A time traveling resource monitor for modern Linux systems - facebookincubator/below",
-    "last_commit": "2026-10-13T05:42:51Z",
+    "last_commit": "2026-10-23T23:30:50Z",
     "latest_release": "v0.11.0",
     "cargo": {
      "found": true,
@@ -392,7 +385,7 @@
   },
   "bottom": {
    "id": "bottom",
-   "fetched_at": "2026-10-21T09:18:10+00:00",
+   "fetched_at": "2026-10-26T10:16:09+00:00",
    "github": {
     "repo": "ClementTsang/bottom",
     "http_status": 200,
@@ -400,7 +393,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Yet another cross-platform graphical process/system monitor. - ClementTsang/bottom",
     "last_commit": "2026-10-03T09:48:43Z",
     "latest_release": "0.14.9",
@@ -435,7 +427,7 @@
   },
   "bpftop": {
    "id": "bpftop",
-   "fetched_at": "2026-10-21T09:23:09+00:00",
+   "fetched_at": "2026-10-26T10:16:10+00:00",
    "github": {
     "repo": "Netflix/bpftop",
     "http_status": 200,
@@ -443,7 +435,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "bpftop provides a dynamic real-time view of running eBPF programs. It displays the average runtime, events per second, and estimated total CPU % for each program. - jfernandez/bpftop",
     "last_commit": "2026-07-29T20:26:42Z",
     "latest_release": "v0.9.0",
@@ -471,12 +462,12 @@
      "bpftop": "Cargo.toml"
     },
     "cargo_tomls": 1,
-    "checked_at": "2026-10-21T11:32:25+00:00"
+    "checked_at": "2026-10-26T10:20:20+00:00"
    }
   },
   "broot": {
    "id": "broot",
-   "fetched_at": "2026-10-21T09:17:18+00:00",
+   "fetched_at": "2026-10-26T10:15:18+00:00",
    "github": {
     "repo": "Canop/broot",
     "http_status": 200,
@@ -484,7 +475,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A new way to see and navigate directory trees. Contribute to Canop/broot development by creating an account on GitHub.",
     "last_commit": "2026-10-20T19:54:12Z",
     "latest_release": "v1.61.0",
@@ -517,7 +507,7 @@
   },
   "bytehound": {
    "id": "bytehound",
-   "fetched_at": "2026-10-21T09:23:20+00:00",
+   "fetched_at": "2026-10-26T10:16:55+00:00",
    "github": {
     "repo": "koute/memory-profiler",
     "http_status": 200,
@@ -525,7 +515,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A memory profiler for Linux. Contribute to koute/bytehound development by creating an account on GitHub.",
     "last_commit": "2023-07-28T13:24:26Z",
     "latest_release": "0.11.0",
@@ -637,7 +626,7 @@
   },
   "cargo-flamegraph": {
    "id": "cargo-flamegraph",
-   "fetched_at": "2026-10-21T09:18:55+00:00",
+   "fetched_at": "2026-10-26T10:16:51+00:00",
    "github": {
     "repo": "ferrous-systems/cargo-flamegraph",
     "http_status": 200,
@@ -645,7 +634,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Easy flamegraphs for Rust projects and everything else, without Perl or pipes &lt;3 - flamegraph-rs/flamegraph",
     "last_commit": "2026-10-05T13:55:11Z",
     "latest_release": "v0.6.14",
@@ -682,7 +670,7 @@
   },
   "coreutils": {
    "id": "coreutils",
-   "fetched_at": "2026-10-21T09:20:54+00:00",
+   "fetched_at": "2026-10-26T10:18:52+00:00",
    "github": {
     "repo": "uutils/coreutils",
     "http_status": 200,
@@ -690,9 +678,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Cross-platform Rust rewrite of the GNU coreutils. Contribute to uutils/coreutils development by creating an account on GitHub.",
-    "last_commit": "2026-10-21T09:07:44Z",
+    "last_commit": "2026-10-26T09:51:48Z",
     "latest_release": "0.12.0",
     "cargo": {
      "found": true,
@@ -767,7 +754,7 @@
   },
   "createnv": {
    "id": "createnv",
-   "fetched_at": "2026-10-21T09:23:14+00:00",
+   "fetched_at": "2026-10-26T10:16:33+00:00",
    "github": {
     "repo": "cuducos/createnv",
     "http_status": 200,
@@ -775,7 +762,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🧞‍♀️Automagically creates .env files. Contribute to cuducos/createnv development by creating an account on GitHub.",
     "last_commit": "2025-12-17T06:43:15Z",
     "latest_release": "v0.0.3",
@@ -803,12 +789,12 @@
      "createnv": "Cargo.toml"
     },
     "cargo_tomls": 1,
-    "checked_at": "2026-10-21T11:32:27+00:00"
+    "checked_at": "2026-10-26T10:20:21+00:00"
    }
   },
   "csvlens": {
    "id": "csvlens",
-   "fetched_at": "2026-10-21T09:17:44+00:00",
+   "fetched_at": "2026-10-26T10:15:43+00:00",
    "github": {
     "repo": "YS-L/csvlens",
     "http_status": 200,
@@ -816,7 +802,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Command line csv viewer. Contribute to YS-L/csvlens development by creating an account on GitHub.",
     "last_commit": "2026-07-04T16:40:19Z",
     "latest_release": "v0.15.1",
@@ -849,7 +834,7 @@
   },
   "delta": {
    "id": "delta",
-   "fetched_at": "2026-10-21T09:19:00+00:00",
+   "fetched_at": "2026-10-26T10:16:56+00:00",
    "github": {
     "repo": "dandavison/delta",
     "http_status": 200,
@@ -857,7 +842,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A syntax-highlighting pager for git, diff, grep, rg --json, and blame output - dandavison/delta",
     "last_commit": "2026-10-05T00:00:43Z",
     "latest_release": "0.20.1",
@@ -892,7 +876,7 @@
   },
   "difftastic": {
    "id": "difftastic",
-   "fetched_at": "2026-10-21T09:19:01+00:00",
+   "fetched_at": "2026-10-26T10:16:57+00:00",
    "github": {
     "repo": "Wilfred/difftastic",
     "http_status": 200,
@@ -900,7 +884,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "a structural diff that understands syntax 🟥🟩. Contribute to Wilfred/difftastic development by creating an account on GitHub.",
     "last_commit": "2026-10-16T23:00:02Z",
     "latest_release": "0.71.0",
@@ -935,7 +918,7 @@
   },
   "diskonaut": {
    "id": "diskonaut",
-   "fetched_at": "2026-10-21T09:18:13+00:00",
+   "fetched_at": "2026-10-26T10:16:12+00:00",
    "github": {
     "repo": "imsnif/diskonaut",
     "http_status": 200,
@@ -943,7 +926,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Terminal disk space navigator 🔭. Contribute to imsnif/diskonaut development by creating an account on GitHub.",
     "last_commit": "2022-02-19T09:11:54Z",
     "latest_release": "0.11.0",
@@ -976,7 +958,7 @@
   },
   "diskus": {
    "id": "diskus",
-   "fetched_at": "2026-10-21T09:17:15+00:00",
+   "fetched_at": "2026-10-26T10:15:17+00:00",
    "github": {
     "repo": "sharkdp/diskus",
     "http_status": 200,
@@ -984,7 +966,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A minimal, fast alternative to &#39;du -sh&#39;. Contribute to sharkdp/diskus development by creating an account on GitHub.",
     "last_commit": "2026-02-14T12:04:30Z",
     "latest_release": "v0.9.0",
@@ -1019,7 +1000,7 @@
   },
   "dnspeep": {
    "id": "dnspeep",
-   "fetched_at": "2026-10-21T09:23:20+00:00",
+   "fetched_at": "2026-10-26T10:16:59+00:00",
    "github": {
     "repo": "jvns/dnspeep",
     "http_status": 200,
@@ -1027,7 +1008,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "spy on the DNS queries your computer is making. Contribute to jvns/dnspeep development by creating an account on GitHub.",
     "last_commit": "2024-08-27T19:11:28Z",
     "latest_release": "v0.1.3",
@@ -1055,12 +1035,12 @@
      "dnspeep": "Cargo.toml"
     },
     "cargo_tomls": 1,
-    "checked_at": "2026-10-21T11:32:49+00:00"
+    "checked_at": "2026-10-26T10:20:31+00:00"
    }
   },
   "dotter": {
    "id": "dotter",
-   "fetched_at": "2026-10-21T09:19:03+00:00",
+   "fetched_at": "2026-10-26T10:16:59+00:00",
    "github": {
     "repo": "SuperCuber/dotter",
     "http_status": 200,
@@ -1068,9 +1048,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A dotfile manager and templater written in rust 🦀. Contribute to SuperCuber/dotter development by creating an account on GitHub.",
-    "last_commit": "2026-07-13T20:08:49Z",
+    "last_commit": "2026-10-25T20:35:11Z",
     "latest_release": "v0.13.5",
     "cargo": {
      "found": true,
@@ -1101,7 +1080,7 @@
   },
   "dtool": {
    "id": "dtool",
-   "fetched_at": "2026-10-21T09:19:04+00:00",
+   "fetched_at": "2026-10-26T10:17:00+00:00",
    "github": {
     "repo": "guoxbin/dtool",
     "http_status": 200,
@@ -1109,7 +1088,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A command-line tool collection to assist development written in RUST - guoxbin/dtool",
     "last_commit": "2025-11-24T12:30:06Z",
     "latest_release": "v0.12.0",
@@ -1142,7 +1120,7 @@
   },
   "dua-cli": {
    "id": "dua-cli",
-   "fetched_at": "2026-10-21T09:17:18+00:00",
+   "fetched_at": "2026-10-26T10:15:20+00:00",
    "github": {
     "repo": "Byron/dua-cli",
     "http_status": 200,
@@ -1150,10 +1128,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "View disk space usage and delete unwanted data, fast. - Byron/dua-cli",
-    "last_commit": "2026-10-17T02:48:44Z",
-    "latest_release": "v2.46.0",
+    "last_commit": "2026-10-25T14:20:33Z",
+    "latest_release": "dua-core-v5.0.1",
     "cargo": {
      "found": true,
      "packages": [
@@ -1193,7 +1170,7 @@
   },
   "dust": {
    "id": "dust",
-   "fetched_at": "2026-10-21T09:17:19+00:00",
+   "fetched_at": "2026-10-26T10:15:21+00:00",
    "github": {
     "repo": "bootandy/dust",
     "http_status": 200,
@@ -1201,7 +1178,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A more intuitive version of du in rust. Contribute to bootandy/dust development by creating an account on GitHub.",
     "last_commit": "2026-09-16T21:37:40Z",
     "latest_release": "v1.2.6",
@@ -1236,7 +1212,7 @@
   },
   "dutree": {
    "id": "dutree",
-   "fetched_at": "2026-10-21T09:17:22+00:00",
+   "fetched_at": "2026-10-26T10:15:24+00:00",
    "github": {
     "repo": "nachoparker/dutree",
     "http_status": 200,
@@ -1244,7 +1220,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "a tool to analyze file system usage written in Rust - nachoparker/dutree",
     "last_commit": "2021-05-09T20:25:51Z",
     "latest_release": "v0.2.15",
@@ -1277,7 +1252,7 @@
   },
   "edky": {
    "id": "edky",
-   "fetched_at": "2026-10-21T09:19:05+00:00",
+   "fetched_at": "2026-10-26T10:17:02+00:00",
    "github": {
     "repo": "artob/edky",
     "http_status": 200,
@@ -1285,7 +1260,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🦀 Convert Ed25519 public keys between various encoding formats such as Base16, Base32z, Base58, Base64, Multibase, and OpenSSH. - artob/edky",
     "last_commit": "2026-10-14T12:06:35Z",
     "latest_release": "0.1.1",
@@ -1309,7 +1283,7 @@
   },
   "eva": {
    "id": "eva",
-   "fetched_at": "2026-10-21T09:19:06+00:00",
+   "fetched_at": "2026-10-26T10:17:04+00:00",
    "github": {
     "repo": "nerdypepper/eva",
     "http_status": 200,
@@ -1317,7 +1291,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "a calculator REPL, similar to bc(1). Contribute to oppiliappan/eva development by creating an account on GitHub.",
     "last_commit": "2025-07-31T14:47:30Z",
     "latest_release": "v0.3.1",
@@ -1352,7 +1325,7 @@
   },
   "eza": {
    "id": "eza",
-   "fetched_at": "2026-10-21T09:17:24+00:00",
+   "fetched_at": "2026-10-26T10:15:25+00:00",
    "github": {
     "repo": "eza-community/eza",
     "http_status": 200,
@@ -1360,7 +1333,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A modern alternative to ls. Contribute to eza-community/eza development by creating an account on GitHub.",
     "last_commit": "2026-07-09T09:35:56Z",
     "latest_release": "v0.23.5",
@@ -1395,7 +1367,7 @@
   },
   "fd": {
    "id": "fd",
-   "fetched_at": "2026-10-21T09:17:07+00:00",
+   "fetched_at": "2026-10-26T10:15:08+00:00",
    "github": {
     "repo": "sharkdp/fd",
     "http_status": 200,
@@ -1403,9 +1375,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A simple, fast and user-friendly alternative to &#39;find&#39; - sharkdp/fd",
-    "last_commit": "2026-10-21T06:04:16Z",
+    "last_commit": "2026-10-24T19:06:58Z",
     "latest_release": "v10.5.0",
     "cargo": {
      "found": true,
@@ -1438,7 +1409,7 @@
   },
   "featherbar": {
    "id": "featherbar",
-   "fetched_at": "2026-10-21T09:18:13+00:00",
+   "fetched_at": "2026-10-26T10:16:13+00:00",
    "github": {
     "repo": "nim444/featherbar",
     "http_status": 200,
@@ -1446,7 +1417,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Featherweight macOS menu-bar system monitor — CPU, RAM, power, temperature on two color-coded lines, zero background threads, flat memory - nim444/featherbar",
     "last_commit": "2026-06-06T19:45:57Z",
     "latest_release": null,
@@ -1479,7 +1449,7 @@
   },
   "felix": {
    "id": "felix",
-   "fetched_at": "2026-10-21T09:17:26+00:00",
+   "fetched_at": "2026-10-26T10:15:26+00:00",
    "github": {
     "repo": "kyoheiu/felix",
     "http_status": 200,
@@ -1487,7 +1457,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "tui file manager with vim-like key mapping. Contribute to kyoheiu/felix development by creating an account on GitHub.",
     "last_commit": "2025-04-12T21:30:40Z",
     "latest_release": "v2.16.1",
@@ -1522,7 +1491,7 @@
   },
   "fend": {
    "id": "fend",
-   "fetched_at": "2026-10-21T09:20:56+00:00",
+   "fetched_at": "2026-10-26T10:18:53+00:00",
    "github": {
     "repo": "printfn/fend",
     "http_status": 200,
@@ -1530,9 +1499,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Arbitrary-precision unit-aware calculator. Contribute to printfn/fend development by creating an account on GitHub.",
-    "last_commit": "2026-10-21T06:22:32Z",
+    "last_commit": "2026-10-23T22:06:33Z",
     "latest_release": "v1.5.9",
     "cargo": {
      "found": true,
@@ -1579,7 +1547,7 @@
   },
   "fnm": {
    "id": "fnm",
-   "fetched_at": "2026-10-21T09:19:08+00:00",
+   "fetched_at": "2026-10-26T10:17:05+00:00",
    "github": {
     "repo": "Schniz/fnm",
     "http_status": 200,
@@ -1587,7 +1555,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🚀 Fast and simple Node.js version manager, built in Rust - Schniz/fnm",
     "last_commit": "2026-07-24T14:26:11Z",
     "latest_release": "v1.39.0",
@@ -1620,7 +1587,7 @@
   },
   "fnprint": {
    "id": "fnprint",
-   "fetched_at": "2026-10-21T09:21:51+00:00",
+   "fetched_at": "2026-10-26T10:19:47+00:00",
    "github": {
     "repo": "1rhino2/fnprint",
     "http_status": 200,
@@ -1628,7 +1595,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "match functions in binaries by what they do, not what their bytes look like. behavioral function fingerprinting via microexecution. - 1rhino2/fnprint",
     "last_commit": "2026-10-08T19:23:58Z",
     "latest_release": "v0.6.1",
@@ -1712,7 +1678,7 @@
   },
   "forge": {
    "id": "forge",
-   "fetched_at": "2026-10-21T09:23:23+00:00",
+   "fetched_at": "2026-10-26T10:17:06+00:00",
    "github": {
     "repo": "antinomyhq/forge",
     "http_status": 200,
@@ -1720,9 +1686,8 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "AI enabled pair programmer for Claude, GPT, O Series, Grok, Deepseek, Gemini and 300+ models - tailcallhq/forgecode",
-    "last_commit": "2026-10-21T06:06:13Z",
+    "last_commit": "2026-10-24T23:14:01Z",
     "latest_release": "v2.14.0",
     "cargo": {
      "found": true,
@@ -1744,12 +1709,12 @@
      "forge_main": "crates/forge_main/Cargo.toml"
     },
     "cargo_tomls": 26,
-    "checked_at": "2026-10-21T11:32:56+00:00"
+    "checked_at": "2026-10-26T10:20:35+00:00"
    }
   },
   "forge-norvialabs": {
    "id": "forge-norvialabs",
-   "fetched_at": "2026-10-21T09:23:27+00:00",
+   "fetched_at": "2026-10-26T10:17:08+00:00",
    "github": {
     "repo": "NorviaLabs/forge",
     "http_status": 200,
@@ -1757,9 +1722,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Go from idea to verified code without leaving the terminal—Forge unifies an AI agent, code editor, and shell in one focused workflow. - NorviaLabs/forge",
-    "last_commit": "2026-10-20T23:03:14Z",
+    "last_commit": "2026-10-24T22:04:01Z",
     "latest_release": null,
     "cargo": {
      "found": true,
@@ -1878,19 +1842,11 @@
      "forge",
      "forge-norvialabs"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "forge": "crates/forge-cli/Cargo.toml",
-     "forge-cli": "crates/forge-cli/Cargo.toml"
-    },
-    "cargo_tomls": 20,
-    "checked_at": "2026-10-21T11:35:11+00:00"
    }
   },
   "fselect": {
    "id": "fselect",
-   "fetched_at": "2026-10-21T09:17:28+00:00",
+   "fetched_at": "2026-10-26T10:15:28+00:00",
    "github": {
     "repo": "jhspetersson/fselect",
     "http_status": 200,
@@ -1898,10 +1854,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Find files with SQL-like queries. Contribute to jhspetersson/fselect development by creating an account on GitHub.",
-    "last_commit": "2026-10-20T21:46:21Z",
-    "latest_release": "0.10.3",
+    "last_commit": "2026-10-23T11:39:48Z",
+    "latest_release": "0.10.4",
     "cargo": {
      "found": true,
      "packages": [
@@ -1917,8 +1872,8 @@
    },
    "crates_io": {
     "crate": "fselect",
-    "max_stable_version": "0.10.3",
-    "updated_at": "2026-09-05T08:01:44.610168Z",
+    "max_stable_version": "0.10.4",
+    "updated_at": "2026-10-23T10:51:24.730584Z",
     "bin_names": [
      "fselect"
     ],
@@ -1931,7 +1886,7 @@
   },
   "fw": {
    "id": "fw",
-   "fetched_at": "2026-10-21T09:19:13+00:00",
+   "fetched_at": "2026-10-26T10:17:10+00:00",
    "github": {
     "repo": "brocode/fw",
     "http_status": 200,
@@ -1939,7 +1894,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "workspace productivity booster. Contribute to brocode/fw development by creating an account on GitHub.",
     "last_commit": "2026-10-01T07:17:23Z",
     "latest_release": "v2.21.0",
@@ -1972,7 +1926,7 @@
   },
   "git-absorb": {
    "id": "git-absorb",
-   "fetched_at": "2026-10-21T09:19:15+00:00",
+   "fetched_at": "2026-10-26T10:17:11+00:00",
    "github": {
     "repo": "tummychow/git-absorb",
     "http_status": 200,
@@ -1980,7 +1934,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "git commit --fixup, but automatic. Contribute to tummychow/git-absorb development by creating an account on GitHub.",
     "last_commit": "2026-02-14T03:44:33Z",
     "latest_release": "0.9.0",
@@ -2015,7 +1968,7 @@
   },
   "gitlogue": {
    "id": "gitlogue",
-   "fetched_at": "2026-10-21T09:19:16+00:00",
+   "fetched_at": "2026-10-26T10:17:13+00:00",
    "github": {
     "repo": "unhappychoice/gitlogue",
     "http_status": 200,
@@ -2023,9 +1976,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A cinematic Git commit replay tool for the terminal, turning your Git history into a living, animated story. - unhappychoice/gitlogue",
-    "last_commit": "2026-10-17T15:05:26Z",
+    "last_commit": "2026-10-21T14:27:40Z",
     "latest_release": "v0.12.1",
     "cargo": {
      "found": true,
@@ -2058,7 +2010,7 @@
   },
   "gitoxide": {
    "id": "gitoxide",
-   "fetched_at": "2026-10-21T09:19:18+00:00",
+   "fetched_at": "2026-10-26T10:17:14+00:00",
    "github": {
     "repo": "Byron/gitoxide",
     "http_status": 200,
@@ -2066,10 +2018,9 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An idiomatic, lean, fast &amp; safe pure Rust implementation of Git - GitoxideLabs/gitoxide",
-    "last_commit": "2026-10-21T08:18:26Z",
-    "latest_release": "gix-utils-v0.5.1",
+    "last_commit": "2026-10-25T19:02:29Z",
+    "latest_release": "gix-testtools-v0.22.0",
     "cargo": {
      "found": true,
      "packages": [
@@ -2231,8 +2182,8 @@
    },
    "crates_io": {
     "crate": "gitoxide",
-    "max_stable_version": "0.60.0",
-    "updated_at": "2026-10-08T09:37:11.473588Z",
+    "max_stable_version": "0.61.0",
+    "updated_at": "2026-10-22T13:59:52.026211Z",
     "bin_names": [
      "ein",
      "gix"
@@ -2246,7 +2197,7 @@
   },
   "gitside": {
    "id": "gitside",
-   "fetched_at": "2026-10-21T09:19:24+00:00",
+   "fetched_at": "2026-10-26T10:17:17+00:00",
    "github": {
     "repo": "dev-bhaskar8/gitside",
     "http_status": 200,
@@ -2254,7 +2205,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Source control that fits your terminal — a responsive, mouse-friendly Git TUI for full screens and tmux side panes. - dev-bhaskar8/gitside",
     "last_commit": "2026-08-03T02:51:42Z",
     "latest_release": "v0.1.2",
@@ -2289,7 +2239,7 @@
   },
   "gittype": {
    "id": "gittype",
-   "fetched_at": "2026-10-21T09:21:00+00:00",
+   "fetched_at": "2026-10-26T10:18:58+00:00",
    "github": {
     "repo": "unhappychoice/gittype",
     "http_status": 200,
@@ -2297,9 +2247,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A CLI code-typing game that turns your source code into typing challenges - unhappychoice/gittype",
-    "last_commit": "2026-10-17T03:51:09Z",
+    "last_commit": "2026-10-21T14:27:40Z",
     "latest_release": "v0.10.3",
     "cargo": {
      "found": true,
@@ -2332,7 +2281,7 @@
   },
   "gitui": {
    "id": "gitui",
-   "fetched_at": "2026-10-21T09:19:20+00:00",
+   "fetched_at": "2026-10-26T10:17:16+00:00",
    "github": {
     "repo": "extrawurst/gitui",
     "http_status": 200,
@@ -2340,7 +2289,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Blazing 💥 fast terminal-ui for git written in rust 🦀 - gitui-org/gitui",
     "last_commit": "2026-10-06T07:08:04Z",
     "latest_release": "v0.28.1",
@@ -2409,7 +2357,7 @@
   },
   "gity": {
    "id": "gity",
-   "fetched_at": "2026-10-21T09:19:25+00:00",
+   "fetched_at": "2026-10-26T10:17:19+00:00",
    "github": {
     "repo": "neul-labs/gity",
     "http_status": 200,
@@ -2417,7 +2365,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Make large Git repositories feel instant. Contribute to neul-labs/gity development by creating an account on GitHub.",
     "last_commit": "2026-07-05T15:52:13Z",
     "latest_release": null,
@@ -2501,7 +2448,7 @@
   },
   "gnvim": {
    "id": "gnvim",
-   "fetched_at": "2026-10-21T09:23:37+00:00",
+   "fetched_at": "2026-10-26T10:18:18+00:00",
    "github": {
     "repo": "vhakulinen/gnvim",
     "http_status": 200,
@@ -2509,7 +2456,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "GUI for neovim, without any web bloat. Contribute to vhakulinen/gnvim development by creating an account on GitHub.",
     "last_commit": "2026-06-28T08:19:35Z",
     "latest_release": "v0.3.1",
@@ -2554,17 +2500,17 @@
    },
    "tree_bins": {
     "bins": {
-     "flatpak-helper": "lib/flatpak-helper/Cargo.toml",
+     "gnvim": "ui/Cargo.toml",
      "apigen": "lib/nvim-rs/Cargo.toml",
-     "gnvim": "ui/Cargo.toml"
+     "flatpak-helper": "lib/flatpak-helper/Cargo.toml"
     },
     "cargo_tomls": 4,
-    "checked_at": "2026-10-21T11:33:00+00:00"
+    "checked_at": "2026-10-26T10:20:36+00:00"
    }
   },
   "gpg-tui": {
    "id": "gpg-tui",
-   "fetched_at": "2026-10-21T09:19:27+00:00",
+   "fetched_at": "2026-10-26T10:17:22+00:00",
    "github": {
     "repo": "orhun/gpg-tui",
     "http_status": 200,
@@ -2572,7 +2518,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Manage your GnuPG keys with ease! 🔐. Contribute to orhun/gpg-tui development by creating an account on GitHub.",
     "last_commit": "2026-10-19T11:04:31Z",
     "latest_release": "v0.11.2",
@@ -2608,7 +2553,7 @@
   },
   "grex": {
    "id": "grex",
-   "fetched_at": "2026-10-21T09:19:30+00:00",
+   "fetched_at": "2026-10-26T10:17:24+00:00",
    "github": {
     "repo": "pemistahl/grex",
     "http_status": 200,
@@ -2616,7 +2561,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A command-line tool and Rust library with Python bindings for generating regular expressions from user-provided test cases - pemistahl/grex",
     "last_commit": "2026-01-14T17:24:51Z",
     "latest_release": "v1.4.6",
@@ -2649,7 +2593,7 @@
   },
   "handlr-regex": {
    "id": "handlr-regex",
-   "fetched_at": "2026-10-21T09:18:34+00:00",
+   "fetched_at": "2026-10-26T10:16:34+00:00",
    "github": {
     "repo": "Anomalocaridid/handlr-regex",
     "http_status": 200,
@@ -2657,7 +2601,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Fork of handlr with support for regex. Contribute to Anomalocaridid/handlr-regex development by creating an account on GitHub.",
     "last_commit": "2026-10-04T21:21:41Z",
     "latest_release": "v0.13.0",
@@ -2692,7 +2635,7 @@
   },
   "hck": {
    "id": "hck",
-   "fetched_at": "2026-10-21T09:17:45+00:00",
+   "fetched_at": "2026-10-26T10:15:46+00:00",
    "github": {
     "repo": "sstadick/hck",
     "http_status": 200,
@@ -2700,7 +2643,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A sharp cut(1) clone. Contribute to sstadick/hck development by creating an account on GitHub.",
     "last_commit": "2026-06-15T13:23:19Z",
     "latest_release": "v0.11.6",
@@ -2735,7 +2677,7 @@
   },
   "helix": {
    "id": "helix",
-   "fetched_at": "2026-10-21T09:23:55+00:00",
+   "fetched_at": "2026-10-26T10:18:19+00:00",
    "github": {
     "repo": "helix-editor/helix",
     "http_status": 200,
@@ -2743,7 +2685,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A post-modern modal text editor. Contribute to helix-editor/helix development by creating an account on GitHub.",
     "last_commit": "2026-09-29T02:32:19Z",
     "latest_release": "25.07.1",
@@ -2866,7 +2807,7 @@
   },
   "hex": {
    "id": "hex",
-   "fetched_at": "2026-10-21T09:17:48+00:00",
+   "fetched_at": "2026-10-26T10:15:47+00:00",
    "github": {
     "repo": "sitkevij/hex",
     "http_status": 200,
@@ -2874,7 +2815,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🔮 Futuristic take on hexdump, made in Rust. . Contribute to sitkevij/hex development by creating an account on GitHub.",
     "last_commit": "2026-10-12T04:13:49Z",
     "latest_release": "v0.7.1",
@@ -2907,7 +2847,7 @@
   },
   "hexyl": {
    "id": "hexyl",
-   "fetched_at": "2026-10-21T09:17:50+00:00",
+   "fetched_at": "2026-10-26T10:15:49+00:00",
    "github": {
     "repo": "sharkdp/hexyl",
     "http_status": 200,
@@ -2915,7 +2855,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A command-line hex viewer. Contribute to sharkdp/hexyl development by creating an account on GitHub.",
     "last_commit": "2026-04-30T08:24:05Z",
     "latest_release": "v0.17.0",
@@ -2948,7 +2887,7 @@
   },
   "himalaya": {
    "id": "himalaya",
-   "fetched_at": "2026-10-21T09:21:03+00:00",
+   "fetched_at": "2026-10-26T10:18:59+00:00",
    "github": {
     "repo": "soywod/himalaya",
     "http_status": 200,
@@ -2956,7 +2895,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "CLI to manage emails. Contribute to pimalaya/himalaya development by creating an account on GitHub.",
     "last_commit": "2026-10-17T12:28:29Z",
     "latest_release": "v2.2.1",
@@ -2989,7 +2927,7 @@
   },
   "httm": {
    "id": "httm",
-   "fetched_at": "2026-10-21T09:17:30+00:00",
+   "fetched_at": "2026-10-26T10:15:30+00:00",
    "github": {
     "repo": "kimono-koans/httm",
     "http_status": 200,
@@ -2997,10 +2935,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Interactive, file-level Time Machine-like tool for ZFS/btrfs/nilfs2 (and even Time Machine and Restic backups!) - kimono-koans/httm",
-    "last_commit": "2026-09-18T04:18:10Z",
-    "latest_release": "0.51.0",
+    "last_commit": "2026-10-25T23:55:31Z",
+    "latest_release": "0.51.1",
     "cargo": {
      "found": true,
      "packages": [
@@ -3016,8 +2953,8 @@
    },
    "crates_io": {
     "crate": "httm",
-    "max_stable_version": "0.50.2",
-    "updated_at": "2026-06-30T03:12:06.914960Z",
+    "max_stable_version": "0.51.1",
+    "updated_at": "2026-10-25T23:55:42.298527Z",
     "bin_names": [
      "httm"
     ],
@@ -3030,7 +2967,7 @@
   },
   "hurl": {
    "id": "hurl",
-   "fetched_at": "2026-10-21T09:19:32+00:00",
+   "fetched_at": "2026-10-26T10:17:24+00:00",
    "github": {
     "repo": "Orange-OpenSource/hurl",
     "http_status": 200,
@@ -3038,9 +2975,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Hurl, run and test HTTP requests with plain text. Contribute to Orange-OpenSource/hurl development by creating an account on GitHub.",
-    "last_commit": "2026-10-21T03:04:49Z",
+    "last_commit": "2026-10-26T03:07:24Z",
     "latest_release": "8.0.1",
     "cargo": {
      "found": true,
@@ -3087,7 +3023,7 @@
   },
   "hyperconsciousness": {
    "id": "hyperconsciousness",
-   "fetched_at": "2026-10-21T09:23:29+00:00",
+   "fetched_at": "2026-10-26T10:17:27+00:00",
    "github": {
     "repo": "louis030195/hyperconsciousness",
     "http_status": 200,
@@ -3095,9 +3031,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "iCloud for agents. An encrypted, permissioned knowledge layer for humans and agents. - louis030195/hyperconsciousness",
-    "last_commit": "2026-10-14T16:23:24Z",
+    "last_commit": "2026-10-23T22:31:55Z",
     "latest_release": null,
     "cargo": {
      "found": true,
@@ -3123,7 +3058,7 @@
   },
   "hyperfine": {
    "id": "hyperfine",
-   "fetched_at": "2026-10-21T09:18:55+00:00",
+   "fetched_at": "2026-10-26T10:16:52+00:00",
    "github": {
     "repo": "sharkdp/hyperfine",
     "http_status": 200,
@@ -3131,7 +3066,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A command-line benchmarking tool. Contribute to sharkdp/hyperfine development by creating an account on GitHub.",
     "last_commit": "2026-10-12T08:33:47Z",
     "latest_release": "v2.0.0",
@@ -3164,7 +3098,7 @@
   },
   "igrep": {
    "id": "igrep",
-   "fetched_at": "2026-10-21T09:17:07+00:00",
+   "fetched_at": "2026-10-26T10:15:08+00:00",
    "github": {
     "repo": "konradsz/igrep",
     "http_status": 200,
@@ -3172,7 +3106,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Interactive Grep. Contribute to konradsz/igrep development by creating an account on GitHub.",
     "last_commit": "2026-09-09T18:09:03Z",
     "latest_release": "v1.3.0",
@@ -3207,7 +3140,7 @@
   },
   "inferno": {
    "id": "inferno",
-   "fetched_at": "2026-10-21T09:18:56+00:00",
+   "fetched_at": "2026-10-26T10:16:53+00:00",
    "github": {
     "repo": "jonhoo/inferno",
     "http_status": 200,
@@ -3215,7 +3148,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A Rust port of FlameGraph. Contribute to jonhoo/inferno development by creating an account on GitHub.",
     "last_commit": "2026-07-18T18:05:39Z",
     "latest_release": null,
@@ -3270,7 +3202,7 @@
   },
   "inlyne": {
    "id": "inlyne",
-   "fetched_at": "2026-10-21T09:21:06+00:00",
+   "fetched_at": "2026-10-26T10:19:01+00:00",
    "github": {
     "repo": "Inlyne-Project/inlyne",
     "http_status": 200,
@@ -3278,7 +3210,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "a GPU powered yet browserless tool to view markdown files in the blink of an eye - Inlyne-Project/inlyne",
     "last_commit": "2026-08-06T09:27:52Z",
     "latest_release": "v0.5.3",
@@ -3326,7 +3257,7 @@
   },
   "intentdiff": {
    "id": "intentdiff",
-   "fetched_at": "2026-10-21T09:19:36+00:00",
+   "fetched_at": "2026-10-26T10:17:29+00:00",
    "github": {
     "repo": "harivilasp/intentdiff",
     "http_status": 200,
@@ -3334,7 +3265,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Structure-aware Git diff for code review: collapse formatting noise, detect moved code, probable renames, import reorders, and meaningful edits - harivilasp/intentdiff",
     "last_commit": "2026-07-24T06:52:45Z",
     "latest_release": "v0.1.1",
@@ -3427,7 +3357,7 @@
   },
   "intermodal": {
    "id": "intermodal",
-   "fetched_at": "2026-10-21T09:17:50+00:00",
+   "fetched_at": "2026-10-26T10:15:50+00:00",
    "github": {
     "repo": "casey/intermodal",
     "http_status": 200,
@@ -3435,7 +3365,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "command-line utility for BitTorrent torrent file creation, verification, and more - casey/intermodal",
     "last_commit": "2026-08-20T22:40:14Z",
     "latest_release": "v0.1.16",
@@ -3490,7 +3419,7 @@
   },
   "iota": {
    "id": "iota",
-   "fetched_at": "2026-10-21T09:24:03+00:00",
+   "fetched_at": "2026-10-26T10:18:21+00:00",
    "github": {
     "repo": "gchp/iota",
     "http_status": 200,
@@ -3498,7 +3427,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A terminal-based text editor written in Rust. Contribute to gchp/iota development by creating an account on GitHub.",
     "last_commit": "2019-08-28T12:53:59Z",
     "latest_release": null,
@@ -3524,7 +3452,7 @@
   },
   "jaq": {
    "id": "jaq",
-   "fetched_at": "2026-10-21T09:19:40+00:00",
+   "fetched_at": "2026-10-26T10:17:30+00:00",
    "github": {
     "repo": "01mf02/jaq",
     "http_status": 200,
@@ -3532,10 +3460,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A jq clone focussed on correctness, speed, and simplicity - 01mf02/jaq",
-    "last_commit": "2026-10-21T09:04:25Z",
-    "latest_release": "v3.1.1",
+    "last_commit": "2026-10-21T11:37:34Z",
+    "latest_release": "v3.1.2",
     "cargo": {
      "found": true,
      "packages": [
@@ -3594,30 +3521,22 @@
     }
    },
    "crates_io": {
-    "crate": "jaq-core",
-    "max_stable_version": "3.1.1",
-    "updated_at": "2026-08-28T15:48:28.224638Z",
-    "bin_names": [],
-    "rust_version": "1.69",
+    "crate": "jaq",
+    "max_stable_version": "3.1.2",
+    "updated_at": "2026-10-21T11:37:21.993965Z",
+    "bin_names": [
+     "jaq"
+    ],
+    "rust_version": "1.70",
     "license": "MIT",
     "tried": [
-     "jaq-core"
+     "jaq"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "load_and_compile": "jaq-core/fuzz/Cargo.toml",
-     "data": "jaq-core/fuzz/Cargo.toml",
-     "parse_tokens": "jaq-core/fuzz/Cargo.toml",
-     "jaq": "jaq/Cargo.toml"
-    },
-    "cargo_tomls": 9,
-    "checked_at": "2026-10-21T11:32:58+00:00"
    }
   },
   "jj": {
    "id": "jj",
-   "fetched_at": "2026-10-21T09:19:41+00:00",
+   "fetched_at": "2026-10-26T10:17:32+00:00",
    "github": {
     "repo": "martinvonz/jj",
     "http_status": 200,
@@ -3625,9 +3544,8 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A Git-compatible VCS that is both simple and powerful - jj-vcs/jj",
-    "last_commit": "2026-10-21T06:33:39Z",
+    "last_commit": "2026-10-25T22:11:19Z",
     "latest_release": "v0.46.0",
     "cargo": {
      "found": true,
@@ -3714,7 +3632,7 @@
   },
   "jless": {
    "id": "jless",
-   "fetched_at": "2026-10-21T09:19:44+00:00",
+   "fetched_at": "2026-10-26T10:17:34+00:00",
    "github": {
     "repo": "PaulJuliusMartinez/jless",
     "http_status": 200,
@@ -3722,7 +3640,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "jless is a command-line JSON viewer designed for reading, exploring, and searching through JSON data. - PaulJuliusMartinez/jless",
     "last_commit": "2024-06-01T17:32:26Z",
     "latest_release": "v0.9.0",
@@ -3755,7 +3672,7 @@
   },
   "just": {
    "id": "just",
-   "fetched_at": "2026-10-21T09:18:35+00:00",
+   "fetched_at": "2026-10-26T10:16:35+00:00",
    "github": {
     "repo": "casey/just",
     "http_status": 200,
@@ -3763,7 +3680,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🤖 Just a command runner. Contribute to casey/just development by creating an account on GitHub.",
     "last_commit": "2026-10-19T00:17:15Z",
     "latest_release": "1.59.0",
@@ -3809,7 +3725,7 @@
   },
   "kanata": {
    "id": "kanata",
-   "fetched_at": "2026-10-21T09:21:08+00:00",
+   "fetched_at": "2026-10-26T10:19:04+00:00",
    "github": {
     "repo": "jtroo/kanata",
     "http_status": 200,
@@ -3817,9 +3733,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Improve keyboard comfort and usability with advanced customization - jtroo/kanata",
-    "last_commit": "2026-10-21T04:18:32Z",
+    "last_commit": "2026-10-26T10:06:51Z",
     "latest_release": "v1.12.0",
     "cargo": {
      "found": true,
@@ -3920,7 +3835,7 @@
   },
   "lapce": {
    "id": "lapce",
-   "fetched_at": "2026-10-21T09:24:09+00:00",
+   "fetched_at": "2026-10-26T10:18:22+00:00",
    "github": {
     "repo": "lapce/lapce",
     "http_status": 200,
@@ -3928,7 +3843,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Lightning-fast and Powerful Code Editor written in Rust - lapce/lapce",
     "last_commit": "2026-09-30T08:32:54Z",
     "latest_release": "v0.4.6",
@@ -3990,7 +3904,7 @@
   },
   "lazyslurm": {
    "id": "lazyslurm",
-   "fetched_at": "2026-10-21T09:18:16+00:00",
+   "fetched_at": "2026-10-26T10:16:14+00:00",
    "github": {
     "repo": "hill/lazyslurm",
     "http_status": 200,
@@ -3998,7 +3912,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "like lazygit/lazydocker but for slurm. Contribute to hill/lazyslurm development by creating an account on GitHub.",
     "last_commit": "2026-08-09T21:25:37Z",
     "latest_release": "v0.5.1",
@@ -4033,7 +3946,7 @@
   },
   "lemmeknow": {
    "id": "lemmeknow",
-   "fetched_at": "2026-10-21T09:17:53+00:00",
+   "fetched_at": "2026-10-26T10:15:52+00:00",
    "github": {
     "repo": "swanandx/lemmeknow",
     "http_status": 200,
@@ -4041,7 +3954,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "The fastest way to identify anything! Contribute to swanandx/lemmeknow development by creating an account on GitHub.",
     "last_commit": "2024-02-01T07:20:49Z",
     "latest_release": "v0.8.0",
@@ -4076,7 +3988,7 @@
   },
   "lscolors": {
    "id": "lscolors",
-   "fetched_at": "2026-10-21T09:17:31+00:00",
+   "fetched_at": "2026-10-26T10:15:31+00:00",
    "github": {
     "repo": "sharkdp/lscolors",
     "http_status": 200,
@@ -4084,7 +3996,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A Rust library and tool to colorize paths using LS_COLORS - sharkdp/lscolors",
     "last_commit": "2025-10-19T20:28:24Z",
     "latest_release": "v0.21.0",
@@ -4119,7 +4030,7 @@
   },
   "lsd": {
    "id": "lsd",
-   "fetched_at": "2026-10-21T09:17:33+00:00",
+   "fetched_at": "2026-10-26T10:15:33+00:00",
    "github": {
     "repo": "Peltoche/lsd",
     "http_status": 200,
@@ -4127,7 +4038,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "The next gen ls command. Contribute to lsd-rs/lsd development by creating an account on GitHub.",
     "last_commit": "2026-08-17T07:13:43Z",
     "latest_release": "v1.2.0",
@@ -4162,7 +4072,7 @@
   },
   "lurk": {
    "id": "lurk",
-   "fetched_at": "2026-10-21T09:19:46+00:00",
+   "fetched_at": "2026-10-26T10:17:36+00:00",
    "github": {
     "repo": "JakWai01/lurk",
     "http_status": 200,
@@ -4170,7 +4080,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A pretty (simple) alternative to strace. Contribute to JakWai01/lurk development by creating an account on GitHub.",
     "last_commit": "2026-04-20T12:09:57Z",
     "latest_release": "v0.3.14",
@@ -4205,7 +4114,7 @@
   },
   "macchina": {
    "id": "macchina",
-   "fetched_at": "2026-10-21T09:18:19+00:00",
+   "fetched_at": "2026-10-26T10:16:17+00:00",
    "github": {
     "repo": "Macchina-CLI/macchina",
     "http_status": 200,
@@ -4213,7 +4122,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A system information frontend with an emphasis on performance. - Macchina-CLI/macchina",
     "last_commit": "2025-03-08T00:30:54Z",
     "latest_release": "v6.4.0",
@@ -4246,7 +4154,7 @@
   },
   "macdisp": {
    "id": "macdisp",
-   "fetched_at": "2026-10-21T09:18:30+00:00",
+   "fetched_at": "2026-10-26T10:16:30+00:00",
    "github": {
     "repo": "noworrieseh/macdisp",
     "http_status": 200,
@@ -4254,7 +4162,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "macOS command-line tool for changing the display. Contribute to noworrieseh/macdisp development by creating an account on GitHub.",
     "last_commit": "2026-01-06T03:32:09Z",
     "latest_release": "v0.2.1",
@@ -4289,7 +4196,7 @@
   },
   "macmon": {
    "id": "macmon",
-   "fetched_at": "2026-10-21T09:18:20+00:00",
+   "fetched_at": "2026-10-26T10:16:19+00:00",
    "github": {
     "repo": "vladkens/macmon",
     "http_status": 200,
@@ -4297,9 +4204,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🦀🌡️ Real-time system monitor for Apple Silicon Macs (M1–M5). No sudo. TUI, JSON/Prometheus metrics server, and Rust library. - vladkens/macmon",
-    "last_commit": "2026-10-17T14:04:22Z",
+    "last_commit": "2026-10-21T15:12:10Z",
     "latest_release": "v0.10.0",
     "cargo": {
      "found": true,
@@ -4332,7 +4238,7 @@
   },
   "mask": {
    "id": "mask",
-   "fetched_at": "2026-10-21T09:19:48+00:00",
+   "fetched_at": "2026-10-26T10:17:37+00:00",
    "github": {
     "repo": "jacobdeichert/mask",
     "http_status": 200,
@@ -4340,7 +4246,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🎭 A CLI task runner defined by a simple markdown file - jacobdeichert/mask",
     "last_commit": "2026-01-10T22:37:48Z",
     "latest_release": null,
@@ -4382,7 +4287,7 @@
   },
   "md-tui": {
    "id": "md-tui",
-   "fetched_at": "2026-10-21T09:21:11+00:00",
+   "fetched_at": "2026-10-26T10:19:06+00:00",
    "github": {
     "repo": "henriklovhaug/md-tui",
     "http_status": 200,
@@ -4390,10 +4295,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Markdown renderer in the terminal. Contribute to henriklovhaug/md-tui development by creating an account on GitHub.",
-    "last_commit": "2026-10-02T15:06:30Z",
-    "latest_release": "v0.11.0",
+    "last_commit": "2026-10-25T10:16:54Z",
+    "latest_release": "v0.11.1",
     "cargo": {
      "found": true,
      "packages": [
@@ -4411,8 +4315,8 @@
    },
    "crates_io": {
     "crate": "md-tui",
-    "max_stable_version": "0.11.0",
-    "updated_at": "2026-10-02T15:54:04.964285Z",
+    "max_stable_version": "0.11.1",
+    "updated_at": "2026-10-25T10:26:12.962613Z",
     "bin_names": [
      "mdt"
     ],
@@ -4425,7 +4329,7 @@
   },
   "meilisearch": {
    "id": "meilisearch",
-   "fetched_at": "2026-10-21T09:23:09+00:00",
+   "fetched_at": "2026-10-26T10:15:08+00:00",
    "github": {
     "repo": "meilisearch/MeiliSearch",
     "http_status": 200,
@@ -4433,10 +4337,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications. - meilisearch/meilisearch",
-    "last_commit": "2026-10-21T08:07:33Z",
-    "latest_release": "v1.55.0",
+    "last_commit": "2026-10-26T09:01:45Z",
+    "latest_release": "v1.56.0",
     "cargo": {
      "found": true,
      "packages": [
@@ -4559,28 +4462,28 @@
    },
    "tree_bins": {
     "bins": {
+     "meilisearch": "crates/meilisearch/Cargo.toml",
+     "xtask": "crates/xtask/Cargo.toml",
+     "fuzz-indexing": "crates/fuzzers/Cargo.toml",
+     "meilitool": "crates/meilitool/Cargo.toml",
      "build-info": "crates/build-info/Cargo.toml",
      "filter-parser": "crates/filter-parser/Cargo.toml",
-     "parse": "crates/filter-parser/fuzz/Cargo.toml",
-     "flatten-serde-json": "crates/flatten-serde-json/Cargo.toml",
-     "flatten": "crates/flatten-serde-json/fuzz/Cargo.toml",
-     "fuzz-indexing": "crates/fuzzers/Cargo.toml",
-     "depth": "crates/json-depth-checker/fuzz/Cargo.toml",
-     "meilisearch": "crates/meilisearch/Cargo.toml",
-     "meilitool": "crates/meilitool/Cargo.toml",
-     "openapi-generator": "crates/openapi-generator/Cargo.toml",
      "tracing-trace": "crates/tracing-trace/Cargo.toml",
      "trace-to-callstats": "crates/tracing-trace/Cargo.toml",
      "trace-to-firefox": "crates/tracing-trace/Cargo.toml",
-     "xtask": "crates/xtask/Cargo.toml"
+     "openapi-generator": "crates/openapi-generator/Cargo.toml",
+     "parse": "crates/filter-parser/fuzz/Cargo.toml",
+     "flatten-serde-json": "crates/flatten-serde-json/Cargo.toml",
+     "flatten": "crates/flatten-serde-json/fuzz/Cargo.toml",
+     "depth": "crates/json-depth-checker/fuzz/Cargo.toml"
     },
     "cargo_tomls": 28,
-    "checked_at": "2026-10-21T11:32:24+00:00"
+    "checked_at": "2026-10-26T10:20:20+00:00"
    }
   },
   "mise": {
    "id": "mise",
-   "fetched_at": "2026-10-21T09:19:50+00:00",
+   "fetched_at": "2026-10-26T10:17:41+00:00",
    "github": {
     "repo": "jdx/mise",
     "http_status": 200,
@@ -4588,10 +4491,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "dev tools, env vars, task runner. Contribute to jdx/mise development by creating an account on GitHub.",
-    "last_commit": "2026-10-21T02:01:45Z",
-    "latest_release": "v2026.10.17",
+    "last_commit": "2026-10-26T03:16:41Z",
+    "latest_release": "v2026.10.19",
     "cargo": {
      "found": true,
      "packages": [
@@ -4606,6 +4508,12 @@
       {
        "name": "mise-cache-core",
        "path": "crates/mise-cache-core",
+       "bins": [],
+       "has_lib": false
+      },
+      {
+       "name": "mise-tls",
+       "path": "crates/mise-tls",
        "bins": [],
        "has_lib": false
       },
@@ -4672,16 +4580,11 @@
        "path": "crates/mise-settings",
        "bins": [],
        "has_lib": false
-      },
-      {
-       "name": "mise-util",
-       "path": "crates/mise-util",
-       "bins": [],
-       "has_lib": false
       }
      ],
      "workspace_members": [
       "crates/mise-cache-core",
+      "crates/mise-tls",
       "crates/mise-brew-relocation",
       "crates/mise-agent-env",
       "crates/mise-brew-metadata",
@@ -4699,14 +4602,15 @@
       "crates/mise-oci",
       "crates/mise-system",
       "crates/mise-config",
-      "crates/mise-dotenv"
+      "crates/mise-dotenv",
+      "crates/mise-lsp"
      ]
     }
    },
    "crates_io": {
     "crate": "mise",
-    "max_stable_version": "2026.10.17",
-    "updated_at": "2026-10-20T21:54:42.543858Z",
+    "max_stable_version": "2026.10.19",
+    "updated_at": "2026-10-24T16:17:43.075735Z",
     "bin_names": [
      "mise"
     ],
@@ -4719,7 +4623,7 @@
   },
   "mprocs": {
    "id": "mprocs",
-   "fetched_at": "2026-10-21T09:18:36+00:00",
+   "fetched_at": "2026-10-26T10:16:36+00:00",
    "github": {
     "repo": "pvolok/mprocs",
     "http_status": 200,
@@ -4727,10 +4631,9 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Process manager for dev and prod. Contribute to pvolok/dekit development by creating an account on GitHub.",
-    "last_commit": "2026-10-19T19:53:35Z",
-    "latest_release": "v0.10.2",
+    "last_commit": "2026-10-25T21:35:46Z",
+    "latest_release": "v0.10.3",
     "cargo": {
      "found": true,
      "packages": [
@@ -4758,31 +4661,23 @@
     }
    },
    "crates_io": {
-    "crate": "dekit",
-    "max_stable_version": "0.10.2",
-    "updated_at": "2026-10-11T21:40:34.221343Z",
+    "crate": "mprocs",
+    "max_stable_version": "0.9.6",
+    "updated_at": "2026-06-06T16:36:59.517046Z",
     "bin_names": [
-     "dekit"
+     "dekit",
+     "mprocs"
     ],
-    "rust_version": "1.88",
+    "rust_version": null,
     "license": "MIT",
     "tried": [
-     "print-key",
-     "dekit"
+     "mprocs"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "dekit": "src/Cargo.toml",
-     "print-key": "helpers/print-key/Cargo.toml"
-    },
-    "cargo_tomls": 3,
-    "checked_at": "2026-10-21T11:33:59+00:00"
    }
   },
   "n01d-forge": {
    "id": "n01d-forge",
-   "fetched_at": "2026-10-21T09:22:00+00:00",
+   "fetched_at": "2026-10-26T10:19:55+00:00",
    "github": {
     "repo": "bad-antics/n01d-forge",
     "http_status": 200,
@@ -4790,7 +4685,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🔥 n01d-forge - Secure Cross-Platform Image Burner with Encryption | LUKS, VeraCrypt, Secure Erase, Hash Verification - bad-antics/n01d-forge",
     "last_commit": "2026-02-11T05:02:48Z",
     "latest_release": "v2.0.0",
@@ -4825,7 +4719,7 @@
   },
   "n01d-machine": {
    "id": "n01d-machine",
-   "fetched_at": "2026-10-21T09:25:17+00:00",
+   "fetched_at": "2026-10-26T10:19:58+00:00",
    "github": {
     "repo": "bad-antics/n01d-machine",
     "http_status": 200,
@@ -4833,7 +4727,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🔒 n01d Machine - Secure Cross-Platform Virtual Machine Manager with Sandboxing, Tor, VPN &amp; Network Isolation - bad-antics/n01d-machine",
     "last_commit": "2026-02-11T05:02:49Z",
     "latest_release": null,
@@ -4861,7 +4754,7 @@
   },
   "navi": {
    "id": "navi",
-   "fetched_at": "2026-10-21T09:18:38+00:00",
+   "fetched_at": "2026-10-26T10:16:37+00:00",
    "github": {
     "repo": "denisidoro/navi",
     "http_status": 200,
@@ -4869,7 +4762,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An interactive cheatsheet tool for the command-line - denisidoro/navi",
     "last_commit": "2026-10-16T11:52:41Z",
     "latest_release": "v2.24.0",
@@ -4904,7 +4796,7 @@
   },
   "neovide": {
    "id": "neovide",
-   "fetched_at": "2026-10-21T09:20:28+00:00",
+   "fetched_at": "2026-10-26T10:18:24+00:00",
    "github": {
     "repo": "Kethku/neovide",
     "http_status": 200,
@@ -4912,9 +4804,8 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "No Nonsense Neovim Client in Rust. Contribute to neovide/neovide development by creating an account on GitHub.",
-    "last_commit": "2026-10-19T19:15:13Z",
+    "last_commit": "2026-10-25T00:45:08Z",
     "latest_release": "0.16.2",
     "cargo": {
      "found": true,
@@ -4953,7 +4844,7 @@
   },
   "netscanner": {
    "id": "netscanner",
-   "fetched_at": "2026-10-21T09:18:16+00:00",
+   "fetched_at": "2026-10-26T10:16:16+00:00",
    "github": {
     "repo": "Chleba/netscanner",
     "http_status": 200,
@@ -4961,7 +4852,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Terminal Network scanner &amp; diagnostic tool with modern TUI - Chleba/netscanner",
     "last_commit": "2026-07-06T16:36:54Z",
     "latest_release": "v0.6.43",
@@ -4994,7 +4884,7 @@
   },
   "nika": {
    "id": "nika",
-   "fetched_at": "2026-10-21T09:19:51+00:00",
+   "fetched_at": "2026-10-26T10:17:41+00:00",
    "github": {
     "repo": "supernovae-st/nika",
     "http_status": 200,
@@ -5002,10 +4892,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
-    "og_description": "Intent as Code | the workflow language for AI. One file, 4 verbs, one Rust binary. Local-first, any model, AGPL-3.0. 🦋 - supernovae-st/nika",
-    "last_commit": "2026-10-20T18:41:32Z",
-    "latest_release": "v0.122.0",
+    "og_description": "Intent as Code: say what you want done, keep it as a file. Checked before it runs, run with the model you choose, proven afterwards. Rust engine, CLI/TUI and TypeScript SDK. AGPL-3.0 🦋 - supernovae...",
+    "last_commit": "2026-10-26T08:18:50Z",
+    "latest_release": "v0.123.2",
     "cargo": {
      "found": true,
      "packages": [
@@ -5192,7 +5081,7 @@
   },
   "nushell": {
    "id": "nushell",
-   "fetched_at": "2026-10-21T09:18:38+00:00",
+   "fetched_at": "2026-10-26T10:16:38+00:00",
    "github": {
     "repo": "nushell/nushell",
     "http_status": 200,
@@ -5200,9 +5089,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A new type of shell. Contribute to nushell/nushell development by creating an account on GitHub.",
-    "last_commit": "2026-10-20T11:56:39Z",
+    "last_commit": "2026-10-25T20:07:02Z",
     "latest_release": "0.116.1",
     "cargo": {
      "found": true,
@@ -5365,7 +5253,7 @@
   },
   "octomind": {
    "id": "octomind",
-   "fetched_at": "2026-10-21T09:19:12+00:00",
+   "fetched_at": "2026-10-26T10:17:09+00:00",
    "github": {
     "repo": "muvon/octomind",
     "http_status": 200,
@@ -5373,10 +5261,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Open-source AI coding agent and agent runtime: one binary, any model, MCP-native. Runs in terminal, CI, or as a daemon. - Muvon/octomind",
-    "last_commit": "2026-10-21T09:00:17Z",
-    "latest_release": "0.59.0",
+    "last_commit": "2026-10-26T09:59:51Z",
+    "latest_release": "0.63.1",
     "cargo": {
      "found": true,
      "packages": [
@@ -5392,8 +5279,8 @@
    },
    "crates_io": {
     "crate": "octomind",
-    "max_stable_version": "0.59.0",
-    "updated_at": "2026-10-20T17:39:47.774601Z",
+    "max_stable_version": "0.63.1",
+    "updated_at": "2026-10-25T18:10:30.420457Z",
     "bin_names": [
      "octomind"
     ],
@@ -5406,7 +5293,7 @@
   },
   "oculante": {
    "id": "oculante",
-   "fetched_at": "2026-10-21T09:17:54+00:00",
+   "fetched_at": "2026-10-26T10:15:54+00:00",
    "github": {
     "repo": "woelper/oculante",
     "http_status": 200,
@@ -5414,7 +5301,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A fast and simple image viewer / editor for many operating systems - woelper/oculante",
     "last_commit": "2026-10-12T19:51:28Z",
     "latest_release": "0.9.6",
@@ -5447,7 +5333,7 @@
   },
   "omnigraph": {
    "id": "omnigraph",
-   "fetched_at": "2026-10-21T09:19:53+00:00",
+   "fetched_at": "2026-10-26T10:17:46+00:00",
    "github": {
     "repo": "ModernRelay/omnigraph",
     "http_status": 200,
@@ -5455,10 +5341,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Object-storage native graph database with branching and typed ontology - ModernRelay/omnigraph",
-    "last_commit": "2026-10-21T06:43:14Z",
-    "latest_release": "v0.13.0",
+    "last_commit": "2026-10-26T01:01:01Z",
+    "latest_release": "v0.14.0",
     "cargo": {
      "found": true,
      "packages": [
@@ -5552,6 +5437,7 @@
       "crates/omnigraph-azure-admission",
       "crates/omnigraph-bench",
       "crates/omnigraph-policy",
+      "crates/omnigraph-mcp",
       "crates/omnigraph-server",
       "crates/omnigraph-dst",
       "crates/omnigraph-gqt",
@@ -5576,7 +5462,7 @@
   },
   "onefetch": {
    "id": "onefetch",
-   "fetched_at": "2026-10-21T09:19:52+00:00",
+   "fetched_at": "2026-10-26T10:17:42+00:00",
    "github": {
     "repo": "o2sh/onefetch",
     "http_status": 200,
@@ -5584,9 +5470,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Command-line Git information tool. Contribute to o2sh/onefetch development by creating an account on GitHub.",
-    "last_commit": "2026-10-18T21:05:19Z",
+    "last_commit": "2026-10-25T00:09:29Z",
     "latest_release": "3.1.0",
     "cargo": {
      "found": true,
@@ -5617,7 +5502,7 @@
   },
   "opentypeless": {
    "id": "opentypeless",
-   "fetched_at": "2026-10-21T09:24:47+00:00",
+   "fetched_at": "2026-10-26T10:19:10+00:00",
    "github": {
     "repo": "tover0314-w/opentypeless",
     "http_status": 200,
@@ -5625,7 +5510,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Open-source AI voice typing for macOS, Windows, and Linux. Press a hotkey, speak naturally, get polished text in any app. - tover0314-w/opentypeless",
     "last_commit": "2026-10-13T10:01:16Z",
     "latest_release": "v1.1.61",
@@ -5642,7 +5526,7 @@
   },
   "ouch": {
    "id": "ouch",
-   "fetched_at": "2026-10-21T09:17:56+00:00",
+   "fetched_at": "2026-10-26T10:15:55+00:00",
    "github": {
     "repo": "ouch-org/ouch",
     "http_status": 200,
@@ -5650,7 +5534,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Painless compression and decompression in the terminal - ouch-org/ouch",
     "last_commit": "2026-09-24T22:10:04Z",
     "latest_release": "0.8.3",
@@ -5683,7 +5566,7 @@
   },
   "pastel": {
    "id": "pastel",
-   "fetched_at": "2026-10-21T09:19:55+00:00",
+   "fetched_at": "2026-10-26T10:17:48+00:00",
    "github": {
     "repo": "sharkdp/pastel",
     "http_status": 200,
@@ -5691,7 +5574,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A command-line tool to generate, analyze, convert and manipulate colors - sharkdp/pastel",
     "last_commit": "2026-03-13T19:37:44Z",
     "latest_release": "v0.12.0",
@@ -5726,7 +5608,7 @@
   },
   "pik": {
    "id": "pik",
-   "fetched_at": "2026-10-21T09:18:20+00:00",
+   "fetched_at": "2026-10-26T10:16:20+00:00",
    "github": {
     "repo": "jacek-kurlit/pik",
     "http_status": 200,
@@ -5734,7 +5616,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Process Interactive Kill. Contribute to jacek-kurlit/pik development by creating an account on GitHub.",
     "last_commit": "2026-09-22T19:15:42Z",
     "latest_release": "1.0.1",
@@ -5767,7 +5648,7 @@
   },
   "pinkdown": {
    "id": "pinkdown",
-   "fetched_at": "2026-10-21T09:24:18+00:00",
+   "fetched_at": "2026-10-26T10:18:27+00:00",
    "github": {
     "repo": "3xian/PinkDown",
     "http_status": 200,
@@ -5775,7 +5656,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Fast, sleek, native split-pane Markdown reader and editor built in Rust, designed to launch instantly and look stunning. - 3xian/PinkDown",
     "last_commit": "2026-09-14T09:35:26Z",
     "latest_release": "v1.8.12",
@@ -5801,7 +5681,7 @@
   },
   "poketex": {
    "id": "poketex",
-   "fetched_at": "2026-10-21T09:21:19+00:00",
+   "fetched_at": "2026-10-26T10:19:17+00:00",
    "github": {
     "repo": "ckaznable/poketex",
     "http_status": 200,
@@ -5809,7 +5689,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Simple Pokedex based on TUI. Contribute to ckaznable/poketex development by creating an account on GitHub.",
     "last_commit": "2026-09-21T07:22:55Z",
     "latest_release": "v1.17.0",
@@ -5842,7 +5721,7 @@
   },
   "procs": {
    "id": "procs",
-   "fetched_at": "2026-10-21T09:18:22+00:00",
+   "fetched_at": "2026-10-26T10:16:22+00:00",
    "github": {
     "repo": "dalance/procs",
     "http_status": 200,
@@ -5850,7 +5729,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A modern replacement for ps written in Rust. Contribute to dalance/procs development by creating an account on GitHub.",
     "last_commit": "2026-10-20T20:06:59Z",
     "latest_release": "v0.14.12",
@@ -5883,7 +5761,7 @@
   },
   "py-spy": {
    "id": "py-spy",
-   "fetched_at": "2026-10-21T09:18:57+00:00",
+   "fetched_at": "2026-10-26T10:16:54+00:00",
    "github": {
     "repo": "benfred/py-spy",
     "http_status": 200,
@@ -5891,9 +5769,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Sampling profiler for Python programs. Contribute to benfred/py-spy development by creating an account on GitHub.",
-    "last_commit": "2026-10-15T15:59:15Z",
+    "last_commit": "2026-10-24T16:25:40Z",
     "latest_release": "v0.4.2",
     "cargo": {
      "found": true,
@@ -5926,7 +5803,7 @@
   },
   "qdrant-es-gateway": {
    "id": "qdrant-es-gateway",
-   "fetched_at": "2026-10-21T09:23:09+00:00",
+   "fetched_at": "2026-10-26T10:15:08+00:00",
    "github": {
     "repo": "dstockton/qdrant-es-gateway",
     "http_status": 200,
@@ -5934,9 +5811,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Elasticsearch-compatible application search gateway in Rust, backed by the Qdrant engine - dstockton/qdrant-es-gateway",
-    "last_commit": "2026-10-20T18:12:30Z",
+    "last_commit": "2026-10-23T18:05:21Z",
     "latest_release": "v0.3.2",
     "cargo": {
      "found": true,
@@ -5956,19 +5832,11 @@
     "tried": [
      "qdrant-es-gateway"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "qdrant-es-gateway": "Cargo.toml",
-     "qeg-cache-upper-bound": "benchmark/cache-upper-bound/Cargo.toml"
-    },
-    "cargo_tomls": 2,
-    "checked_at": "2026-10-21T11:35:05+00:00"
    }
   },
   "qnote": {
    "id": "qnote",
-   "fetched_at": "2026-10-21T09:24:25+00:00",
+   "fetched_at": "2026-10-26T10:18:32+00:00",
    "github": {
     "repo": "Omibranch/qnote",
     "http_status": 404
@@ -5982,7 +5850,7 @@
   },
   "qsv": {
    "id": "qsv",
-   "fetched_at": "2026-10-21T09:19:57+00:00",
+   "fetched_at": "2026-10-26T10:17:49+00:00",
    "github": {
     "repo": "dathere/qsv",
     "http_status": 200,
@@ -5990,9 +5858,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Blazing-fast, Neuro-symbolic Data-Wrangling toolkit - dathere/qsv",
-    "last_commit": "2026-10-21T02:20:58Z",
+    "last_commit": "2026-10-26T01:09:54Z",
     "latest_release": "26.0.0",
     "cargo": {
      "found": true,
@@ -6030,7 +5897,7 @@
   },
   "rargs": {
    "id": "rargs",
-   "fetched_at": "2026-10-21T09:18:40+00:00",
+   "fetched_at": "2026-10-26T10:16:39+00:00",
    "github": {
     "repo": "lotabout/rargs",
     "http_status": 200,
@@ -6038,7 +5905,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "xargs + awk with pattern matching support. `ls *.bak | rargs -p &#39;(.*)\\.bak&#39; mv {0} {1}` - lotabout/rargs",
     "last_commit": "2020-08-23T03:05:56Z",
     "latest_release": "v0.3.0",
@@ -6071,7 +5937,7 @@
   },
   "ratatui": {
    "id": "ratatui",
-   "fetched_at": "2026-10-21T09:21:21+00:00",
+   "fetched_at": "2026-10-26T10:19:20+00:00",
    "github": {
     "repo": "ratatui/ratatui",
     "http_status": 200,
@@ -6079,9 +5945,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A Rust crate for cooking up terminal user interfaces (TUIs) 👨‍🍳🐀 https://ratatui.rs - ratatui/ratatui",
-    "last_commit": "2026-10-21T01:54:51Z",
+    "last_commit": "2026-10-24T20:08:40Z",
     "latest_release": "ratatui-v0.30.2",
     "cargo": {
      "found": true,
@@ -6122,7 +5987,7 @@
   },
   "reflex": {
    "id": "reflex",
-   "fetched_at": "2026-10-21T09:17:13+00:00",
+   "fetched_at": "2026-10-26T10:15:13+00:00",
    "github": {
     "repo": "reflex-search/reflex",
     "http_status": 200,
@@ -6130,9 +5995,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Reflex - The instant, code-aware local search engine. - reflex-search/reflex",
-    "last_commit": "2026-10-02T02:50:19Z",
+    "last_commit": "2026-10-26T02:07:12Z",
     "latest_release": "v2.2.0",
     "cargo": {
      "found": true,
@@ -6165,7 +6029,7 @@
   },
   "repgrep": {
    "id": "repgrep",
-   "fetched_at": "2026-10-21T09:17:07+00:00",
+   "fetched_at": "2026-10-26T10:15:08+00:00",
    "github": {
     "repo": "acheronfail/repgrep",
     "http_status": 200,
@@ -6173,7 +6037,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An interactive replacer for ripgrep that makes it easy to find and replace across files on the command line. - acheronfail/repgrep",
     "last_commit": "2026-09-02T11:57:27Z",
     "latest_release": "0.17.1",
@@ -6208,7 +6071,7 @@
   },
   "riff": {
    "id": "riff",
-   "fetched_at": "2026-10-21T09:19:59+00:00",
+   "fetched_at": "2026-10-26T10:17:51+00:00",
    "github": {
     "repo": "walles/riff",
     "http_status": 200,
@@ -6216,7 +6079,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A syntax highter for diffs, clarifying which parts of lines have changed - walles/riff",
     "last_commit": "2026-08-15T21:27:15Z",
     "latest_release": "3.6.2",
@@ -6251,7 +6113,7 @@
   },
   "rio": {
    "id": "rio",
-   "fetched_at": "2026-10-21T09:18:41+00:00",
+   "fetched_at": "2026-10-26T10:16:41+00:00",
    "github": {
     "repo": "raphamorim/rio",
     "http_status": 200,
@@ -6259,7 +6121,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A hardware-accelerated GPU terminal emulator focusing to run in desktops and browsers. - raphamorim/rio",
     "last_commit": "2026-10-03T08:39:11Z",
     "latest_release": "v0.5.28",
@@ -6360,29 +6221,22 @@
     }
    },
    "crates_io": {
-    "crate": "teletypewriter",
-    "max_stable_version": "2.0.1",
-    "updated_at": "2026-09-17T20:55:24.758357Z",
-    "bin_names": [],
-    "rust_version": null,
+    "crate": "rioterm",
+    "max_stable_version": "0.5.28",
+    "updated_at": "2026-09-17T20:55:33.077565Z",
+    "bin_names": [
+     "rio"
+    ],
+    "rust_version": "1.96.1",
     "license": "MIT",
     "tried": [
-     "sugarloaf",
-     "teletypewriter"
+     "rioterm"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "rio": "frontends/rioterm/Cargo.toml",
-     "rioterm": "frontends/rioterm/Cargo.toml"
-    },
-    "cargo_tomls": 18,
-    "checked_at": "2026-10-21T11:32:33+00:00"
    }
   },
   "rip": {
    "id": "rip",
-   "fetched_at": "2026-10-21T09:17:36+00:00",
+   "fetched_at": "2026-10-26T10:15:35+00:00",
    "github": {
     "repo": "nivekuil/rip",
     "http_status": 200,
@@ -6390,7 +6244,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": " A safe and ergonomic alternative to rm. Contribute to nivekuil/rip development by creating an account on GitHub.",
     "last_commit": "2021-01-05T03:20:20Z",
     "latest_release": "0.13.1",
@@ -6425,7 +6278,7 @@
   },
   "ripgrep": {
    "id": "ripgrep",
-   "fetched_at": "2026-10-21T09:17:07+00:00",
+   "fetched_at": "2026-10-26T10:15:08+00:00",
    "github": {
     "repo": "BurntSushi/ripgrep",
     "http_status": 200,
@@ -6433,9 +6286,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore - BurntSushi/ripgrep",
-    "last_commit": "2026-08-04T14:00:08Z",
+    "last_commit": "2026-10-23T20:00:21Z",
     "latest_release": "15.2.0",
     "cargo": {
      "found": true,
@@ -6463,12 +6315,6 @@
       {
        "name": "grep-cli",
        "path": "crates/cli",
-       "bins": [],
-       "has_lib": false
-      },
-      {
-       "name": "grep-index",
-       "path": "crates/index",
        "bins": [],
        "has_lib": false
       },
@@ -6513,7 +6359,6 @@
       "crates/globset",
       "crates/grep",
       "crates/cli",
-      "crates/index",
       "crates/matcher",
       "crates/pcre2",
       "crates/printer",
@@ -6539,7 +6384,7 @@
   },
   "rnote": {
    "id": "rnote",
-   "fetched_at": "2026-10-21T09:24:31+00:00",
+   "fetched_at": "2026-10-26T10:18:35+00:00",
    "github": {
     "repo": "flxzt/rnote",
     "http_status": 200,
@@ -6547,9 +6392,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Sketch and take handwritten notes. Contribute to flxzt/rnote development by creating an account on GitHub.",
-    "last_commit": "2026-10-17T17:13:00Z",
+    "last_commit": "2026-10-25T17:07:39Z",
     "latest_release": "v0.14.2",
     "cargo": {
      "found": true,
@@ -6598,16 +6442,16 @@
    },
    "tree_bins": {
     "bins": {
-     "rnote-cli": "crates/rnote-cli/Cargo.toml",
-     "rnote": "crates/rnote-ui/Cargo.toml"
+     "rnote": "crates/rnote-ui/Cargo.toml",
+     "rnote-cli": "crates/rnote-cli/Cargo.toml"
     },
     "cargo_tomls": 5,
-    "checked_at": "2026-10-21T11:33:01+00:00"
+    "checked_at": "2026-10-26T10:20:37+00:00"
    }
   },
   "rsftch": {
    "id": "rsftch",
-   "fetched_at": "2026-10-21T09:18:23+00:00",
+   "fetched_at": "2026-10-26T10:16:23+00:00",
    "github": {
     "repo": "charklie/rsftch",
     "http_status": 200,
@@ -6615,7 +6459,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Lightning fast hardware fetch written in rust for Linux and NetBSD! - charklie/rsftch",
     "last_commit": "2026-01-12T18:24:17Z",
     "latest_release": "v0.7.6",
@@ -6648,7 +6491,7 @@
   },
   "runiq": {
    "id": "runiq",
-   "fetched_at": "2026-10-21T09:17:59+00:00",
+   "fetched_at": "2026-10-26T10:15:57+00:00",
    "github": {
     "repo": "whitfin/runiq",
     "http_status": 200,
@@ -6656,7 +6499,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An efficient way to filter duplicate lines from input, à la uniq.  - whitfin/runiq",
     "last_commit": "2025-12-13T03:32:06Z",
     "latest_release": null,
@@ -6689,7 +6531,7 @@
   },
   "ruplacer": {
    "id": "ruplacer",
-   "fetched_at": "2026-10-21T09:18:01+00:00",
+   "fetched_at": "2026-10-26T10:15:59+00:00",
    "github": {
     "repo": "your-tools/ruplacer",
     "http_status": 200,
@@ -6697,7 +6539,6 @@
     "redirected": false,
     "archived": true,
     "archived_on": "Feb 20, 2026",
-    "languages": {},
     "og_description": "Find and replace text in source files. Contribute to your-tools/ruplacer development by creating an account on GitHub.",
     "last_commit": "2026-02-20T19:57:18Z",
     "latest_release": "v0.10.0",
@@ -6730,7 +6571,7 @@
   },
   "rust-kanban": {
    "id": "rust-kanban",
-   "fetched_at": "2026-10-21T09:20:03+00:00",
+   "fetched_at": "2026-10-26T10:17:55+00:00",
    "github": {
     "repo": "yashs662/rust_kanban",
     "http_status": 200,
@@ -6738,7 +6579,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A kanban board for the terminal built with ❤️ in Rust - yashs662/rust_kanban",
     "last_commit": "2025-02-13T04:59:07Z",
     "latest_release": null,
@@ -6771,7 +6611,7 @@
   },
   "rust-parallel": {
    "id": "rust-parallel",
-   "fetched_at": "2026-10-21T09:18:42+00:00",
+   "fetched_at": "2026-10-26T10:16:42+00:00",
    "github": {
     "repo": "aaronriekenberg/rust-parallel",
     "http_status": 200,
@@ -6779,9 +6619,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Fast command line app in rust/tokio to run commands in parallel.  Similar interface to GNU parallel or xargs plus useful features.  Listed in Awesome Rust utilities. - aaronriekenberg/rust-parallel",
-    "last_commit": "2026-10-19T23:00:17Z",
+    "last_commit": "2026-10-24T08:59:26Z",
     "latest_release": "v1.24.0",
     "cargo": {
      "found": true,
@@ -6812,7 +6651,7 @@
   },
   "rust-sqlite": {
    "id": "rust-sqlite",
-   "fetched_at": "2026-10-21T09:19:59+00:00",
+   "fetched_at": "2026-10-26T10:17:53+00:00",
    "github": {
     "repo": "joaoh82/rust_sqlite",
     "http_status": 200,
@@ -6820,7 +6659,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "SQLRite - Simple embedded database modeled off SQLite in Rust - joaoh82/rust_sqlite",
     "last_commit": "2026-09-19T15:02:16Z",
     "latest_release": "v0.14.0",
@@ -6929,7 +6767,7 @@
   },
   "rustdesk": {
    "id": "rustdesk",
-   "fetched_at": "2026-10-21T09:24:53+00:00",
+   "fetched_at": "2026-10-26T10:19:22+00:00",
    "github": {
     "repo": "rustdesk/rustdesk",
     "http_status": 200,
@@ -6937,9 +6775,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer. - rustdesk/rustdesk",
-    "last_commit": "2026-10-21T08:02:32Z",
+    "last_commit": "2026-10-26T09:23:08Z",
     "latest_release": "1.5.0",
     "cargo": {
      "found": true,
@@ -7037,12 +6874,12 @@
      "rustdesk-portable-packer": "libs/portable/Cargo.toml"
     },
     "cargo_tomls": 10,
-    "checked_at": "2026-10-21T11:33:21+00:00"
+    "checked_at": "2026-10-26T10:20:52+00:00"
    }
   },
   "rustnet": {
    "id": "rustnet",
-   "fetched_at": "2026-10-21T09:18:24+00:00",
+   "fetched_at": "2026-10-26T10:16:24+00:00",
    "github": {
     "repo": "domcyrus/rustnet",
     "http_status": 200,
@@ -7050,9 +6887,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Per-process network monitoring for your terminal with deep packet inspection. Cross-platform, sandboxed. - domcyrus/rustnet",
-    "last_commit": "2026-10-20T10:51:09Z",
+    "last_commit": "2026-10-23T11:32:14Z",
     "latest_release": "v1.7.0",
     "cargo": {
      "found": true,
@@ -7123,7 +6959,7 @@
   },
   "rustscan": {
    "id": "rustscan",
-   "fetched_at": "2026-10-21T09:18:25+00:00",
+   "fetched_at": "2026-10-26T10:16:25+00:00",
    "github": {
     "repo": "RustScan/RustScan",
     "http_status": 200,
@@ -7131,7 +6967,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🤖 The Modern Port Scanner 🤖. Contribute to bee-san/RustScan development by creating an account on GitHub.",
     "last_commit": "2026-10-05T10:17:26Z",
     "latest_release": "2.4.1",
@@ -7166,7 +7001,7 @@
   },
   "sccache": {
    "id": "sccache",
-   "fetched_at": "2026-10-21T09:20:04+00:00",
+   "fetched_at": "2026-10-26T10:17:56+00:00",
    "github": {
     "repo": "mozilla/sccache",
     "http_status": 200,
@@ -7174,10 +7009,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Sccache is a ccache-like tool. It is used as a compiler wrapper and avoids compilation when possible. Sccache has the capability to utilize caching in remote storage environments, including various...",
-    "last_commit": "2026-10-21T07:01:37Z",
-    "latest_release": "v0.18.0",
+    "last_commit": "2026-10-26T09:52:58Z",
+    "latest_release": "v0.19.0",
     "cargo": {
      "found": true,
      "packages": [
@@ -7204,8 +7038,8 @@
    },
    "crates_io": {
     "crate": "sccache",
-    "max_stable_version": "0.18.0",
-    "updated_at": "2026-09-16T14:34:17.177895Z",
+    "max_stable_version": "0.19.0",
+    "updated_at": "2026-10-24T10:26:24.754799Z",
     "bin_names": [
      "sccache",
      "sccache-dist"
@@ -7219,7 +7053,7 @@
   },
   "scout": {
    "id": "scout",
-   "fetched_at": "2026-10-21T09:17:12+00:00",
+   "fetched_at": "2026-10-26T10:15:12+00:00",
    "github": {
     "repo": "jhbabon/scout",
     "http_status": 200,
@@ -7227,7 +7061,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Friendly fuzzy finder made with rust. Contribute to jhbabon/scout development by creating an account on GitHub.",
     "last_commit": "2023-09-19T16:26:15Z",
     "latest_release": "v2.8.0",
@@ -7262,7 +7095,7 @@
   },
   "screenpipe": {
    "id": "screenpipe",
-   "fetched_at": "2026-10-21T09:24:56+00:00",
+   "fetched_at": "2026-10-26T10:19:25+00:00",
    "github": {
     "repo": "screenpipe/screenpipe",
     "http_status": 200,
@@ -7270,10 +7103,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "YC (S26) | Open Computer History | Continuously record your company computer work, map your workflows, help you find work worth automating, and power your agents&#39; context - screenpipe/screenpipe",
-    "last_commit": "2026-10-21T05:49:34Z",
-    "latest_release": "app-v2.7.109",
+    "last_commit": "2026-10-24T01:38:14Z",
+    "latest_release": "app-v2.7.116",
     "cargo": {
      "found": true,
      "packages": [],
@@ -7290,7 +7122,30 @@
    },
    "tree_bins": {
     "bins": {
-     "ort-smoke": ".github/ci/ort-smoke/Cargo.toml",
+     "screenpipe-storage": "crates/screenpipe-db/Cargo.toml",
+     "screenpipe": "crates/screenpipe-engine/Cargo.toml",
+     "screenpipe-engine": "crates/screenpipe-engine/Cargo.toml",
+     "screenpipe-gateway": "crates/screenpipe-gateway/Cargo.toml",
+     "screenpipe-gateway-seed": "crates/screenpipe-gateway/Cargo.toml",
+     "screenpipe-gateway-policy-fixture": "crates/screenpipe-gateway/Cargo.toml",
+     "policy_fixture": "crates/screenpipe-gateway/Cargo.toml",
+     "seed": "crates/screenpipe-gateway/Cargo.toml",
+     "screenpipe-eval-diarization": "crates/screenpipe-audio-eval/Cargo.toml",
+     "screenpipe-eval-compose": "crates/screenpipe-audio-eval/Cargo.toml",
+     "screenpipe-eval-screenpipe-fixtures": "crates/screenpipe-audio-eval/Cargo.toml",
+     "screenpipe-eval-transcription": "crates/screenpipe-audio-eval/Cargo.toml",
+     "screenpipe-eval-pipeline-replay": "crates/screenpipe-audio-eval/Cargo.toml",
+     "compose_fixture": "crates/screenpipe-audio-eval/Cargo.toml",
+     "eval_diarization": "crates/screenpipe-audio-eval/Cargo.toml",
+     "eval_transcription": "crates/screenpipe-audio-eval/Cargo.toml",
+     "pipeline_replay": "crates/screenpipe-audio-eval/Cargo.toml",
+     "screenpipe_fixtures": "crates/screenpipe-audio-eval/Cargo.toml",
+     "overlay-preview": "crates/screenpipe-overlay-win/Cargo.toml",
+     "overlay_preview": "crates/screenpipe-overlay-win/Cargo.toml",
+     "screenpipe-eval-meeting-state": "crates/screenpipe-meeting-eval/Cargo.toml",
+     "screenpipe-eval-meeting-replay-trace": "crates/screenpipe-meeting-eval/Cargo.toml",
+     "eval_state": "crates/screenpipe-meeting-eval/Cargo.toml",
+     "replay_trace": "crates/screenpipe-meeting-eval/Cargo.toml",
      "screenpipe-app": "apps/screenpipe-app-tauri/src-tauri/Cargo.toml",
      "livetext-stress": "apps/screenpipe-app-tauri/src-tauri/livetext-stress/Cargo.toml",
      "livetext-frame-scope": "apps/screenpipe-app-tauri/src-tauri/livetext-stress/Cargo.toml",
@@ -7302,38 +7157,15 @@
      "screenpipe-persistence-supervisor": "apps/screenpipe-app-tauri/src-tauri/windows/persistence-supervisor/Cargo.toml",
      "remove-screenpipe-persistence": "apps/screenpipe-app-tauri/src-tauri/windows/persistence-supervisor/Cargo.toml",
      "remove": "apps/screenpipe-app-tauri/src-tauri/windows/persistence-supervisor/Cargo.toml",
-     "screenpipe-eval-diarization": "crates/screenpipe-audio-eval/Cargo.toml",
-     "screenpipe-eval-compose": "crates/screenpipe-audio-eval/Cargo.toml",
-     "screenpipe-eval-screenpipe-fixtures": "crates/screenpipe-audio-eval/Cargo.toml",
-     "screenpipe-eval-transcription": "crates/screenpipe-audio-eval/Cargo.toml",
-     "screenpipe-eval-pipeline-replay": "crates/screenpipe-audio-eval/Cargo.toml",
-     "compose_fixture": "crates/screenpipe-audio-eval/Cargo.toml",
-     "eval_diarization": "crates/screenpipe-audio-eval/Cargo.toml",
-     "eval_transcription": "crates/screenpipe-audio-eval/Cargo.toml",
-     "pipeline_replay": "crates/screenpipe-audio-eval/Cargo.toml",
-     "screenpipe_fixtures": "crates/screenpipe-audio-eval/Cargo.toml",
-     "screenpipe-storage": "crates/screenpipe-db/Cargo.toml",
-     "screenpipe": "crates/screenpipe-engine/Cargo.toml",
-     "screenpipe-engine": "crates/screenpipe-engine/Cargo.toml",
-     "screenpipe-gateway": "crates/screenpipe-gateway/Cargo.toml",
-     "screenpipe-gateway-seed": "crates/screenpipe-gateway/Cargo.toml",
-     "screenpipe-gateway-policy-fixture": "crates/screenpipe-gateway/Cargo.toml",
-     "policy_fixture": "crates/screenpipe-gateway/Cargo.toml",
-     "seed": "crates/screenpipe-gateway/Cargo.toml",
-     "screenpipe-eval-meeting-state": "crates/screenpipe-meeting-eval/Cargo.toml",
-     "screenpipe-eval-meeting-replay-trace": "crates/screenpipe-meeting-eval/Cargo.toml",
-     "eval_state": "crates/screenpipe-meeting-eval/Cargo.toml",
-     "replay_trace": "crates/screenpipe-meeting-eval/Cargo.toml",
-     "overlay-preview": "crates/screenpipe-overlay-win/Cargo.toml",
-     "overlay_preview": "crates/screenpipe-overlay-win/Cargo.toml"
+     "ort-smoke": ".github/ci/ort-smoke/Cargo.toml"
     },
     "cargo_tomls": 37,
-    "checked_at": "2026-10-21T11:33:36+00:00"
+    "checked_at": "2026-10-26T10:20:59+00:00"
    }
   },
   "sd": {
    "id": "sd",
-   "fetched_at": "2026-10-21T09:18:44+00:00",
+   "fetched_at": "2026-10-26T10:16:43+00:00",
    "github": {
     "repo": "chmln/sd",
     "http_status": 200,
@@ -7341,7 +7173,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Intuitive find &amp; replace CLI (sed alternative). Contribute to chmln/sd development by creating an account on GitHub.",
     "last_commit": "2026-02-25T19:25:13Z",
     "latest_release": "v1.1.0",
@@ -7392,7 +7223,7 @@
   },
   "see": {
    "id": "see",
-   "fetched_at": "2026-10-21T09:21:18+00:00",
+   "fetched_at": "2026-10-26T10:19:15+00:00",
    "github": {
     "repo": "guilhermeprokisch/see",
     "http_status": 200,
@@ -7400,7 +7231,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A cute cat(1) for the terminal with advanced code viewing, Markdown rendering, 🌳  tree-sitter syntax highlighting, images view and more. - guilhermeprokisch/see",
     "last_commit": "2026-08-26T08:06:49Z",
     "latest_release": "v0.10.1",
@@ -7435,7 +7265,7 @@
   },
   "sem": {
    "id": "sem",
-   "fetched_at": "2026-10-21T09:23:30+00:00",
+   "fetched_at": "2026-10-26T10:17:58+00:00",
    "github": {
     "repo": "Ataraxy-Labs/sem",
     "http_status": 200,
@@ -7443,10 +7273,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Semantic version control =&gt; entity-level diffs, blame, and impact analysis on top of git. 28 languages via tree-sitter. Built for coding agents. - Ataraxy-Labs/sem",
-    "last_commit": "2026-10-19T15:39:05Z",
-    "latest_release": "v0.28.1",
+    "last_commit": "2026-10-26T05:49:48Z",
+    "latest_release": "v0.28.2",
     "cargo": {
      "found": false
     }
@@ -7456,21 +7285,11 @@
     "tried": [
      "sem"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "sem": "crates/sem-cli/Cargo.toml",
-     "sem-cli": "crates/sem-cli/Cargo.toml",
-     "sem-mcp": "crates/sem-mcp/Cargo.toml",
-     "sem-plugin-test": "crates/sem-plugin/test-harness/Cargo.toml"
-    },
-    "cargo_tomls": 7,
-    "checked_at": "2026-10-21T11:35:14+00:00"
    }
   },
   "shadowsocks-rust": {
    "id": "shadowsocks-rust",
-   "fetched_at": "2026-10-21T09:21:30+00:00",
+   "fetched_at": "2026-10-26T10:19:28+00:00",
    "github": {
     "repo": "shadowsocks/shadowsocks-rust",
     "http_status": 200,
@@ -7478,9 +7297,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A Rust port of shadowsocks. Contribute to shadowsocks/shadowsocks-rust development by creating an account on GitHub.",
-    "last_commit": "2026-10-11T20:40:41Z",
+    "last_commit": "2026-10-22T02:22:37Z",
     "latest_release": "v1.25.0",
     "cargo": {
      "found": true,
@@ -7538,7 +7356,7 @@
   },
   "shrs": {
    "id": "shrs",
-   "fetched_at": "2026-10-21T09:18:45+00:00",
+   "fetched_at": "2026-10-26T10:16:44+00:00",
    "github": {
     "repo": "MrPicklePinosaur/shrs",
     "http_status": 200,
@@ -7546,7 +7364,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "The rusty shell toolkit for hackers. Contribute to MrPicklePinosaur/shrs development by creating an account on GitHub.",
     "last_commit": "2024-10-17T13:09:57Z",
     "latest_release": "0.0.6",
@@ -7577,14 +7394,13 @@
     "rust_version": null,
     "license": "MIT OR Apache-2.0",
     "tried": [
-     "shrs_example",
      "shrs"
     ]
    }
   },
   "silicon": {
    "id": "silicon",
-   "fetched_at": "2026-10-21T09:20:05+00:00",
+   "fetched_at": "2026-10-26T10:17:59+00:00",
    "github": {
     "repo": "Aloxaf/silicon",
     "http_status": 200,
@@ -7592,7 +7408,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Create beautiful image of your source code. Contribute to Aloxaf/silicon development by creating an account on GitHub.",
     "last_commit": "2024-09-26T01:02:16Z",
     "latest_release": "v0.5.3",
@@ -7625,7 +7440,7 @@
   },
   "skim": {
    "id": "skim",
-   "fetched_at": "2026-10-21T09:17:11+00:00",
+   "fetched_at": "2026-10-26T10:15:11+00:00",
    "github": {
     "repo": "lotabout/skim",
     "http_status": 200,
@@ -7633,7 +7448,6 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Fuzzy Finder in rust! Contribute to skim-rs/skim development by creating an account on GitHub.",
     "last_commit": "2026-10-20T18:27:41Z",
     "latest_release": "v5.8.0",
@@ -7668,7 +7482,7 @@
   },
   "slumber": {
    "id": "slumber",
-   "fetched_at": "2026-10-21T09:20:07+00:00",
+   "fetched_at": "2026-10-26T10:18:00+00:00",
    "github": {
     "repo": "LucasPickering/slumber",
     "http_status": 200,
@@ -7676,10 +7490,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Terminal-based HTTP/REST client. Contribute to LucasPickering/slumber development by creating an account on GitHub.",
-    "last_commit": "2026-10-17T15:26:05Z",
-    "latest_release": "v5.4.2",
+    "last_commit": "2026-10-22T21:58:38Z",
+    "latest_release": "v5.4.3",
     "cargo": {
      "found": true,
      "packages": [
@@ -7697,8 +7510,8 @@
    },
    "crates_io": {
     "crate": "slumber",
-    "max_stable_version": "5.4.2",
-    "updated_at": "2026-10-16T16:39:35.397768Z",
+    "max_stable_version": "5.4.3",
+    "updated_at": "2026-10-22T21:59:45.710054Z",
     "bin_names": [
      "slumber"
     ],
@@ -7711,7 +7524,7 @@
   },
   "sniffnet": {
    "id": "sniffnet",
-   "fetched_at": "2026-10-21T09:18:26+00:00",
+   "fetched_at": "2026-10-26T10:16:26+00:00",
    "github": {
     "repo": "GyulyVGC/sniffnet",
     "http_status": 200,
@@ -7719,7 +7532,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Comfortably monitor your network traffic 🕵️‍♂️. Contribute to GyulyVGC/sniffnet development by creating an account on GitHub.",
     "last_commit": "2026-10-20T12:58:40Z",
     "latest_release": "v1.5.1",
@@ -7767,7 +7579,7 @@
   },
   "spacedrive": {
    "id": "spacedrive",
-   "fetched_at": "2026-10-21T09:23:09+00:00",
+   "fetched_at": "2026-10-26T10:15:37+00:00",
    "github": {
     "repo": "spacedriveapp/spacedrive",
     "http_status": 200,
@@ -7775,7 +7587,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Spacedrive is an open source cross-platform file explorer, powered by a virtual distributed filesystem written in Rust. - spacedriveapp/spacedrive",
     "last_commit": "2026-10-13T00:58:16Z",
     "latest_release": "0.4.3",
@@ -7879,7 +7690,7 @@
   },
   "sparklebios": {
    "id": "sparklebios",
-   "fetched_at": "2026-10-21T09:18:46+00:00",
+   "fetched_at": "2026-10-26T10:16:45+00:00",
    "github": {
     "repo": "reactivepixels/sparklebios",
     "http_status": 200,
@@ -7887,7 +7698,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Boot every terminal tab like a 1995 PC. It counts your RAM, detects a unicorn, and runs a real health check. Eight mascots, ten themes, zero network code. - reactivepixels/sparklebios",
     "last_commit": "2026-10-15T02:51:35Z",
     "latest_release": "v0.1.1",
@@ -7922,7 +7732,7 @@
   },
   "splashboard": {
    "id": "splashboard",
-   "fetched_at": "2026-10-21T09:18:47+00:00",
+   "fetched_at": "2026-10-26T10:16:46+00:00",
    "github": {
     "repo": "unhappychoice/splashboard",
     "http_status": 200,
@@ -7930,9 +7740,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A customizable terminal splash screen with plugin-based data sources. - unhappychoice/splashboard",
-    "last_commit": "2026-10-18T14:12:15Z",
+    "last_commit": "2026-10-25T14:54:16Z",
     "latest_release": "v2.10.2",
     "cargo": {
      "found": true,
@@ -7980,7 +7789,7 @@
   },
   "sqleibniz": {
    "id": "sqleibniz",
-   "fetched_at": "2026-10-21T09:20:08+00:00",
+   "fetched_at": "2026-10-26T10:18:01+00:00",
    "github": {
     "repo": "xNaCly/sqleibniz",
     "http_status": 200,
@@ -7988,7 +7797,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Static analysis and LSP for SQL in Rust. Contribute to xnacly/sqleibniz development by creating an account on GitHub.",
     "last_commit": "2026-08-07T07:06:48Z",
     "latest_release": "v0.0.8",
@@ -8037,7 +7845,7 @@
   },
   "starship": {
    "id": "starship",
-   "fetched_at": "2026-10-21T09:18:48+00:00",
+   "fetched_at": "2026-10-26T10:16:47+00:00",
    "github": {
     "repo": "starship/starship",
     "http_status": 200,
@@ -8045,9 +7853,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "☄🌌️  The minimal, blazing-fast, and infinitely customizable prompt for any shell! - starship/starship",
-    "last_commit": "2026-10-20T06:05:15Z",
+    "last_commit": "2026-10-26T06:59:35Z",
     "latest_release": "v1.27.0",
     "cargo": {
      "found": true,
@@ -8078,7 +7885,7 @@
   },
   "steel": {
    "id": "steel",
-   "fetched_at": "2026-10-21T09:20:10+00:00",
+   "fetched_at": "2026-10-26T10:18:04+00:00",
    "github": {
     "repo": "mattwparas/steel",
     "http_status": 200,
@@ -8086,9 +7893,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An embedded scheme interpreter in Rust. Contribute to mattwparas/steel development by creating an account on GitHub.",
-    "last_commit": "2026-10-19T04:27:28Z",
+    "last_commit": "2026-10-25T15:37:46Z",
     "latest_release": "v0.8.2",
     "cargo": {
      "found": true,
@@ -8133,7 +7939,7 @@
   },
   "stylua": {
    "id": "stylua",
-   "fetched_at": "2026-10-21T09:20:11+00:00",
+   "fetched_at": "2026-10-26T10:18:04+00:00",
    "github": {
     "repo": "JohnnyMorganz/StyLua",
     "http_status": 200,
@@ -8141,7 +7947,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A Lua code formatter. Contribute to JohnnyMorganz/StyLua development by creating an account on GitHub.",
     "last_commit": "2026-10-11T13:07:23Z",
     "latest_release": "v2.6.0",
@@ -8176,7 +7981,7 @@
   },
   "subnetdesk": {
    "id": "subnetdesk",
-   "fetched_at": "2026-10-21T09:24:55+00:00",
+   "fetched_at": "2026-10-26T10:19:23+00:00",
    "github": {
     "repo": "zibo-chen/SubnetDesk",
     "http_status": 200,
@@ -8184,9 +7989,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "LAN-only remote desktop based on RustDesk. Contribute to zibo-chen/SubnetDesk development by creating an account on GitHub.",
-    "last_commit": "2026-10-01T06:15:20Z",
+    "last_commit": "2026-10-24T03:45:17Z",
     "latest_release": "v1.3.0",
     "cargo": {
      "found": true,
@@ -8279,7 +8083,7 @@
   },
   "sudo-rs": {
    "id": "sudo-rs",
-   "fetched_at": "2026-10-21T09:21:34+00:00",
+   "fetched_at": "2026-10-26T10:19:31+00:00",
    "github": {
     "repo": "memorysafety/sudo-rs",
     "http_status": 200,
@@ -8287,9 +8091,8 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A memory safe implementation of sudo and su. Contribute to trifectatechfoundation/sudo-rs development by creating an account on GitHub.",
-    "last_commit": "2026-10-14T11:59:13Z",
+    "last_commit": "2026-10-21T14:39:54Z",
     "latest_release": "v0.2.15",
     "cargo": {
      "found": true,
@@ -8322,7 +8125,7 @@
   },
   "supercov": {
    "id": "supercov",
-   "fetched_at": "2026-10-21T09:20:12+00:00",
+   "fetched_at": "2026-10-26T10:18:05+00:00",
    "github": {
     "repo": "supercorp-ai/supercov",
     "http_status": 200,
@@ -8330,9 +8133,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Coverage, security and code quality for coding agents - supercorp-ai/supercov",
-    "last_commit": "2026-10-18T12:51:03Z",
+    "last_commit": "2026-10-24T11:13:20Z",
     "latest_release": "v4.19.0",
     "cargo": {
      "found": true,
@@ -8381,7 +8183,7 @@
   },
   "sweep-rs": {
    "id": "sweep-rs",
-   "fetched_at": "2026-10-21T09:23:09+00:00",
+   "fetched_at": "2026-10-26T10:15:16+00:00",
    "github": {
     "repo": "aslpavel/sweep-rs",
     "http_status": 200,
@@ -8389,7 +8191,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Sweep is a tool for interactive search through a list of entries. It is inspired by fzf. - aslpavel/sweep-rs",
     "last_commit": "2026-08-21T14:50:30Z",
     "latest_release": null,
@@ -8438,7 +8239,7 @@
   },
   "tealdeer": {
    "id": "tealdeer",
-   "fetched_at": "2026-10-21T09:20:13+00:00",
+   "fetched_at": "2026-10-26T10:18:07+00:00",
    "github": {
     "repo": "dbrgn/tealdeer",
     "http_status": 200,
@@ -8446,10 +8247,9 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A very fast implementation of tldr in Rust. Contribute to tealdeer-rs/tealdeer development by creating an account on GitHub.",
-    "last_commit": "2026-08-24T15:15:51Z",
-    "latest_release": "v1.9.0",
+    "last_commit": "2026-10-24T21:03:30Z",
+    "latest_release": "v1.9.1",
     "cargo": {
      "found": true,
      "packages": [
@@ -8467,8 +8267,8 @@
    },
    "crates_io": {
     "crate": "tealdeer",
-    "max_stable_version": "1.9.0",
-    "updated_at": "2026-08-24T15:26:47.729346Z",
+    "max_stable_version": "1.9.1",
+    "updated_at": "2026-10-24T21:11:30.867402Z",
     "bin_names": [
      "tldr"
     ],
@@ -8481,7 +8281,7 @@
   },
   "television": {
    "id": "television",
-   "fetched_at": "2026-10-21T09:17:10+00:00",
+   "fetched_at": "2026-10-26T10:15:10+00:00",
    "github": {
     "repo": "alexpasmantier/television",
     "http_status": 200,
@@ -8489,7 +8289,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A very fast, portable and hackable fuzzy finder. Contribute to alexpasmantier/television development by creating an account on GitHub.",
     "last_commit": "2026-10-18T22:00:28Z",
     "latest_release": "0.15.9",
@@ -8524,7 +8323,7 @@
   },
   "termscp": {
    "id": "termscp",
-   "fetched_at": "2026-10-21T09:18:02+00:00",
+   "fetched_at": "2026-10-26T10:16:01+00:00",
    "github": {
     "repo": "veeso/termscp",
     "http_status": 200,
@@ -8532,7 +8331,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "🖥  A feature rich terminal UI file transfer and explorer with support for SCP/SFTP/FTP/S3/SMB/WebDAV - veeso/termscp",
     "last_commit": "2026-10-19T16:45:04Z",
     "latest_release": "v1.2.1",
@@ -8567,7 +8365,7 @@
   },
   "tinty": {
    "id": "tinty",
-   "fetched_at": "2026-10-21T09:20:15+00:00",
+   "fetched_at": "2026-10-26T10:18:10+00:00",
    "github": {
     "repo": "tinted-theming/tinty",
     "http_status": 200,
@@ -8575,10 +8373,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A base16 and base24 color scheme manager. Contribute to tinted-theming/tinty development by creating an account on GitHub.",
-    "last_commit": "2026-10-19T21:45:57Z",
-    "latest_release": "v0.34.1",
+    "last_commit": "2026-10-25T03:16:35Z",
+    "latest_release": "v0.35.0",
     "cargo": {
      "found": true,
      "packages": [
@@ -8594,12 +8391,12 @@
    },
    "crates_io": {
     "crate": "tinty",
-    "max_stable_version": "0.34.1",
-    "updated_at": "2026-06-20T08:32:19.595422Z",
+    "max_stable_version": "0.35.0",
+    "updated_at": "2026-10-21T16:56:57.650313Z",
     "bin_names": [
      "tinty"
     ],
-    "rust_version": null,
+    "rust_version": "1.88.0",
     "license": "GPL-3.0-only",
     "tried": [
      "tinty"
@@ -8608,7 +8405,7 @@
   },
   "tlrc": {
    "id": "tlrc",
-   "fetched_at": "2026-10-21T09:20:15+00:00",
+   "fetched_at": "2026-10-26T10:18:09+00:00",
    "github": {
     "repo": "tldr-pages/tlrc",
     "http_status": 200,
@@ -8616,7 +8413,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Official tldr client written in Rust. Contribute to tldr-pages/tlrc development by creating an account on GitHub.",
     "last_commit": "2026-10-16T18:17:30Z",
     "latest_release": "v1.13.1",
@@ -8651,7 +8447,7 @@
   },
   "tokei": {
    "id": "tokei",
-   "fetched_at": "2026-10-21T09:20:16+00:00",
+   "fetched_at": "2026-10-26T10:18:11+00:00",
    "github": {
     "repo": "XAMPPRocky/tokei",
     "http_status": 200,
@@ -8659,7 +8455,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Count your code, quickly. Contribute to XAMPPRocky/tokei development by creating an account on GitHub.",
     "last_commit": "2026-09-06T17:28:03Z",
     "latest_release": "v15.0.0",
@@ -8694,7 +8489,7 @@
   },
   "trashy": {
    "id": "trashy",
-   "fetched_at": "2026-10-21T09:17:37+00:00",
+   "fetched_at": "2026-10-26T10:15:38+00:00",
    "github": {
     "repo": "oberblastmeister/trashy",
     "http_status": 200,
@@ -8702,7 +8497,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "a cli system trash manager, alternative to rm and trash-cli - oberblastmeister/trashy",
     "last_commit": "2024-01-19T02:18:44Z",
     "latest_release": "v2.0.0",
@@ -8737,7 +8531,7 @@
   },
   "trippy": {
    "id": "trippy",
-   "fetched_at": "2026-10-21T09:18:27+00:00",
+   "fetched_at": "2026-10-26T10:16:27+00:00",
    "github": {
     "repo": "fujiapple852/trippy",
     "http_status": 200,
@@ -8745,9 +8539,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A network diagnostic tool . Contribute to fujiapple852/trippy development by creating an account on GitHub.",
-    "last_commit": "2026-10-12T10:38:45Z",
+    "last_commit": "2026-10-25T08:58:20Z",
     "latest_release": "0.13.0",
     "cargo": {
      "found": true,
@@ -8818,7 +8611,7 @@
   },
   "tty7": {
    "id": "tty7",
-   "fetched_at": "2026-10-21T09:23:16+00:00",
+   "fetched_at": "2026-10-26T10:16:48+00:00",
    "github": {
     "repo": "l0ng-ai/tty7",
     "http_status": 200,
@@ -8826,9 +8619,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "The terminal that outlives its window. Shells survive quitting the app, agents can drive other agents, and remote machines work the same way. Pure Rust, GPU-rendered. - l0ng-ai/tty7",
-    "last_commit": "2026-10-20T05:16:18Z",
+    "last_commit": "2026-10-24T10:28:08Z",
     "latest_release": "v26.10.0",
     "cargo": {
      "found": true,
@@ -8857,7 +8649,7 @@
   },
   "tui-journal": {
    "id": "tui-journal",
-   "fetched_at": "2026-10-21T09:20:39+00:00",
+   "fetched_at": "2026-10-26T10:18:37+00:00",
    "github": {
     "repo": "AmmarAbouZor/tui-journal",
     "http_status": 200,
@@ -8865,9 +8657,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Your journal app if you live in a terminal. Contribute to AmmarAbouZor/tui-journal development by creating an account on GitHub.",
-    "last_commit": "2026-10-16T12:37:39Z",
+    "last_commit": "2026-10-25T21:30:06Z",
     "latest_release": "v0.18.0",
     "cargo": {
      "found": true,
@@ -8900,7 +8691,7 @@
   },
   "tura": {
    "id": "tura",
-   "fetched_at": "2026-10-21T09:23:35+00:00",
+   "fetched_at": "2026-10-26T10:18:13+00:00",
    "github": {
     "repo": "Tura-AI/tura",
     "http_status": 200,
@@ -8908,7 +8699,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Build agent that uses 80% less token and delivers better results. - Tura-AI/tura",
     "last_commit": "2026-10-07T03:43:31Z",
     "latest_release": "v0.1.37",
@@ -9044,35 +8834,11 @@
      "router",
      "tura"
     ]
-   },
-   "tree_bins": {
-    "bins": {
-     "tura_gui": "apps/tauri/src-tauri/Cargo.toml",
-     "tura-command-generate-media": "commands/generate_media/Cargo.toml",
-     "generate_media": "commands/generate_media/Cargo.toml",
-     "tura-command-read-media": "commands/read_media/Cargo.toml",
-     "read_media": "commands/read_media/Cargo.toml",
-     "tura-command-web-discover": "commands/web_discover/Cargo.toml",
-     "web_discover": "commands/web_discover/Cargo.toml",
-     "tura_exec": "crates/gateway/Cargo.toml",
-     "tura_gateway": "crates/gateway/Cargo.toml",
-     "gateway": "crates/gateway/Cargo.toml",
-     "tura_router": "crates/router/Cargo.toml",
-     "router": "crates/router/Cargo.toml",
-     "mock_router_for_test": "crates/runtime/Cargo.toml",
-     "tura_runtime": "crates/runtime/Cargo.toml",
-     "tura_session_db": "crates/session_log/Cargo.toml",
-     "runtime-session-equivalence": "tests/equivalence/runtime_session/runner/Cargo.toml",
-     "inventory": "tests/equivalence/runtime_session/runner/Cargo.toml",
-     "tura-xtask": "xtask/Cargo.toml"
-    },
-    "cargo_tomls": 20,
-    "checked_at": "2026-10-21T11:35:20+00:00"
    }
   },
   "ugdb": {
    "id": "ugdb",
-   "fetched_at": "2026-10-21T09:20:18+00:00",
+   "fetched_at": "2026-10-26T10:18:14+00:00",
    "github": {
     "repo": "ftilde/ugdb",
     "http_status": 200,
@@ -9080,7 +8846,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An alternative TUI for gdb. Contribute to ftilde/ugdb development by creating an account on GitHub.",
     "last_commit": "2025-03-09T10:58:50Z",
     "latest_release": null,
@@ -9115,7 +8880,7 @@
   },
   "vaultwarden": {
    "id": "vaultwarden",
-   "fetched_at": "2026-10-21T09:21:35+00:00",
+   "fetched_at": "2026-10-26T10:19:33+00:00",
    "github": {
     "repo": "dani-garcia/vaultwarden",
     "http_status": 200,
@@ -9123,9 +8888,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs - dani-garcia/vaultwarden",
-    "last_commit": "2026-10-16T09:51:32Z",
+    "last_commit": "2026-10-25T19:42:35Z",
     "latest_release": "1.37.4",
     "cargo": {
      "found": true,
@@ -9164,7 +8928,7 @@
   },
   "wezterm": {
    "id": "wezterm",
-   "fetched_at": "2026-10-21T09:18:52+00:00",
+   "fetched_at": "2026-10-26T10:16:49+00:00",
    "github": {
     "repo": "wez/wezterm",
     "http_status": 200,
@@ -9172,9 +8936,8 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust - wezterm/wezterm",
-    "last_commit": "2026-10-10T07:39:11Z",
+    "last_commit": "2026-10-26T07:26:28Z",
     "latest_release": "20240203-110809-5046fc22",
     "cargo": {
      "found": true,
@@ -9294,12 +9057,12 @@
      "sync-color-schemes": "sync-color-schemes/Cargo.toml"
     },
     "cargo_tomls": 60,
-    "checked_at": "2026-10-21T11:34:05+00:00"
+    "checked_at": "2026-10-26T10:20:31+00:00"
    }
   },
   "xcp": {
    "id": "xcp",
-   "fetched_at": "2026-10-21T09:18:04+00:00",
+   "fetched_at": "2026-10-26T10:16:03+00:00",
    "github": {
     "repo": "tarka/xcp",
     "http_status": 200,
@@ -9307,7 +9070,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An extended `cp`. Contribute to tarka/xcp development by creating an account on GitHub.",
     "last_commit": "2026-06-23T06:37:28Z",
     "latest_release": "xcp-v0.24.8",
@@ -9362,7 +9124,7 @@
   },
   "xi-editor": {
    "id": "xi-editor",
-   "fetched_at": "2026-10-21T09:24:41+00:00",
+   "fetched_at": "2026-10-26T10:18:38+00:00",
    "github": {
     "repo": "xi-editor/xi-editor",
     "http_status": 200,
@@ -9370,7 +9132,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A modern editor with a backend written in Rust. Contribute to xi-editor/xi-editor development by creating an account on GitHub.",
     "last_commit": "2023-08-14T16:33:53Z",
     "latest_release": null,
@@ -9387,7 +9148,7 @@
   },
   "xplr": {
    "id": "xplr",
-   "fetched_at": "2026-10-21T09:18:06+00:00",
+   "fetched_at": "2026-10-26T10:16:05+00:00",
    "github": {
     "repo": "sayanarijit/xplr",
     "http_status": 200,
@@ -9395,10 +9156,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A hackable, minimal, fast TUI file explorer. Contribute to sayanarijit/xplr development by creating an account on GitHub.",
-    "last_commit": "2026-10-07T16:35:36Z",
-    "latest_release": "v1.1.2",
+    "last_commit": "2026-10-26T05:38:40Z",
+    "latest_release": "v1.2.2",
     "cargo": {
      "found": true,
      "packages": [
@@ -9416,8 +9176,8 @@
    },
    "crates_io": {
     "crate": "xplr",
-    "max_stable_version": "1.1.2",
-    "updated_at": "2026-09-15T11:56:01.475739Z",
+    "max_stable_version": "1.2.2",
+    "updated_at": "2026-10-25T18:33:11.411741Z",
     "bin_names": [
      "xplr"
     ],
@@ -9430,7 +9190,7 @@
   },
   "xsv": {
    "id": "xsv",
-   "fetched_at": "2026-10-21T09:20:20+00:00",
+   "fetched_at": "2026-10-26T10:18:15+00:00",
    "github": {
     "repo": "BurntSushi/xsv",
     "http_status": 200,
@@ -9438,7 +9198,6 @@
     "redirected": false,
     "archived": true,
     "archived_on": "Apr 24, 2025",
-    "languages": {},
     "og_description": "A fast CSV command line toolkit written in Rust. Contribute to BurntSushi/xsv development by creating an account on GitHub.",
     "last_commit": "2025-04-24T13:07:36Z",
     "latest_release": "0.13.0",
@@ -9473,7 +9232,7 @@
   },
   "yazi": {
    "id": "yazi",
-   "fetched_at": "2026-10-21T09:23:09+00:00",
+   "fetched_at": "2026-10-26T10:15:39+00:00",
    "github": {
     "repo": "sxyazi/yazi",
     "http_status": 200,
@@ -9481,9 +9240,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "💥 Blazing fast terminal file manager written in Rust, based on async I/O. - sxyazi/yazi",
-    "last_commit": "2026-10-20T14:50:58Z",
+    "last_commit": "2026-10-23T04:35:42Z",
     "latest_release": "v26.9.1",
     "cargo": {
      "found": true,
@@ -9509,7 +9267,7 @@
   },
   "youtube-tui": {
    "id": "youtube-tui",
-   "fetched_at": "2026-10-21T09:21:40+00:00",
+   "fetched_at": "2026-10-26T10:19:36+00:00",
    "github": {
     "repo": "Siriusmart/youtube-tui",
     "http_status": 200,
@@ -9517,7 +9275,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An aesthetically pleasing YouTube TUI written in Rust - Siriusmart/youtube-tui",
     "last_commit": "2026-05-29T20:44:37Z",
     "latest_release": "v0.9.4",
@@ -9550,7 +9307,7 @@
   },
   "ytermusic": {
    "id": "ytermusic",
-   "fetched_at": "2026-10-21T09:24:57+00:00",
+   "fetched_at": "2026-10-26T10:19:38+00:00",
    "github": {
     "repo": "ccgauche/ytermusic",
     "http_status": 200,
@@ -9558,7 +9315,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "An in terminal youtube music client with focus on privacy, simplicity and performance - ccgauche/ytermusic",
     "last_commit": "2026-05-13T08:27:35Z",
     "latest_release": null,
@@ -9628,12 +9384,12 @@
      "ytermusic": "crates/ytermusic/Cargo.toml"
     },
     "cargo_tomls": 7,
-    "checked_at": "2026-10-21T11:33:37+00:00"
+    "checked_at": "2026-10-26T10:21:00+00:00"
    }
   },
   "ytop": {
    "id": "ytop",
-   "fetched_at": "2026-10-21T09:23:10+00:00",
+   "fetched_at": "2026-10-26T10:16:28+00:00",
    "github": {
     "repo": "cjbassi/ytop",
     "http_status": 200,
@@ -9641,7 +9397,6 @@
     "redirected": false,
     "archived": true,
     "archived_on": "Aug 29, 2020",
-    "languages": {},
     "og_description": "A TUI system monitor written in Rust. Contribute to cjbassi/ytop development by creating an account on GitHub.",
     "last_commit": "2020-08-29T01:04:23Z",
     "latest_release": "0.6.2",
@@ -9670,12 +9425,12 @@
      "package-publisher": "package-publisher/Cargo.toml"
     },
     "cargo_tomls": 2,
-    "checked_at": "2026-10-21T11:32:26+00:00"
+    "checked_at": "2026-10-26T10:20:20+00:00"
    }
   },
   "zed": {
    "id": "zed",
-   "fetched_at": "2026-10-21T09:24:42+00:00",
+   "fetched_at": "2026-10-26T10:18:44+00:00",
    "github": {
     "repo": "zed-industries/zed",
     "http_status": 200,
@@ -9683,10 +9438,9 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter. - zed-industries/zed",
-    "last_commit": "2026-10-21T09:17:16Z",
-    "latest_release": "v1.24.4",
+    "last_commit": "2026-10-26T10:10:32Z",
+    "latest_release": "v1.25.3",
     "cargo": {
      "found": true,
      "packages": [
@@ -10056,12 +9810,12 @@
      "wsl_sandbox_test_helper": "crates/sandbox/Cargo.toml"
     },
     "cargo_tomls": 60,
-    "checked_at": "2026-10-21T11:34:20+00:00"
+    "checked_at": "2026-10-26T10:20:51+00:00"
    }
   },
   "zellij": {
    "id": "zellij",
-   "fetched_at": "2026-10-21T09:18:54+00:00",
+   "fetched_at": "2026-10-26T10:16:50+00:00",
    "github": {
     "repo": "zellij-org/zellij",
     "http_status": 200,
@@ -10069,9 +9823,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A terminal workspace with batteries included. Contribute to zellij-org/zellij development by creating an account on GitHub.",
-    "last_commit": "2026-10-20T14:54:48Z",
+    "last_commit": "2026-10-26T08:22:23Z",
     "latest_release": "v0.45.1",
     "cargo": {
      "found": true,
@@ -10198,7 +9951,7 @@
   },
   "zenith": {
    "id": "zenith",
-   "fetched_at": "2026-10-21T09:23:13+00:00",
+   "fetched_at": "2026-10-26T10:16:29+00:00",
    "github": {
     "repo": "bvaisvil/zenith",
     "http_status": 200,
@@ -10206,7 +9959,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "Zenith - sort of like top or htop but with zoom-able charts, CPU, GPU, network, and disk usage - bvaisvil/zenith",
     "last_commit": "2026-10-01T20:55:30Z",
     "latest_release": "0.15.1",
@@ -10234,12 +9986,12 @@
      "zenith": "Cargo.toml"
     },
     "cargo_tomls": 1,
-    "checked_at": "2026-10-21T11:32:26+00:00"
+    "checked_at": "2026-10-26T10:20:21+00:00"
    }
   },
   "zerobrew": {
    "id": "zerobrew",
-   "fetched_at": "2026-10-21T09:25:09+00:00",
+   "fetched_at": "2026-10-26T10:19:43+00:00",
    "github": {
     "repo": "lucasgelfond/zerobrew",
     "http_status": 200,
@@ -10247,10 +9999,9 @@
     "redirected": true,
     "archived": false,
     "archived_on": null,
-    "languages": {},
-    "og_description": "An up to 5x faster Homebrew client. Contribute to zerobrewhq/zerobrew development by creating an account on GitHub.",
-    "last_commit": "2026-10-15T14:03:20Z",
-    "latest_release": "v0.4.1",
+    "og_description": "An up to 10x faster Homebrew client. Contribute to zerobrewhq/zerobrew development by creating an account on GitHub.",
+    "last_commit": "2026-10-23T16:43:26Z",
+    "latest_release": "v0.4.2",
     "cargo": {
      "found": true,
      "packages": [
@@ -10296,12 +10047,12 @@
      "zbx": "zb_cli/Cargo.toml"
     },
     "cargo_tomls": 4,
-    "checked_at": "2026-10-21T11:33:39+00:00"
+    "checked_at": "2026-10-26T10:21:01+00:00"
    }
   },
   "zola": {
    "id": "zola",
-   "fetched_at": "2026-10-21T09:25:03+00:00",
+   "fetched_at": "2026-10-26T10:19:40+00:00",
    "github": {
     "repo": "getzola/zola",
     "http_status": 200,
@@ -10309,7 +10060,6 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A fast static site generator in a single binary with everything built-in. https://www.getzola.org - getzola/zola",
     "last_commit": "2026-10-14T20:51:16Z",
     "latest_release": "v0.23.6",
@@ -10339,7 +10089,7 @@
   },
   "zoxide": {
    "id": "zoxide",
-   "fetched_at": "2026-10-21T09:17:41+00:00",
+   "fetched_at": "2026-10-26T10:15:41+00:00",
    "github": {
     "repo": "ajeetdsouza/zoxide",
     "http_status": 200,
@@ -10347,9 +10097,8 @@
     "redirected": false,
     "archived": false,
     "archived_on": null,
-    "languages": {},
     "og_description": "A smarter cd command. Supports all major shells. Contribute to ajeetdsouza/zoxide development by creating an account on GitHub.",
-    "last_commit": "2026-10-18T00:08:44Z",
+    "last_commit": "2026-10-24T01:27:58Z",
     "latest_release": "v0.10.0",
     "cargo": {
      "found": true,
