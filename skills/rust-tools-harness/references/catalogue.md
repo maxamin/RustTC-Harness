@@ -1,6 +1,6 @@
 # Catalogue (generated)
 
-Generated from `registry/tools.json` (174 tools, built 2026-10-21T11:35:21+00:00). Do not edit by hand: run `scripts/build_registry.py build`.
+Generated from `registry/tools.json` (174 tools, built 2026-11-23T14:58:17+00:00). Do not edit by hand: run `scripts/build_registry.py build`.
 
 Columns: **bin** = binary (`?` unknown; `*` curated, not upstream-verified) · **auto** = automation suitability · **ia** = interactive (none / optional / required).
 
@@ -11,7 +11,7 @@ Columns: **bin** = binary (`?` unknown; `*` curated, not upstream-verified) · *
 | [fd](https://github.com/sharkdp/fd) | `fd` | cli | active | high | none | find-files |
 | [igrep](https://github.com/konradsz/igrep) | `ig` | tui | active | none | required | search-content, interactive-search |
 | [MeiliSearch](https://github.com/meilisearch/MeiliSearch) | `meilisearch` | service | active | high | none | search-engine |
-| [qdrant-es-gateway](https://github.com/dstockton/qdrant-es-gateway) | `qdrant-es-gateway` | service | experimental | unknown | none | search-engine |
+| [qdrant-es-gateway](https://github.com/dstockton/qdrant-es-gateway) | `?` | service | experimental | unknown | none | search-engine |
 | [repgrep](https://github.com/acheronfail/repgrep) | `rgr` | tui | active | none | required | search-replace, interactive-search |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | `rg` | cli | active | high | none | search-content, find-files |
 | [television](https://github.com/alexpasmantier/television) | `tv` | tui | active | low | required | fuzzy-select, interactive-search |
@@ -152,7 +152,7 @@ Columns: **bin** = binary (`?` unknown; `*` curated, not upstream-verified) · *
 | [lurk](https://github.com/JakWai01/lurk) | `lurk` | cli | active | high | none | syscall-trace |
 | [mask](https://github.com/jacobdeichert/mask) | `mask` | cli | active | high | none | task-runner |
 | [mise](https://github.com/jdx/mise) | `mise` | cli | active | high | none | version-manager, task-runner, dev-env-manager |
-| [nika](https://github.com/supernovae-st/nika) | `nika-catalog-verify` | cli | experimental | unknown | none | workflow-engine |
+| [nika](https://github.com/nika-open/nika) | `nika-catalog-verify` | cli | experimental | unknown | none | workflow-engine |
 | [onefetch](https://github.com/o2sh/onefetch) | `onefetch` | cli | active | high | none | git-info |
 | [omnigraph](https://github.com/ModernRelay/omnigraph) | `omnigraph` | service | experimental | unknown | none | graph-db |
 | [pastel](https://github.com/sharkdp/pastel) | `pastel` | cli | active | high | none | color-tool |
@@ -161,7 +161,7 @@ Columns: **bin** = binary (`?` unknown; `*` curated, not upstream-verified) · *
 | [rust_sqlite](https://github.com/joaoh82/rust_sqlite) | `sqlrite` | cli | experimental | none | none | embedded-db |
 | [rust_kanban](https://github.com/yashs662/rust_kanban) | `rust-kanban` | tui | active | none | required | kanban |
 | [sccache](https://github.com/mozilla/sccache) | `sccache` | cli | active | high | none | compile-cache |
-| [sem](https://github.com/Ataraxy-Labs/sem) | `sem` | cli | experimental | unknown | none | semantic-diff, diff-structural |
+| [sem](https://github.com/Ataraxy-Labs/sem) | `?` | cli | experimental | unknown | none | semantic-diff, diff-structural |
 | [silicon](https://github.com/Aloxaf/silicon) | `silicon` | cli | inactive | high | none | code-image |
 | [slumber](https://github.com/LucasPickering/slumber) | `slumber` | tui | active | medium | optional | http-client |
 | [sqleibniz](https://github.com/xNaCly/sqleibniz) | `sqleibniz` | cli | experimental | medium | none | sql-lint |
